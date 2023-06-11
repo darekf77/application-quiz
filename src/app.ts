@@ -9,12 +9,13 @@ import { Component, OnInit } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { MaterialCssVarsModule } from 'angular-material-css-vars';
 import { FiredevFullMaterialModule } from 'firedev-ui';
-import { StoreModule } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { RouterSerializer, metaReducers, reducers } from './app.store';
+import { AppEffects, AppState, RouterSerializer, appActions, appSelectors, metaReducers, reducers } from './app.store';
+import { CommonModule } from '@angular/common';
 //#endregion
 //#endregion
 
@@ -48,13 +49,21 @@ const routes: Routes = [
   templateUrl: './app.html',
 })
 export class ApplicationQuizComponent implements OnInit {
-  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
+  constructor(private store: Store<AppState>) { }
+
+  topics$ = this.store.select(appSelectors.allTopics);
+  selected$ = this.store.select(appSelectors.selectedTopic);
+  showQuizSelect$ = this.store.select(appSelectors.showQuizSelect);
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+  changeTopic(topic: Topic) {
+    this.store.dispatch(appActions.CHANGE_TOPIC({ topic }));
+  }
   someMethod() {
     this.trigger.openMenu();
   }
   async ngOnInit() {
-
+    this.store.dispatch(appActions.INIT());
   }
 }
 //#endregion
@@ -62,6 +71,7 @@ export class ApplicationQuizComponent implements OnInit {
 //#region main module
 @NgModule({
   imports: [
+    CommonModule,
     RouterModule.forRoot(routes, {
       useHash: true,
       preloadingStrategy: PreloadAllModules,
@@ -69,7 +79,7 @@ export class ApplicationQuizComponent implements OnInit {
       bindToComponentInputs: true
     }),
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([AppEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       // logOnly: environment.production,
