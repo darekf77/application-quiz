@@ -2,11 +2,12 @@ import { Firedev } from 'firedev';
 import { _ } from 'tnp-core';
 import type { QuestionController } from './question.controller';
 import { defaultModelValuesQuestion as defaultModelValues } from './question.models';
+import { RawAnswer, RawQuestion } from '../../models';
 @Firedev.Entity({
   className: 'Question',
   defaultModelValues,
 })
-export class Question extends Firedev.Base.Entity<any> {
+export class Question extends Firedev.Base.Entity<any> implements RawQuestion {
 
   //#region static
   static ctrl: QuestionController;
@@ -31,9 +32,28 @@ export class Question extends Firedev.Base.Entity<any> {
   ctrl: QuestionController;
 
   //#region @websql
+  @Firedev.Orm.Column.Custom({
+    type: 'varchar',
+    length: 100,
+    default: defaultModelValues.description
+  })
+  //#endregion
+  title: string;
+
+  answers: RawAnswer[];
+
+  //#region @websql
   @Firedev.Orm.Column.Generated()
   //#endregion
-  id: string;
+  id: number;
+
+  //#region @websql
+  @Firedev.Orm.Column.Custom({
+    type: 'int',
+  })
+  //#endregion
+  topicId?: number;
+  //#endregion
 
   //#region @websql
   @Firedev.Orm.Column.Custom({

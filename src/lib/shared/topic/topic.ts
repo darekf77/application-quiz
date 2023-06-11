@@ -2,11 +2,12 @@ import { Firedev } from 'firedev';
 import { _ } from 'tnp-core';
 import type { TopicController } from './topic.controller';
 import { defaultModelValuesTopic as defaultModelValues } from './topic.models';
+import { RawQuestion, RawTopic } from '../../models';
 @Firedev.Entity({
   className: 'Topic',
   defaultModelValues,
 })
-export class Topic extends Firedev.Base.Entity<any> {
+export class Topic extends Firedev.Base.Entity<any> implements RawTopic {
 
   //#region static
   static ctrl: TopicController;
@@ -30,10 +31,20 @@ export class Topic extends Firedev.Base.Entity<any> {
   //#region fields & getters
   ctrl: TopicController;
 
+  @Firedev.Orm.Column.Custom({
+    type: 'varchar',
+    length: 200,
+    default: defaultModelValues.title
+  })
+  //#endregion
+  title: string;
+
+  question: RawQuestion[];
+
   //#region @websql
   @Firedev.Orm.Column.Generated()
   //#endregion
-  id: string;
+  id: number;
 
   //#region @websql
   @Firedev.Orm.Column.Custom({

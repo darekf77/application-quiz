@@ -2,12 +2,12 @@
 //#region imports
 import { Firedev } from 'firedev';
 const host = 'http://localhost:4199';
+import { Answer, AnswerController, LayoutSimpleSmallAppModule, Question, QuestionController, Topic, TopicController } from './lib';
 //#region @browser
 import { NgModule, NgZone, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { MaterialCssVarsModule } from 'angular-material-css-vars';
-import { LayoutSimpleSmallAppModule } from './lib';
 import { FiredevFullMaterialModule } from 'firedev-ui';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -102,9 +102,15 @@ async function start() {
   const context = await Firedev.init({
     host,
     controllers: [
+      TopicController,
+      QuestionController,
+      AnswerController,
       // PUT FIREDEV CONTORLLERS HERE
     ],
     entities: [
+      Topic,
+      Question,
+      Answer,
       // PUT FIREDEV ENTITIES HERE
     ],
     //#region @websql
