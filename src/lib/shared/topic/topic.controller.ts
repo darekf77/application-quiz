@@ -34,6 +34,18 @@ export class TopicController extends Firedev.Base.Controller<any> {
     //#endregion
   }
 
+  @Firedev.Http.GET(`/by/title/:title`) // @ts-ignore
+  getByTitle(@Firedev.Http.Param.Path('title') title): Firedev.Response<Topic> {
+    //#region @websqlFunc
+    const config = super.getAll();
+    return async (req, res) => { // @ts-ignore
+      let arr = await Firedev.getResponseValue(config, req, res) as Topic[];
+      const topic = arr.find(f => _.kebabCase(f.title) === title);
+      return topic;
+    }
+    //#endregion
+  }
+
   //#region @websql
   async initExampleDbData() {
     const repo = {
@@ -53,6 +65,10 @@ export class TopicController extends Firedev.Base.Controller<any> {
         question.topicId = topic.id;
         const anwsers = _.cloneDeep(question.answers);
         question = await repo.question.save(question);
+        if (index2 === 0) {
+          topic.firstQuestionId = question.id;
+          topic = await repo.topic.save(topic);
+        }
         topic.question[index2] = question;
         for (let index3 = 0; index3 < anwsers.length; index3++) {
           let answer = Answer.from(anwsers[index3]);
@@ -62,11 +78,6 @@ export class TopicController extends Firedev.Base.Controller<any> {
         }
       }
     }
-
-    console.log({
-      topics
-    })
-
   }
 
   //#endregion

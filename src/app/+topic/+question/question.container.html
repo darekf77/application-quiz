@@ -1,10 +1,6 @@
-<div *ngFor="let item of (allData$ | async); trackBy: trackByMethod; let i = index">
-  {{ item }}
+Hello in question
+<div>
+  {{ (question$ | async)?.title }}
 </div>
 
-<button mat-raised-button
-        [disabled]="!(allowedToUndo$ | async)"
-        (click)="undo()">
-  Undo
-  <mat-icon>undo</mat-icon>
-</button>
+<answer  ></answer>

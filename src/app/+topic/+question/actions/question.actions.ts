@@ -1,26 +1,25 @@
 //#region @browser
 import { createAction, props } from "@ngrx/store";
+import { IQuestion } from "../../../../lib";
 
 export const INIT = createAction(
-  '[question] INIT'
+  '[question] INIT',
 );
 
-export const FETCH = createAction(
-  '[question] FETCH',
+export const FETCH_QUESTIONS = createAction(
+  '[question] FETCH_QUESTIONS',
+  props<{ questionId: number; }>()
 );
 
-export const FETCH_SUCCESS = createAction(
-  '[question] FETCH_SUCCESS',
+export const FETCH_QUESTIONS_SUCCESS = createAction(
+  '[question] FETCH_QUESTIONS_SUCCESS',
+  props<{ question: IQuestion }>()
 );
 
-export const FETCH_ERROR = createAction(
-  '[question] FETCH_ERROR',
+export const FETCH_QUESTIONS_ERROR = createAction(
+  '[question] FETCH_QUESTIONS_ERROR',
   props<{ error?: any }>()
 );
 
-export const UNDO = createAction(
-  '[question] UNDO',
-  props<{ data?: any }>()
-);
 
 //#endregion

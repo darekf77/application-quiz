@@ -17,8 +17,13 @@ const routes: Routes = [
     component: TopicContainer,
   },
   {
-    path: 'topic/:id',
+    path: 'topic/:topicId',
     component: TopicContainer,
+  },
+  {
+    path: 'topic/:topicId/question',
+    loadChildren: () => import('./+question/question.module')
+      .then(m => m.QuestionModule),
   },
 ];
 

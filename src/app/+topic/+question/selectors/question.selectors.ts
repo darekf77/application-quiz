@@ -4,20 +4,9 @@ import { questionFeatureKey, QuestionInitialState } from '../question.models';
 
 const questionFeatureSelector = createFeatureSelector<QuestionInitialState>(questionFeatureKey);
 
-export const allBatches = createSelector(questionFeatureSelector, state => {
-  return state.questionArr;
+export const getCurrentQuestion = createSelector(questionFeatureSelector, state => {
+  return state.currentQuestion;
 });
 
-
-export const filterAllBatchesBy = (customerId: string) => {
-  return createSelector(questionFeatureSelector, state => {
-    return state.questionArr;
-  });
-}
-
-
-export const allowedToUndo = createSelector(questionFeatureSelector, state => {
-  return state.questionArr.length > 0;
-});
 
 //#endregion

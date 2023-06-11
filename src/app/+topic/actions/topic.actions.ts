@@ -1,26 +1,27 @@
 //#region @browser
 import { createAction, props } from "@ngrx/store";
+import { ITopic, Topic } from "../../../lib";
+
 
 export const INIT = createAction(
-  '[topic] INIT'
+  '[topic] INIT',
+  props<{ topicTitleKebakCase: string; }>()
 );
 
-export const FETCH = createAction(
-  '[topic] FETCH',
+export const FETCH_TOPIC = createAction(
+  '[topic] FETCH_TOPIC',
+  props<{ topicTitleKebakCase: string; }>()
 );
 
-export const FETCH_SUCCESS = createAction(
-  '[topic] FETCH_SUCCESS',
+export const FETCH_TOPIC_SUCCESS = createAction(
+  '[topic] FETCH_TOPIC_SUCCESS',
+  props<{ topic: ITopic; }>()
 );
 
-export const FETCH_ERROR = createAction(
-  '[topic] FETCH_ERROR',
-  props<{ error?: any }>()
+export const FETCH_TOPIC_ERROR = createAction(
+  '[topic] FETCH_TOPIC_ERROR',
+  props<{ error: any }>()
 );
 
-export const UNDO = createAction(
-  '[topic] UNDO',
-  props<{ data?: any }>()
-);
 
 //#endregion

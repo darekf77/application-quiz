@@ -6,6 +6,7 @@ import * as topicSelectors from './selectors/topic.selectors';
 import * as topicAction from './actions/topic.actions';
 import { Observable, of } from 'rxjs';
 
+
 @Component({
   selector: 'app-topic',
   templateUrl: './topic.container.html',
@@ -13,33 +14,18 @@ import { Observable, of } from 'rxjs';
 })
 export class TopicContainer implements OnInit {
   constructor(
-    private store: Store<TopicInitialState>
+    private store: Store<TopicInitialState>,
   ) { }
 
-  allData$: Observable<any>;
+  @Input('topicId') topicTitleKebakCase; // from routing
 
-  @Input('id') // from routing
-  set id(idFromRouting: string) {
-    console.log({
-      idFromRouting
-    })
-    this.allData$ = of([]);
-    // if (idFromRouting) {
-    //   this.allData$ = this.store.select(topicSelectors.filterAllBatchesBy(idFromRouting));
-    // } else {
-    //   this.allData$ = of([]);
-    // }
+  ngOnInit() {
+    console.log('oninit!!', this.topicTitleKebakCase)
+    const { topicTitleKebakCase } = this;
+    if (topicTitleKebakCase) {
+      this.store.dispatch(topicAction.INIT({ topicTitleKebakCase }))
+    }
   }
-
-  trackByMethod(index: number, item: any): number {
-    return item.id;
-  }
-
-  undo() {
-    this.store.dispatch(topicAction.UNDO({}))
-  }
-
-  ngOnInit() { }
 
 }
 //#endregion

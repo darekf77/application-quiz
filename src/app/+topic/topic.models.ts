@@ -1,7 +1,9 @@
+import { ITopic } from "../../lib";
+
 //#region @browser
-export const topicFeatureKey = 'topic';
+export const topicFeatureKey = 'topicsFeature';
 
 export interface TopicInitialState {
-  topicArr: any[];
+  currentTopic: ITopic;
 };
 //#endregion

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { TopicService } from './topic.service';
 
 @Component({
-  selector: 'app-topic',
+  selector: 'topic',
   templateUrl: './topic.component.html',
   styleUrls: ['./topic.component.scss'],
   providers: [TopicService]

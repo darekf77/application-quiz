@@ -9,6 +9,7 @@ import { questionFeatureKey } from './question.models';
 import { questionReducer } from './reducers/question.reducers';
 import { QuestionService } from './services/question.service';
 import { RouterModule, Routes } from '@angular/router';
+import { AnswerModule } from '../../../lib';
 
 const routes: Routes = [
   {
@@ -17,7 +18,7 @@ const routes: Routes = [
     component: QuestionContainer,
   },
   {
-    path: 'inside/:id',
+    path: ':questionId',
     component: QuestionContainer,
   },
 ];
@@ -29,6 +30,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     StoreModule.forFeature(questionFeatureKey, questionReducer),
     EffectsModule.forFeature([QuestionEffects]),
+    AnswerModule,
   ],
   declarations: [QuestionContainer],
   providers: [QuestionService],

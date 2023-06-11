@@ -5,16 +5,15 @@ import * as topicActions from '../actions/topic.actions'
 import { TopicInitialState } from '../topic.models';
 
 const initialState: TopicInitialState = {
-  topicArr: [],
+  currentTopic: void 0
 };
 
 export const topicReducer = createReducer(
   initialState,
   on(
-    topicActions.FETCH_SUCCESS,
-    (state) => {
-      const newState = _.cloneDeep(state);
-      return { ...state, ...newState };
+    topicActions.FETCH_TOPIC_SUCCESS,
+    (state, { topic }) => {
+      return { ...state, ...{ currentTopic: _.cloneDeep(topic) } };
     }
   ),
 );

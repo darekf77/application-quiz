@@ -112,8 +112,8 @@ export const reducers: ActionReducerMap<AppState> = {
 
 const debugMeta = (reducer: ActionReducer<any>): ActionReducer<any> => {
   return (state, action) => {
-    console.log('state', state);
-    console.log('action', action);
+    // console.log('state', state);
+    // console.log('action', action);
 
     return reducer(state, action);
   };
@@ -178,7 +178,7 @@ export namespace appSelectors {
   });
 
   export const showQuizSelect = createSelector(appRouterSelector, state => {
-    return state.state.url?.startsWith('/quiz');
+    return state?.state?.url?.startsWith('/quiz');
   });
 }
 

@@ -40,6 +40,14 @@ export class Topic extends Firedev.Base.Entity<any> implements RawTopic {
   //#endregion
   title: string;
 
+  //#region @websql
+  @Firedev.Orm.Column.Custom({
+    type: 'int',
+    nullable: true,
+  })
+  //#endregion
+  firstQuestionId: number;
+
   question: RawQuestion[];
 
   //#region @websql

@@ -1,5 +1,7 @@
 import { Firedev } from 'firedev';
 import { Question } from './question';
+import { Answer } from '../answer';
+import { Topic } from '../topic';
 
 @Firedev.Controller({
   className: 'QuestionController',
@@ -24,6 +26,27 @@ export class QuestionController extends Firedev.Base.Controller<any> {
         arr = arr.slice(0, limit - 1);
       }
       return arr as any;
+    }
+    //#endregion
+  }
+
+  @Firedev.Http.GET(`/get/questino/with/answers/for/:topicId`) // @ts-ignore
+  getQuestionWithAswers(@Firedev.Http.Param.Query('questionId') questionId: number,): Firedev.Response<Question> {
+    //#region @websqlFunc
+    const config = super.getAll();
+    return async (req, res) => { // @ts-ignore
+      let question = await this.connection.getRepository(Question).findOne({
+        where: {
+          id: questionId
+        }
+      });
+      const answers = await this.connection.getRepository(Answer).find({
+        where: {
+          questionId,
+        }
+      });
+      question.answers = answers;
+      return question;
     }
     //#endregion
   }

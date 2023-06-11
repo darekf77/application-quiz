@@ -1,7 +1,9 @@
+import { IQuestion } from "../../../lib";
+
 //#region @browser
-export const questionFeatureKey = 'myentity';
+export const questionFeatureKey = 'questionsFeature';
 
 export interface QuestionInitialState {
-  questionArr: any[];
+  currentQuestion: IQuestion;
 };
 //#endregion

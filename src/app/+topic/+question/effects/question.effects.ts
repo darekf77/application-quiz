@@ -2,18 +2,28 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as questionActions from '../actions/question.actions'
-import { switchMap, map, of } from "rxjs";
-import { QuestionService } from '../services/question.service';
+import { switchMap, map, of, catchError, withLatestFrom } from "rxjs";
 import { Store } from '@ngrx/store';
-import { QuestionInitialState } from '../question.models';
+import { Question, Topic } from '../../../../lib';
+import { AppState } from '../../../../app.store';
 
 @Injectable()
 export class QuestionEffects {
-  constructor(private actions$: Actions, private service: QuestionService, private store: Store<QuestionInitialState>) { }
+  constructor(private actions$: Actions, private store: Store<AppState>) { }
 
-  init = createEffect(() => this.actions$.pipe(
-    ofType(questionActions.INIT),
-    switchMap(() => of(questionActions.FETCH()))
+  fetchQuestions = createEffect(() => this.actions$.pipe(
+    ofType(questionActions.FETCH_QUESTIONS),
+    switchMap(({ questionId }) => {
+      return Question.ctrl.getQuestionWithAswers(questionId).received.observable.pipe(
+        map(data => {
+          const question = data.body.rawJson
+          return questionActions.FETCH_QUESTIONS_SUCCESS({ question })
+        }),
+        catchError((error) => {
+          return of(questionActions.FETCH_QUESTIONS_ERROR({ error }));
+        }),
+      )
+    })
   ));
 
 }

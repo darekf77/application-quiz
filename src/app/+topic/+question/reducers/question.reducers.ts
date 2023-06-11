@@ -5,16 +5,15 @@ import * as questionActions from '../actions/question.actions'
 import { QuestionInitialState } from '../question.models';
 
 const initialState: QuestionInitialState = {
-  questionArr: [],
+  currentQuestion: void 0,
 };
 
 export const questionReducer = createReducer(
   initialState,
   on(
-    questionActions.FETCH_SUCCESS,
-    (state) => {
-      const newState = _.cloneDeep(state);
-      return { ...state, ...newState };
+    questionActions.FETCH_QUESTIONS_SUCCESS,
+    (state, { question }) => {
+      return { ...state, ...{ currentQuestion: _.cloneDeep(question) } };
     }
   ),
 );
