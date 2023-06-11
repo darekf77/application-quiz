@@ -1,0 +1,11 @@
+<ng-template #loading>
+  loading...
+</ng-template>
+
+<div *ngFor="let item of (allData$ | async) ; trackBy: trackByMethod; let i = index;">
+  {{ item }}
+</div>
+
+<div *ngIf="(allData$ | async).length === 0">
+  Please select topic
+</div>

@@ -7,13 +7,14 @@
     <a mat-button
        routerLink="/stats">Statistics</a>
     <div class="spacer"></div>
-    <button mat-button *ngIf="showQuizSelect$ | async"
+    <button mat-button
+            *ngIf="showQuizSelect$ | async"
             mat-raised-button
             color="accent"
-
-            [matMenuTriggerFor]="menu">{{ (selected$ | async)?.title }}</button>
+            [matMenuTriggerFor]="menu">{{ (selected$ | async)?.title ?? 'Select Quiz Topic...'   }}</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="changeTopic(topic)"
+      <button mat-menu-item
+              (click)="changeTopic(topic)"
               *ngFor="let topic of (topics$ | async)">{{ topic.title }} </button>
     </mat-menu>
     &nbsp;

@@ -1,12 +1,13 @@
 //#region @notForNpm
 //#region imports
 import { Firedev } from 'firedev';
+import { _ } from 'tnp-core';
 const host = 'http://localhost:4199';
 import { Answer, AnswerController, LayoutSimpleSmallAppModule, Question, QuestionController, Topic, TopicController } from './lib';
 //#region @browser
 import { NgModule, NgZone, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { PreloadAllModules, Router, RouterModule, Routes } from "@angular/router";
 import { MaterialCssVarsModule } from 'angular-material-css-vars';
 import { FiredevFullMaterialModule } from 'firedev-ui';
 import { Store, StoreModule } from '@ngrx/store';
@@ -30,8 +31,8 @@ const routes: Routes = [
   },
   {
     path: 'quiz',
-    loadChildren: () => import('./app/quiz/quiz.module')
-      .then(m => m.QuizModule),
+    loadChildren: () => import('./app/topic/topic.module')
+      .then(m => m.TopicModule),
   },
   {
     path: 'stats',
@@ -50,13 +51,17 @@ const routes: Routes = [
 })
 export class ApplicationQuizComponent implements OnInit {
 
-  constructor(private store: Store<AppState>) { }
+  constructor(
+    private store: Store<AppState>,
+    private router: Router,
+  ) { }
 
   topics$ = this.store.select(appSelectors.allTopics);
   selected$ = this.store.select(appSelectors.selectedTopic);
   showQuizSelect$ = this.store.select(appSelectors.showQuizSelect);
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
   changeTopic(topic: Topic) {
+    this.router.navigateByUrl(`/quiz/topic/${_.kebabCase(topic.title)}`);
     this.store.dispatch(appActions.CHANGE_TOPIC({ topic }));
   }
   someMethod() {

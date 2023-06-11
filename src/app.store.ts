@@ -4,7 +4,7 @@ import { RouterReducerState, RouterStateSerializer } from '@ngrx/router-store';
 import { routerReducer } from '@ngrx/router-store';
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { switchMap, map, of, exhaustMap, catchError } from "rxjs";
+import { switchMap, map, of, exhaustMap, catchError, retry } from "rxjs";
 import { _ } from 'tnp-core';
 import {
   ActionReducer,
@@ -21,9 +21,6 @@ import {
 import { Models } from 'tnp-models';
 import { ITopic, Topic } from './lib';
 
-export interface AppState {
-
-}
 
 
 export interface InitialAppState {
@@ -31,12 +28,17 @@ export interface InitialAppState {
   selectedTopic: ITopic;
 }
 
-
 export interface RouterState {
   url: string;
   params: Params;
   queryParams: Params;
 }
+
+export interface AppState {
+  app: InitialAppState;
+  router: RouterReducerState<RouterState>;
+}
+
 
 export class RouterSerializer implements RouterStateSerializer<RouterState> {
   serialize(routerState: RouterStateSnapshot): RouterState {
@@ -154,10 +156,10 @@ export class AppEffects {
       ))
   ));
 
-  selectFirstTopic = createEffect(() => this.actions$.pipe(
-    ofType(appActions.FETCH_TOPICS_SUCCESS),
-    switchMap(() => of(appActions.SELECT_FIRST_TOPIC()))
-  ));
+  // selectFirstTopic = createEffect(() => this.actions$.pipe(
+  //   ofType(appActions.FETCH_TOPICS_SUCCESS),
+  //   switchMap(() => of(appActions.SELECT_FIRST_TOPIC()))
+  // ));
 
 
 }
@@ -176,7 +178,7 @@ export namespace appSelectors {
   });
 
   export const showQuizSelect = createSelector(appRouterSelector, state => {
-    return state.state.url === '/quiz';
+    return state.state.url?.startsWith('/quiz');
   });
 }
 
