@@ -1,0 +1,52 @@
+:host {
+  display: block;
+}
+
+$maxWidth: 900px;
+$headerLogoSize: 100px;
+
+
+@mixin baseLayout {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.bg-text-open {
+  @include baseLayout;
+  max-width : $maxWidth;
+  top       : $headerLogoSize;
+  width     : calc(100% - 10px);
+  height    : calc(100% - $headerLogoSize - 20px);
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  >ng-scrollbar {
+    background: transparent;
+
+    >div {
+      >div {
+        >div {
+          >div {
+            >mat-card {
+              margin          : 10px;
+              background-color: #0006;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+}
+
+footer {
+  position: absolute;
+  z-index: 10;
+  bottom: 5px;
+  width: 100%;
+  text-align: center;
+  color: gray;
+  font-size: 10px;
+}

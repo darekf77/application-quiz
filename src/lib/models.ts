@@ -1,19 +1,19 @@
-export interface IQuizApp {
+export interface RawQuizApp {
   title: string;
-  topics: ITopic[];
+  topics: RawTopic[];
 }
 
-export interface ITopic {
+export interface RawTopic {
   title: string;
-  question: IQuestion[];
+  question: RawQuestion[];
 }
 
-export interface IQuestion {
+export interface RawQuestion {
   title: string;
-  answers: IAnswer[];
+  answers: RawAnswer[];
 }
 
-export interface IAnswer {
+export interface RawAnswer {
   title: string;
   isCorrect?: boolean;
 }

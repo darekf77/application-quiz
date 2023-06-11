@@ -1,6 +1,6 @@
-import { IQuizApp } from "./models";
+import { RawQuizApp } from "./models";
 
-export const obj: IQuizApp = {
+export const obj: RawQuizApp = {
   title: 'Quiz Application UI',
   topics: [
     {
