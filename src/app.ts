@@ -9,7 +9,12 @@ import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { MaterialCssVarsModule } from 'angular-material-css-vars';
 import { LayoutSimpleSmallAppModule } from './lib';
 import { FiredevFullMaterialModule } from 'firedev-ui';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { RouterSerializer, metaReducers, reducers } from './app.store';
 //#endregion
 //#endregion
 
@@ -62,6 +67,15 @@ export class ApplicationQuizComponent implements OnInit {
       preloadingStrategy: PreloadAllModules,
       enableTracing: false,
       bindToComponentInputs: true
+    }),
+    StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      // logOnly: environment.production,
+    }),
+    StoreRouterConnectingModule.forRoot({
+      serializer: RouterSerializer,
     }),
     LayoutSimpleSmallAppModule,
     FiredevFullMaterialModule,

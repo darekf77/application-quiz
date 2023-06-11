@@ -50,7 +50,7 @@ header {
           >div {
             >mat-card {
               margin          : 10px;
-              background-color: #0006;
+              background: whitesmoke;
             }
           }
         }
@@ -69,4 +69,10 @@ footer {
   text-align: center;
   color     : gray;
   font-size : 10px;
+}
+
+
+.wrapper {
+  // display: block;
+  // padding: 10px;
 }
