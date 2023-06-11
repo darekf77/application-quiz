@@ -3,10 +3,13 @@
 import { Firedev } from 'firedev';
 const host = 'http://localhost:4199';
 //#region @browser
-import { NgModule, NgZone, ViewEncapsulation } from '@angular/core';
+import { NgModule, NgZone, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { MaterialCssVarsModule } from 'angular-material-css-vars';
 import { LayoutSimpleSmallAppModule } from './lib';
+import { FiredevFullMaterialModule } from 'firedev-ui';
+import { MatMenuTrigger } from '@angular/material/menu';
 //#endregion
 //#endregion
 
@@ -40,6 +43,11 @@ const routes: Routes = [
   templateUrl: './app.html',
 })
 export class ApplicationQuizComponent implements OnInit {
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+
+  someMethod() {
+    this.trigger.openMenu();
+  }
   async ngOnInit() {
 
   }
@@ -56,6 +64,14 @@ export class ApplicationQuizComponent implements OnInit {
       bindToComponentInputs: true
     }),
     LayoutSimpleSmallAppModule,
+    FiredevFullMaterialModule,
+    MaterialCssVarsModule.forRoot({
+      // all optional
+      isAutoContrast: true,
+      primary: '#4758b8',
+      accent: '#fedfdd'
+      // ...
+    }),
   ],
   exports: [ApplicationQuizComponent],
   declarations: [ApplicationQuizComponent],

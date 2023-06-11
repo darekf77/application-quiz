@@ -1,5 +1,25 @@
+<ng-template #header>
+  <h1>
+    <mat-icon>psychology_alt</mat-icon>
+    Application Quiz
+  </h1>
+</ng-template>
+
 <header>
-  layout-simple-small-app works!
+  <columns-container>
+    <column grow
+            hideMobile></column>
+    <column [width]="600"
+            hideMobile>
+      <ng-container *ngTemplateOutlet="header"></ng-container>
+    </column>
+    <column grow
+            showMobile>
+      <ng-container *ngTemplateOutlet="header"></ng-container>
+    </column>
+    <column grow
+            hideMobile></column>
+  </columns-container>
 </header>
 
 <div class="bg-text-open">

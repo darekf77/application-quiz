@@ -2,20 +2,40 @@
   display: block;
 }
 
-$maxWidth: 900px;
+$maxWidth      : 900px;
 $headerLogoSize: 100px;
 
+@font-face {
+  font-family: 'MainFont';
+  src        : url('src/assets/GasoekOne-Regular.ttf') format('truetype');
+  /* Safari, Android, iOS */
+}
+
+
+header {
+  width     : 100%;
+  text-align: center;
+
+  h1 {
+    // color: #d23939;
+    font-family: "MainFont";
+    letter-spacing: 7px;
+    mat-icon {
+      transform: scale(2.5);
+    }
+  }
+}
 
 @mixin baseLayout {
-  position: relative;
-  left: 50%;
+  position : relative;
+  left     : 50%;
   transform: translate(-50%, 0);
 }
 
 .bg-text-open {
   @include baseLayout;
   max-width : $maxWidth;
-  top       : $headerLogoSize;
+  // top       : $headerLogoSize;
   width     : calc(100% - 10px);
   height    : calc(100% - $headerLogoSize - 20px);
   overflow-x: hidden;
@@ -42,11 +62,11 @@ $headerLogoSize: 100px;
 }
 
 footer {
-  position: absolute;
-  z-index: 10;
-  bottom: 5px;
-  width: 100%;
+  position  : absolute;
+  z-index   : 10;
+  bottom    : 5px;
+  width     : 100%;
   text-align: center;
-  color: gray;
-  font-size: 10px;
+  color     : gray;
+  font-size : 10px;
 }

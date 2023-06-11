@@ -1,3 +1,11 @@
+@use 'angular-material-css-vars' as mat-css-vars;
+
+@include mat-css-vars.init-material-css-vars();
+
+.spacer{
+  flex: 1 1 auto;
+}
+
 :host {
   display: block;
 
