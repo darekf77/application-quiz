@@ -31,6 +31,7 @@ export class Topic extends Firedev.Base.Entity<any> implements RawTopic {
   //#region fields & getters
   ctrl: TopicController;
 
+  //#region @websql
   @Firedev.Orm.Column.Custom({
     type: 'varchar',
     length: 200,

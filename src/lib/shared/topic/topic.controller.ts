@@ -1,7 +1,9 @@
 import { Firedev } from 'firedev';
 import { _ } from 'tnp-core';
 import { Topic } from './topic';
+//#region @websql
 import { backendQuizData } from '../../application-quiz.data';
+//#endregion
 import { Question } from '../question';
 import { Answer } from '../answer';
 

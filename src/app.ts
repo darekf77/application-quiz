@@ -3,8 +3,9 @@
 import { Firedev } from 'firedev';
 import { _ } from 'tnp-core';
 const host = 'http://localhost:4199';
-import { Answer, AnswerController, LayoutSimpleSmallAppModule, Question, QuestionController, Topic, TopicController } from './lib';
+import { Answer, AnswerController, Question, QuestionController, Topic, TopicController } from './lib';
 //#region @browser
+import { LayoutSimpleSmallAppModule } from './lib';
 import { NgModule, NgZone, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { PreloadAllModules, Router, RouterModule, Routes } from "@angular/router";
@@ -31,12 +32,12 @@ const routes: Routes = [
   },
   {
     path: 'quiz',
-    loadChildren: () => import('./app/topic/topic.module')
+    loadChildren: () => import('./app/+topic/topic.module')
       .then(m => m.TopicModule),
   },
   {
     path: 'stats',
-    loadChildren: () => import('./app/stats/stats.module')
+    loadChildren: () => import('./app/+stats/stats.module')
       .then(m => m.StatsModule),
   },
 ];
