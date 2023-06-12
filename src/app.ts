@@ -33,7 +33,7 @@ const routes: Routes = [
   {
     path: 'quiz',
     loadChildren: () => import('./app/+topic/topic.module')
-      .then(m => m.TopicModule),
+      .then(m => m.TopicContainerModule),
   },
   {
     path: 'stats',

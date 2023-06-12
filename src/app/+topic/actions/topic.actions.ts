@@ -3,14 +3,14 @@ import { createAction, props } from "@ngrx/store";
 import { ITopic, Topic } from "../../../lib";
 
 
-export const INIT = createAction(
-  '[topic] INIT',
-  props<{ topicTitleKebakCase: string; }>()
+export const INIT_QUESTION_WHEN_NOT_TOPICS = createAction(
+  '[topic] INIT_QUESTION_WHEN_NOT_TOPICS',
+  props<{ topicTitleKebabCase: string; }>()
 );
 
 export const FETCH_TOPIC = createAction(
   '[topic] FETCH_TOPIC',
-  props<{ topicTitleKebakCase: string; }>()
+  props<{ topicTitleKebabCase: string; }>()
 );
 
 export const FETCH_TOPIC_SUCCESS = createAction(

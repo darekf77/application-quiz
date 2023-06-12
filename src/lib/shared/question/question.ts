@@ -57,6 +57,32 @@ export class Question extends Firedev.Base.Entity<any> implements RawQuestion {
 
   //#region @websql
   @Firedev.Orm.Column.Custom({
+    type: 'int',
+    nullable: true,
+  })
+  //#endregion
+  nextId?: number;
+  //#endregion
+
+  //#region @websql
+  @Firedev.Orm.Column.Custom({
+    type: 'int',
+    nullable: true,
+  })
+  //#endregion
+  prevId?: number;
+  //#endregion
+
+  //#region @websql
+  @Firedev.Orm.Column.Custom({
+    type: 'int',
+  })
+  //#endregion
+  oid?: number;
+  //#endregion
+
+  //#region @websql
+  @Firedev.Orm.Column.Custom({
     type: 'varchar',
     length: 100,
     default: defaultModelValues.description

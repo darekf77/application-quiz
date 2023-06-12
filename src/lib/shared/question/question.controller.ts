@@ -30,19 +30,29 @@ export class QuestionController extends Firedev.Base.Controller<any> {
     //#endregion
   }
 
-  @Firedev.Http.GET(`/get/questino/with/answers/for/:topicId`) // @ts-ignore
-  getQuestionWithAswers(@Firedev.Http.Param.Query('questionId') questionId: number,): Firedev.Response<Question> {
+
+  @Firedev.Http.GET(`/get/questino/:questionOid/with/answers/for/:topicTitleKebabCase`) // @ts-ignore
+  getQuestionWithAswers(
+    @Firedev.Http.Param.Query('questionOid') questionOid: number,
+    @Firedev.Http.Param.Query('topicTitleKebabCase') topicTitleKebabCase: string,
+  ): Firedev.Response<Question> {
     //#region @websqlFunc
     const config = super.getAll();
     return async (req, res) => { // @ts-ignore
+      const topic = await this.connection.getRepository(Topic).findOne({
+        where: {
+          topicTitleKebabCase
+        }
+      })
       let question = await this.connection.getRepository(Question).findOne({
         where: {
-          id: questionId
+          oid: questionOid,
+          topicId: topic.id
         }
       });
       const answers = await this.connection.getRepository(Answer).find({
         where: {
-          questionId,
+          questionId: question.id,
         }
       });
       question.answers = answers;

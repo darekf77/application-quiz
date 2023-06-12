@@ -1,6 +1,18 @@
-Hello in question
-<div>
-  {{ (question$ | async)?.title }}
-</div>
+<ng-template #loader> loading answer with question... </ng-template>
 
-<answer  ></answer>
+
+<ng-container *ngIf="question$ | async; let question;">
+  <question [question]="question">
+
+    <mat-selection-list #shoes>
+      <mat-list-option *ngFor="let answer of question?.answers">
+        <answer [answer]="answer"></answer>
+      </mat-list-option>
+    </mat-selection-list>
+
+  </question>
+</ng-container>
+<br>
+<button mat-raised-button>Next</button>
+&nbsp;&nbsp;
+<button mat-raised-button>Prev</button>

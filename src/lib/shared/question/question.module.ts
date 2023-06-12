@@ -2,10 +2,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuestionComponent } from './question.component';
+import { FiredevFullMaterialModule } from 'firedev-ui';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FiredevFullMaterialModule,
   ],
   declarations: [QuestionComponent],
   exports: [QuestionComponent],

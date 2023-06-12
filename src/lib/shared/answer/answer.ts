@@ -58,6 +58,14 @@ export class Answer extends Firedev.Base.Entity<any> implements RawAnswer {
 
   //#region @websql
   @Firedev.Orm.Column.Custom({
+    type: 'int',
+  })
+  //#endregion
+  Oid?: number;
+  //#endregion
+
+  //#region @websql
+  @Firedev.Orm.Column.Custom({
     type: 'varchar',
     length: 100,
     default: defaultModelValues.description

@@ -12,15 +12,15 @@ export class QuestionEffects {
   constructor(private actions$: Actions, private store: Store<AppState>) { }
 
   fetchQuestions = createEffect(() => this.actions$.pipe(
-    ofType(questionActions.FETCH_QUESTIONS),
-    switchMap(({ questionId }) => {
-      return Question.ctrl.getQuestionWithAswers(questionId).received.observable.pipe(
+    ofType(questionActions.FETCH_QUESTION),
+    switchMap(({ questionOid, topicTitleKebabCase }) => {
+      return Question.ctrl.getQuestionWithAswers(questionOid, topicTitleKebabCase).received.observable.pipe(
         map(data => {
           const question = data.body.rawJson
-          return questionActions.FETCH_QUESTIONS_SUCCESS({ question })
+          return questionActions.FETCH_QUESTION_SUCCESS({ question })
         }),
         catchError((error) => {
-          return of(questionActions.FETCH_QUESTIONS_ERROR({ error }));
+          return of(questionActions.FETCH_QUESTION_ERROR({ error }));
         }),
       )
     })

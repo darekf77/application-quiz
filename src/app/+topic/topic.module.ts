@@ -9,6 +9,7 @@ import { topicFeatureKey } from './topic.models';
 import { topicReducer } from './reducers/topic.reducers';
 import { TopicService } from './services/topic.service';
 import { RouterModule, Routes } from '@angular/router';
+import { TopicModule } from '../../lib';
 
 const routes: Routes = [
   {
@@ -17,14 +18,17 @@ const routes: Routes = [
     component: TopicContainer,
   },
   {
-    path: 'topic/:topicId',
+    path: 'topic/:topicTitleKebabCase',
     component: TopicContainer,
+    children: [
+      {
+        path: 'question',
+        loadChildren: () => import('./+question/question.module')
+          .then(m => m.QuestionContainerModule),
+      },
+    ]
   },
-  {
-    path: 'topic/:topicId/question',
-    loadChildren: () => import('./+question/question.module')
-      .then(m => m.QuestionModule),
-  },
+
 ];
 
 
@@ -34,9 +38,10 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     StoreModule.forFeature(topicFeatureKey, topicReducer),
     EffectsModule.forFeature([TopicEffects]),
+    TopicModule,
   ],
   declarations: [TopicContainer],
   providers: [TopicService],
 })
-export class TopicModule { }
+export class TopicContainerModule { }
 //#endregion

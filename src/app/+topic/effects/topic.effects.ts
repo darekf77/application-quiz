@@ -13,19 +13,16 @@ export class TopicEffects {
   constructor(private actions$: Actions, private service: TopicService) { }
 
   init = createEffect(() => this.actions$.pipe(
-    ofType(topicActions.INIT),
-    switchMap(({ topicTitleKebakCase }) => of(topicActions.FETCH_TOPIC({ topicTitleKebakCase })))
+    ofType(topicActions.INIT_QUESTION_WHEN_NOT_TOPICS),
+    switchMap(({ topicTitleKebabCase }) => of(topicActions.FETCH_TOPIC({ topicTitleKebabCase })))
   ));
 
   fetchTopic = createEffect(() => this.actions$.pipe(
     ofType(topicActions.FETCH_TOPIC),
-    switchMap(({ topicTitleKebakCase }) =>
-      Topic.ctrl.getByTitle(topicTitleKebakCase).received.observable.pipe(
+    switchMap(({ topicTitleKebabCase }) =>
+      Topic.ctrl.getByTitleKebabCase(topicTitleKebabCase).received.observable.pipe(
         map(data => {
           const topic = data.body.rawJson;
-          console.log({
-            topic
-          })
           return topicActions.FETCH_TOPIC_SUCCESS({ topic })
         }),
         catchError((error) => {

@@ -1,6 +1,7 @@
 //#region @browser
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AnswerService } from './answer.service';
+import type { Answer } from './answer';
 
 @Component({
   selector: 'answer',
@@ -9,9 +10,8 @@ import { AnswerService } from './answer.service';
   providers: [AnswerService]
 })
 export class AnswerComponent implements OnInit {
-
-
-  // @LAST INPUT MODEL
+  @ViewChild('exposedTemplate') exposedTemplate: TemplateRef<any>;
+  @Input() answer: Answer;
   constructor(
     protected service: AnswerService
   ) { }

@@ -34,13 +34,15 @@ export class TopicController extends Firedev.Base.Controller<any> {
     //#endregion
   }
 
-  @Firedev.Http.GET(`/by/title/:title`) // @ts-ignore
-  getByTitle(@Firedev.Http.Param.Path('title') title): Firedev.Response<Topic> {
+  @Firedev.Http.GET(`/by/title/:topicTitleKebabCase`) // @ts-ignore
+  getByTitleKebabCase(@Firedev.Http.Param.Path('topicTitleKebabCase') topicTitleKebabCase): Firedev.Response<Topic> {
     //#region @websqlFunc
-    const config = super.getAll();
     return async (req, res) => { // @ts-ignore
-      let arr = await Firedev.getResponseValue(config, req, res) as Topic[];
-      const topic = arr.find(f => _.kebabCase(f.title) === title);
+      const topic = await this.repository.findOne({
+        where: {
+          topicTitleKebabCase
+        }
+      })
       return topic;
     }
     //#endregion
@@ -57,27 +59,45 @@ export class TopicController extends Firedev.Base.Controller<any> {
     const topics = [];
     for (let index = 0; index < backendQuizData.topics.length; index++) {
       let topic = Topic.from(backendQuizData.topics[index]);
+      topic.topicTitleKebabCase = _.kebabCase(topic.title);
       const questions = _.cloneDeep(topic.question);
       topic = await repo.topic.save(topic);
       topics[index] = topic;
       for (let index2 = 0; index2 < questions.length; index2++) {
         let question = Question.from(questions[index2]);
         question.topicId = topic.id;
+        question.oid = index2 + 1;
         const anwsers = _.cloneDeep(question.answers);
         question = await repo.question.save(question);
+
         if (index2 === 0) {
-          topic.firstQuestionId = question.id;
+          question.prevId = null;
+        } else {
+          question.prevId = question.id - 1; // TODO
+        }
+
+        if (index2 === (questions.length - 1)) {
+          question.nextId = null;
+        } else {
+          question.nextId = question.id + 1; // TODO
+        }
+
+        if (index2 === 0) {
           topic = await repo.topic.save(topic);
         }
         topic.question[index2] = question;
         for (let index3 = 0; index3 < anwsers.length; index3++) {
           let answer = Answer.from(anwsers[index3]);
           answer.questionId = question.id;
+          answer.Oid = index3 + 1;
           answer = await repo.anwser.save(answer);
           question.answers[index3] = answer;
         }
       }
     }
+    console.log({
+      'WHOLE DB': topics
+    })
   }
 
   //#endregion

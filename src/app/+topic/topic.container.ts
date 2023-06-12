@@ -12,20 +12,22 @@ import { Observable, of } from 'rxjs';
   templateUrl: './topic.container.html',
   styleUrls: ['./topic.container.scss']
 })
-export class TopicContainer implements OnInit {
+export class TopicContainer {
   constructor(
     private store: Store<TopicInitialState>,
   ) { }
 
-  @Input('topicId') topicTitleKebakCase; // from routing
+  current$ = this.store.select(topicSelectors.getCurrentTopic);
 
-  ngOnInit() {
-    console.log('oninit!!', this.topicTitleKebakCase)
-    const { topicTitleKebakCase } = this;
-    if (topicTitleKebakCase) {
-      this.store.dispatch(topicAction.INIT({ topicTitleKebakCase }))
+  @Input('topicTitleKebabCase')
+  set title(topicTitleKebabCase: string) {
+    console.log('new topic: ' + topicTitleKebabCase)
+    if (topicTitleKebabCase) {
+      this.store.dispatch(topicAction.INIT_QUESTION_WHEN_NOT_TOPICS({ topicTitleKebabCase }))
     }
   }
+
+
 
 }
 //#endregion

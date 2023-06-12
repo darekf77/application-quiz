@@ -42,11 +42,12 @@ export class Topic extends Firedev.Base.Entity<any> implements RawTopic {
 
   //#region @websql
   @Firedev.Orm.Column.Custom({
-    type: 'int',
-    nullable: true,
+    type: 'varchar',
+    length: 200,
+    default: defaultModelValues.topicTitleKebabCase
   })
   //#endregion
-  firstQuestionId: number;
+  topicTitleKebabCase: string;
 
   question: RawQuestion[];
 

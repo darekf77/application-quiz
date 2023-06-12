@@ -1,6 +1,7 @@
 //#region @browser
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TopicService } from './topic.service';
+import { Topic } from './topic';
 
 @Component({
   selector: 'topic',
@@ -9,7 +10,7 @@ import { TopicService } from './topic.service';
   providers: [TopicService]
 })
 export class TopicComponent implements OnInit {
-
+  @Input() topic: Topic;
   constructor(
     protected service: TopicService
   ) { }

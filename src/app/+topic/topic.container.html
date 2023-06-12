@@ -1,4 +1,3 @@
-<h2>
-  TOPIC
-</h2>
-<router-outlet></router-outlet>
+<topic [topic]="current$ | async">
+  <router-outlet></router-outlet>
+</topic>

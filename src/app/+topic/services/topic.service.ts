@@ -9,8 +9,9 @@ export class TopicService {
 
   navigateToFirstQuestion(topic: Topic) {
     setTimeout(() => {
-      console.log(`navigate to: ` + `/quiz/topic/${_.kebabCase(topic.title)}/question/${topic.firstQuestionId}`)
-      this.router.navigateByUrl(`/quiz/topic/${_.kebabCase(topic.title)}/question/${topic.firstQuestionId}`)
+      const url = `/quiz/topic/${topic.topicTitleKebabCase}/question/num/1`
+      console.log(`[topic] navigate to: ` + url)
+      this.router.navigateByUrl(url);
     })
   }
 
