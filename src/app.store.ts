@@ -1,16 +1,17 @@
 //#region @browser
-import { Params, RouterStateSnapshot } from '@angular/router';
+import { Params, Router, RouterStateSnapshot } from '@angular/router';
 import { RouterReducerState, RouterStateSerializer } from '@ngrx/router-store';
 import { routerReducer } from '@ngrx/router-store';
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { switchMap, map, of, exhaustMap, catchError, retry } from "rxjs";
+import { switchMap, map, of, exhaustMap, catchError, retry, tap, withLatestFrom } from "rxjs";
 import { _ } from 'tnp-core';
 import {
   ActionReducer,
   ActionReducerMap,
   INIT,
   MetaReducer,
+  Store,
   createAction,
   createFeatureSelector,
   createReducer,
@@ -59,7 +60,14 @@ export class RouterSerializer implements RouterStateSerializer<RouterState> {
 export namespace appActions {
   export const LOGOUT = createAction('[app] LOGOUT');
   export const INIT = createAction('[app] INIT');
-  export const SELECT_FIRST_TOPIC = createAction('[app] SELECT_FIRST_TOPIC');
+  export const SELECT_FIRST_TOPIC = createAction(
+    '[app] SELECT_FIRST_TOPIC',
+  );
+  export const SELECT_FIRST_TOPIC_DONE = createAction(
+    '[app] SELECT_FIRST_TOPIC_DONE',
+    props<{ topic: ITopic }>()
+  )
+    ;
   export const FETCH_TOPICS = createAction(
     '[app] FETCH_TOPICS',
   );
@@ -135,7 +143,9 @@ export const metaReducers: MetaReducer<AppState>[] = (window['ENV'] as Models.en
 @Injectable()
 export class AppEffects {
   constructor(
-    private actions$: Actions
+    private actions$: Actions,
+    private router: Router,
+    private store: Store<any>,
   ) { }
 
   init = createEffect(() => this.actions$.pipe(
@@ -156,11 +166,27 @@ export class AppEffects {
       ))
   ));
 
-  // selectFirstTopic = createEffect(() => this.actions$.pipe(
-  //   ofType(appActions.FETCH_TOPICS_SUCCESS),
-  //   switchMap(() => of(appActions.SELECT_FIRST_TOPIC()))
-  // ));
+  selectFirstTopic = createEffect(() => this.actions$.pipe(
+    ofType(appActions.FETCH_TOPICS_SUCCESS),
+    switchMap(() => of(appActions.SELECT_FIRST_TOPIC()))
+  ));
 
+  selectFirstTopicDone = createEffect(() => this.actions$.pipe(
+    ofType(appActions.SELECT_FIRST_TOPIC),
+    withLatestFrom(this.store.select(appSelectors.selectedTopic)),
+    switchMap(([state, topic]) => {
+      this.router.navigateByUrl(`/quiz/topic/${topic.topicTitleKebabCase}`);
+      return of(appActions.SELECT_FIRST_TOPIC_DONE({ topic }))
+    })
+  ));
+
+  // naivigateToTopic = createEffect(() => this.actions$.pipe(
+  //   ofType(appActions.SELECT_FIRST_TOPIC_DONE),
+
+  //   tap(({ topic }) => {
+  //     //
+  //   })
+  // ));
 
 }
 
@@ -170,11 +196,11 @@ const appRouterSelector = createFeatureSelector<RouterReducerState<RouterState>>
 export namespace appSelectors {
 
   export const allTopics = createSelector(appSelector, state => {
-    return (state.topics || []).map(t => Topic.from(t))
+    return (state.topics || []);
   });
 
   export const selectedTopic = createSelector(appSelector, state => {
-    return Topic.from(state.selectedTopic);
+    return state.selectedTopic;
   });
 
   export const showQuizSelect = createSelector(appRouterSelector, state => {

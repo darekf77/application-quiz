@@ -6,7 +6,7 @@ const host = 'http://localhost:4199';
 import { Answer, AnswerController, Question, QuestionController, Topic, TopicController } from './lib';
 //#region @browser
 import { LayoutSimpleSmallAppModule } from './lib';
-import { NgModule, NgZone, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Input, NgModule, NgZone, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { PreloadAllModules, Router, RouterModule, Routes } from "@angular/router";
 import { MaterialCssVarsModule } from 'angular-material-css-vars';
@@ -61,14 +61,20 @@ export class ApplicationQuizComponent implements OnInit {
   selected$ = this.store.select(appSelectors.selectedTopic);
   showQuizSelect$ = this.store.select(appSelectors.showQuizSelect);
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+
+  @Input('topicTitleKebabCase')
+  set title(topicTitleKebabCase: string) {
+    console.log({ topicTitleKebabCase })
+  }
+
   changeTopic(topic: Topic) {
-    this.router.navigateByUrl(`/quiz/topic/${_.kebabCase(topic.title)}`);
     this.store.dispatch(appActions.CHANGE_TOPIC({ topic }));
   }
   someMethod() {
     this.trigger.openMenu();
   }
   async ngOnInit() {
+    console.log('ONINIT')
     this.store.dispatch(appActions.INIT());
   }
 }
