@@ -31,10 +31,10 @@ export class QuestionController extends Firedev.Base.Controller<any> {
   }
 
 
-  @Firedev.Http.GET(`/get/questino/:questionOid/with/answers/for/:topicTitleKebabCase`) // @ts-ignore
+  @Firedev.Http.GET(`/get/questino/:questionOid/for-topic/:topicTitleKebabCase`) // @ts-ignore
   getQuestionWithAswers(
-    @Firedev.Http.Param.Query('questionOid') questionOid: number,
-    @Firedev.Http.Param.Query('topicTitleKebabCase') topicTitleKebabCase: string,
+    @Firedev.Http.Param.Path('questionOid') questionOid: number,
+    @Firedev.Http.Param.Path('topicTitleKebabCase') topicTitleKebabCase: string,
   ): Firedev.Response<Question> {
     //#region @websqlFunc
     const config = super.getAll();

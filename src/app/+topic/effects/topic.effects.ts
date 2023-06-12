@@ -35,7 +35,7 @@ export class TopicEffects {
     ofType(topicActions.FETCH_TOPIC_SUCCESS),
     throttleTime(1000),
     tap(({ topic }) => {
-      this.service.navigateToFirstQuestion(Topic.from(topic));
+      this.service.appService.navigateToFirstQuestion(Topic.from(topic));
     })
   ));
 

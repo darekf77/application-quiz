@@ -5,6 +5,7 @@ import { TopicInitialState } from './topic.models';
 import * as topicSelectors from './selectors/topic.selectors';
 import * as topicAction from './actions/topic.actions';
 import { Observable, of } from 'rxjs';
+import { appActions } from '../../app.store';
 
 
 @Component({
@@ -24,6 +25,8 @@ export class TopicContainer {
     console.log('new topic: ' + topicTitleKebabCase)
     if (topicTitleKebabCase) {
       this.store.dispatch(topicAction.INIT_QUESTION_WHEN_NOT_TOPICS({ topicTitleKebabCase }))
+    } else {
+      this.store.dispatch(appActions.MAKE_SURE_SELECTED_TOPIC())
     }
   }
 

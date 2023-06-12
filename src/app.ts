@@ -1,4 +1,5 @@
 //#region @notForNpm
+
 //#region imports
 import { Firedev } from 'firedev';
 import { _ } from 'tnp-core';
@@ -16,7 +17,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { AppEffects, AppState, RouterSerializer, appActions, appSelectors, metaReducers, reducers } from './app.store';
+import { AppEffects, AppState, RouterSerializer, appActions, appSelectors, metaReducers, reducers, AppService } from './app.store';
 import { CommonModule } from '@angular/common';
 //#endregion
 //#endregion
@@ -62,19 +63,13 @@ export class ApplicationQuizComponent implements OnInit {
   showQuizSelect$ = this.store.select(appSelectors.showQuizSelect);
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
-  @Input('topicTitleKebabCase')
-  set title(topicTitleKebabCase: string) {
-    console.log({ topicTitleKebabCase })
-  }
-
-  changeTopic(topic: Topic) {
-    this.store.dispatch(appActions.CHANGE_TOPIC({ topic }));
+  changeTopic({ topicTitleKebabCase }: Topic) {
+    this.store.dispatch(appActions.CHANGE_TOPIC({ topicTitleKebabCase }));
   }
   someMethod() {
     this.trigger.openMenu();
   }
   async ngOnInit() {
-    console.log('ONINIT')
     this.store.dispatch(appActions.INIT());
   }
 }
@@ -111,16 +106,18 @@ export class ApplicationQuizComponent implements OnInit {
   ],
   exports: [ApplicationQuizComponent],
   declarations: [ApplicationQuizComponent],
-  providers: [],
+  providers: [AppService],
 })
 export class ApplicationQuizModule { }
 //#endregion
+
 //#endregion
 
 //#region firedev start function
 async function start() {
   // Firedev.enableProductionMode();
 
+  //#region init context
   const context = await Firedev.init({
     host,
     controllers: [
@@ -143,6 +140,8 @@ async function start() {
     }
     //#endregion
   });
+  //#endregion
+
   //#region @backend
   if (Firedev.isNode) {
     context.node.app.get('/hello', (req, res) => {

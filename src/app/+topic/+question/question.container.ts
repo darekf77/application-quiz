@@ -27,9 +27,7 @@ export class QuestionContainer {
     if (!_.isNil(questionOid)) {
       questionOid = Number(questionOid)
     }
-    console.log({
-      questionOid
-    })
+
     if (_.isNumber(questionOid) && !_.isNaN(questionOid)) {
       this.question$ = this.store.select(questionSelectors.getCurrentQuestion).pipe(
         map(q => Question.from(q)),
@@ -37,7 +35,11 @@ export class QuestionContainer {
         tap(console.log)
       );
       const { title: topicTitleKebabCase } = this;
-      this.store.dispatch(questionAction.FETCH_QUESTION({ questionOid, topicTitleKebabCase }))
+      if (topicTitleKebabCase) {
+
+        this.store.dispatch(questionAction.FETCH_QUESTION({ questionOid, topicTitleKebabCase }))
+      }
+
     } else {
       this.question$ = of(void 0)
     }
