@@ -4,13 +4,16 @@
       Topic: {{ topic?.title }}
     </h4>
   </column>
-  <column [width]="200">
+  <column [width]="200"
+          *ngIf="topic">
     <mat-button-toggle-group name="fontStyle"
+                             [value]="selectedQuestionOid"
                              aria-label="Font Style">
-      <mat-button-toggle value="bold">1</mat-button-toggle>
-      <mat-button-toggle value="bold">2</mat-button-toggle>
-      <mat-button-toggle value="bold">3</mat-button-toggle>
-      <mat-button-toggle value="bold">4</mat-button-toggle>
+
+      <mat-button-toggle *ngFor="let questionOid of topic.questionsOids"
+                         value="bold"
+                         [value]="questionOid"
+                         (click)="change(questionOid)"> {{questionOid}} </mat-button-toggle>
     </mat-button-toggle-group>
   </column>
 </columns-container>

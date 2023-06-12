@@ -4,9 +4,11 @@ import { Store } from '@ngrx/store';
 import { TopicInitialState } from './topic.models';
 import * as topicSelectors from './selectors/topic.selectors';
 import * as topicAction from './actions/topic.actions';
-import { Observable, of } from 'rxjs';
+import { Observable, firstValueFrom, map, of } from 'rxjs';
 import { AppService, appActions, appSelectors } from '../../app.store';
-
+import { TopicService } from './services/topic.service';
+import { ActivatedRoute } from '@angular/router';
+import { _ } from 'tnp-core';
 
 @Component({
   selector: 'app-topic',
@@ -16,9 +18,16 @@ import { AppService, appActions, appSelectors } from '../../app.store';
 export class TopicContainer {
   constructor(
     private store: Store<TopicInitialState>,
+    private service: TopicService,
+    private route: ActivatedRoute,
   ) { }
 
   current$ = this.store.select(appSelectors.selectedTopic);
+
+  /**
+   * TODO take it from router
+   */
+  selectedQuestionOid$: Observable<number> = of(1);
 
   @Input('topicTitleKebabCase')
   set title(topicTitleKebabCase: string) {
@@ -29,6 +38,14 @@ export class TopicContainer {
     }
   }
 
+  async onQuestionOidChanged(navigateToQuestionOid) {
+    const topic = await firstValueFrom(this.current$);
+    this.service.appService.go(topic.topicTitleKebabCase, navigateToQuestionOid);
+  }
+
+  submit() {
+
+  }
 
 
 }

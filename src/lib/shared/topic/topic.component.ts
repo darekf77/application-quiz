@@ -1,5 +1,5 @@
 //#region @browser
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { TopicService } from './topic.service';
 import { Topic } from './topic';
 
@@ -9,13 +9,16 @@ import { Topic } from './topic';
   styleUrls: ['./topic.component.scss'],
   providers: [TopicService]
 })
-export class TopicComponent implements OnInit {
+export class TopicComponent {
+  @Output() questionOidChanged = new EventEmitter();
   @Input() topic: Topic;
+  @Input() selectedQuestionOid: number;
   constructor(
     protected service: TopicService
   ) { }
 
-  ngOnInit() {
+  change(questionOid) {
+    this.questionOidChanged.next(questionOid)
   }
 
 }

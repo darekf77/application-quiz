@@ -10,8 +10,14 @@
     </mat-selection-list>
 
   </question>
+
+  <br>
+  <button mat-raised-button
+          [disabled]="!question.prevOid"
+          (click)="goPrev(question)">Prev</button>
+  &nbsp;&nbsp;
+  <button mat-raised-button
+          [disabled]="!question.nextOid"
+          (click)="goNext(question)">Next</button>
+
 </ng-container>
-<br>
-<button mat-raised-button>Next</button>
-&nbsp;&nbsp;
-<button mat-raised-button>Prev</button>

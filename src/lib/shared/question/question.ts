@@ -39,7 +39,6 @@ export class Question extends Firedev.Base.Entity<any> implements RawQuestion {
   })
   //#endregion
   title: string;
-
   answers: RawAnswer[];
 
   //#region @websql
@@ -53,7 +52,6 @@ export class Question extends Firedev.Base.Entity<any> implements RawQuestion {
   })
   //#endregion
   topicId?: number;
-  //#endregion
 
   //#region @websql
   @Firedev.Orm.Column.Custom({
@@ -61,8 +59,7 @@ export class Question extends Firedev.Base.Entity<any> implements RawQuestion {
     nullable: true,
   })
   //#endregion
-  nextId?: number;
-  //#endregion
+  nextOid?: number;
 
   //#region @websql
   @Firedev.Orm.Column.Custom({
@@ -70,8 +67,7 @@ export class Question extends Firedev.Base.Entity<any> implements RawQuestion {
     nullable: true,
   })
   //#endregion
-  prevId?: number;
-  //#endregion
+  prevOid?: number;
 
   //#region @websql
   @Firedev.Orm.Column.Custom({
@@ -79,7 +75,6 @@ export class Question extends Firedev.Base.Entity<any> implements RawQuestion {
   })
   //#endregion
   oid?: number;
-  //#endregion
 
   //#region @websql
   @Firedev.Orm.Column.Custom({
@@ -89,6 +84,7 @@ export class Question extends Firedev.Base.Entity<any> implements RawQuestion {
   })
   //#endregion
   description?: string;
+
   //#endregion
 
   //#region methods

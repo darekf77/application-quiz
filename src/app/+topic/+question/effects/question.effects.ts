@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as questionActions from '../actions/question.actions'
-import { switchMap, map, of, catchError, withLatestFrom } from "rxjs";
+import { switchMap, map, of, catchError, withLatestFrom, throttleTime } from "rxjs";
 import { Store } from '@ngrx/store';
 import { Question, Topic } from '../../../../lib';
 import { AppState, appSelectors } from '../../../../app.store';
@@ -13,6 +13,7 @@ export class QuestionEffects {
 
   fetchQuestions = createEffect(() => this.actions$.pipe(
     ofType(questionActions.FETCH_QUESTION),
+    throttleTime(1000),
     withLatestFrom(this.store.select(appSelectors.selectedTopic)),
     switchMap(([{ questionOid }, topic]) => {
       const { topicTitleKebabCase } = topic;

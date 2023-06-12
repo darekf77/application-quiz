@@ -55,7 +55,6 @@ export interface AppState {
 //#region router serializer
 export class RouterSerializer implements RouterStateSerializer<RouterState> {
   serialize(routerState: RouterStateSnapshot): RouterState {
-    console.log(routerState)
     let route = routerState.root;
     let params = {};
     while (route.firstChild) {
@@ -125,16 +124,19 @@ export class AppService {
 
   }
 
+  go(topicTitleKebabCase: string, questionOid?: number) {
+    const urlToNavigate = `/quiz/topic/${topicTitleKebabCase}${questionOid ? `/question/num/${questionOid}` : ''}`
+    this.router.navigateByUrl(urlToNavigate);
+  }
+
   navigateToFirstQuestion(topic: Topic) {
     setTimeout(() => {
-      const url = `/quiz/topic/${topic.topicTitleKebabCase}/question/num/1`
-      console.log(`[topic] navigate to: ` + url)
-      this.router.navigateByUrl(url);
+      this.go(topic.topicTitleKebabCase, 1);
     })
   }
 
   goTo(topicTitleKebabCase: string) {
-    this.router.navigateByUrl(`/quiz/topic/${topicTitleKebabCase}`);
+    this.go(topicTitleKebabCase);
   }
 }
 //#endregion
@@ -183,10 +185,7 @@ export class AppEffects {
       this.store.select(appSelectors.selectedTopic),
     ),
     tap(([state, topics, selectedTopic]) => {
-      if (selectedTopic) {
-        console.log('Topic already selected')
-      } else {
-        console.log('Selecting new topic')
+      if (!selectedTopic) {
         selectedTopic = _.first(topics);
         const { topicTitleKebabCase } = selectedTopic;
         this.service.goTo(topicTitleKebabCase);
@@ -205,11 +204,13 @@ export class AppEffects {
 //#endregion
 
 //#region app selectors
-const appSelector = createFeatureSelector<InitialAppState>(appStateKey);
-const appRouterSelector = createFeatureSelector<RouterReducerState<RouterState>>(appRouterStateKey);
+
 
 
 export namespace appSelectors {
+
+  export const appSelector = createFeatureSelector<InitialAppState>(appStateKey);
+  export const appRouterSelector = createFeatureSelector<RouterReducerState<RouterState>>(appRouterStateKey);
 
   // export const {
   //   selectCurrentRoute, // select the current route
@@ -228,10 +229,6 @@ export namespace appSelectors {
     (state, route) => {
       const selectedTopic = (state.topics || [])
         .find(({ topicTitleKebabCase }) => topicTitleKebabCase === route?.state?.params['topicTitleKebabCase']) as ITopic;
-
-      console.log({
-        params: JSON.stringify(route?.state?.params || {})
-      })
       return selectedTopic;
     }
   );
@@ -254,9 +251,7 @@ export const reducers: ActionReducerMap<AppState> = {
 
 const debugMeta = (reducer: ActionReducer<any>): ActionReducer<any> => {
   return (state, action) => {
-    // console.log('state', state);
-    // console.log('action', action);
-
+    // things for debugging
     return reducer(state, action);
   };
 };

@@ -1,8 +1,11 @@
+//#region #browser
+
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { _ } from 'tnp-core'
+//#region @notForNpm
 import { AppService } from '../../../app.store';
-import { Topic } from '../../../lib';
+//#endregion
 
 @Injectable()
 export class TopicService {
@@ -10,7 +13,5 @@ export class TopicService {
     public appService: AppService) {
 
   }
-
-
-
 }
+//#endregion

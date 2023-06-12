@@ -61,6 +61,7 @@ export class TopicController extends Firedev.Base.Controller<any> {
       let topic = Topic.from(backendQuizData.topics[index]);
       topic.topicTitleKebabCase = _.kebabCase(topic.title);
       const questions = _.cloneDeep(topic.question);
+      topic.questionsOids = _.times(questions.length, n => n + 1);
       topic = await repo.topic.save(topic);
       topics[index] = topic;
       for (let index2 = 0; index2 < questions.length; index2++) {
@@ -68,19 +69,20 @@ export class TopicController extends Firedev.Base.Controller<any> {
         question.topicId = topic.id;
         question.oid = index2 + 1;
         const anwsers = _.cloneDeep(question.answers);
-        question = await repo.question.save(question);
 
         if (index2 === 0) {
-          question.prevId = null;
+          question.prevOid = null;
         } else {
-          question.prevId = question.id - 1; // TODO
+          question.prevOid = question.oid - 1;
         }
 
         if (index2 === (questions.length - 1)) {
-          question.nextId = null;
+          question.nextOid = null;
         } else {
-          question.nextId = question.id + 1; // TODO
+          question.nextOid = question.oid + 1;
         }
+
+        question = await repo.question.save(question);
 
         if (index2 === 0) {
           topic = await repo.topic.save(topic);

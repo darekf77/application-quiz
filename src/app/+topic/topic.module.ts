@@ -10,6 +10,8 @@ import { topicReducer } from './reducers/topic.reducers';
 import { TopicService } from './services/topic.service';
 import { RouterModule, Routes } from '@angular/router';
 import { TopicModule } from '../../lib';
+import { FiredevFullMaterialModule } from 'firedev-ui';
+import { StaticColumnsModule } from 'static-columns';
 
 const routes: Routes = [
   {
@@ -38,6 +40,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     StoreModule.forFeature(topicFeatureKey, topicReducer),
     EffectsModule.forFeature([TopicEffects]),
+    FiredevFullMaterialModule,
+    StaticColumnsModule,
     TopicModule,
   ],
   declarations: [TopicContainer],

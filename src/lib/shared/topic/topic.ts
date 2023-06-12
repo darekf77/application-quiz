@@ -57,6 +57,11 @@ export class Topic extends Firedev.Base.Entity<any> implements RawTopic {
   id: number;
 
   //#region @websql
+  @Firedev.Orm.Column.SimpleJson()
+  //#endregion
+  questionsOids: number[]
+
+  //#region @websql
   @Firedev.Orm.Column.Custom({
     type: 'varchar',
     length: 100,
