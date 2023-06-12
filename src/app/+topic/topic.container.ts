@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { TopicInitialState } from './topic.models';
 import * as topicSelectors from './selectors/topic.selectors';
 import * as topicAction from './actions/topic.actions';
-import { Observable, firstValueFrom, map, of } from 'rxjs';
+import { Observable, firstValueFrom, map, of, tap } from 'rxjs';
 import { AppService, appActions, appSelectors } from '../../app.store';
 import { TopicService } from './services/topic.service';
 import { ActivatedRoute } from '@angular/router';
@@ -23,11 +23,9 @@ export class TopicContainer {
   ) { }
 
   current$ = this.store.select(appSelectors.selectedTopic);
-
-  /**
-   * TODO take it from router
-   */
-  selectedQuestionOid$: Observable<number> = of(1);
+  selectedQuestionOid$ = this.store.select(topicSelectors.getSelectedQuestionOid).pipe(
+    tap(console.log)
+  )
 
   @Input('topicTitleKebabCase')
   set title(topicTitleKebabCase: string) {

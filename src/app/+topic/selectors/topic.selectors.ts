@@ -14,7 +14,8 @@ export const getSelectedQuestionOid = createSelector(
   appSelectors.appRouterSelector,
   (route) => {
     console.log(route.state.params)
-    return route.state.params['questionOid'];
+    const questionOid = Number(route.state.params['questionOid']);
+    return questionOid;
   }
 );
 

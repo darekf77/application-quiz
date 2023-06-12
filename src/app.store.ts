@@ -56,13 +56,18 @@ export interface AppState {
 export class RouterSerializer implements RouterStateSerializer<RouterState> {
   serialize(routerState: RouterStateSnapshot): RouterState {
     let route = routerState.root;
-    let params = {};
-    while (route.firstChild) {
+    let params = {}
+
+    while (true) {
       params = {
         ...params,
-        ...route.params
+        ...route.params,
       };
+
       route = route.firstChild;
+      if (!route) {
+        break;
+      }
     }
 
     const {
@@ -70,7 +75,9 @@ export class RouterSerializer implements RouterStateSerializer<RouterState> {
       root: { queryParams }
     } = routerState;
 
-    return { url, params, queryParams };
+    const routerData = { url, params, queryParams };
+
+    return routerData;
   }
 }
 
