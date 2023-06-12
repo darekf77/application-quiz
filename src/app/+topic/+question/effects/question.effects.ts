@@ -5,7 +5,7 @@ import * as questionActions from '../actions/question.actions'
 import { switchMap, map, of, catchError, withLatestFrom } from "rxjs";
 import { Store } from '@ngrx/store';
 import { Question, Topic } from '../../../../lib';
-import { AppState } from '../../../../app.store';
+import { AppState, appSelectors } from '../../../../app.store';
 
 @Injectable()
 export class QuestionEffects {
@@ -13,7 +13,9 @@ export class QuestionEffects {
 
   fetchQuestions = createEffect(() => this.actions$.pipe(
     ofType(questionActions.FETCH_QUESTION),
-    switchMap(({ questionOid, topicTitleKebabCase }) => {
+    withLatestFrom(this.store.select(appSelectors.selectedTopic)),
+    switchMap(([{ questionOid }, topic]) => {
+      const { topicTitleKebabCase } = topic;
       return Question.ctrl.getQuestionWithAswers(questionOid, topicTitleKebabCase).received.observable.pipe(
         map(data => {
           const question = data.body.rawJson
@@ -23,6 +25,7 @@ export class QuestionEffects {
           return of(questionActions.FETCH_QUESTION_ERROR({ error }));
         }),
       )
+
     })
   ));
 

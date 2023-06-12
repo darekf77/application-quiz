@@ -8,7 +8,7 @@ export const INIT = createAction(
 
 export const FETCH_QUESTION = createAction(
   '[question] FETCH_QUESTION',
-  props<{ questionOid: number; topicTitleKebabCase: string; }>()
+  props<{ questionOid: number; }>()
 );
 
 export const FETCH_QUESTION_SUCCESS = createAction(

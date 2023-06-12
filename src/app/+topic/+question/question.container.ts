@@ -20,8 +20,6 @@ export class QuestionContainer {
 
   question$: Observable<Question>;
 
-  @Input('topicTitleKebabCase') title: string;
-
   @Input('questionOid')
   set id(questionOid) {
     if (!_.isNil(questionOid)) {
@@ -31,15 +29,8 @@ export class QuestionContainer {
     if (_.isNumber(questionOid) && !_.isNaN(questionOid)) {
       this.question$ = this.store.select(questionSelectors.getCurrentQuestion).pipe(
         map(q => Question.from(q)),
-        // share(),
-        tap(console.log)
       );
-      const { title: topicTitleKebabCase } = this;
-      if (topicTitleKebabCase) {
-
-        this.store.dispatch(questionAction.FETCH_QUESTION({ questionOid, topicTitleKebabCase }))
-      }
-
+      this.store.dispatch(questionAction.FETCH_QUESTION({ questionOid }))
     } else {
       this.question$ = of(void 0)
     }

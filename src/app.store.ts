@@ -211,16 +211,16 @@ const appRouterSelector = createFeatureSelector<RouterReducerState<RouterState>>
 
 export namespace appSelectors {
 
-  export const {
-    selectCurrentRoute, // select the current route
-    selectFragment, // select the current route fragment
-    selectQueryParams, // select the current route query params
-    selectQueryParam, // factory function to select a query param
-    selectRouteParams, // select the current route params
-    selectRouteParam, // factory function to select a route param
-    selectRouteData, // select the current route data
-    selectUrl, // select the current url
-  } = getRouterSelectors(appRouterSelector);
+  // export const {
+  //   selectCurrentRoute, // select the current route
+  //   selectFragment, // select the current route fragment
+  //   selectQueryParams, // select the current route query params
+  //   selectQueryParam, // factory function to select a query param
+  //   selectRouteParams, // select the current route params
+  //   selectRouteParam, // factory function to select a route param
+  //   selectRouteData, // select the current route data
+  //   selectUrl, // select the current url
+  // } = getRouterSelectors(appRouterSelector);
 
   export const selectedTopic = createSelector(
     appSelector,
@@ -230,7 +230,7 @@ export namespace appSelectors {
         .find(({ topicTitleKebabCase }) => topicTitleKebabCase === route?.state?.params['topicTitleKebabCase']) as ITopic;
 
       console.log({
-        params: route?.state?.params
+        params: JSON.stringify(route?.state?.params || {})
       })
       return selectedTopic;
     }
@@ -274,9 +274,6 @@ export const metaReducers: MetaReducer<AppState>[] = (window['ENV'] as Models.en
   ? [logoutMeta]
   : [debugMeta, logoutMeta];
 //#endregion
-
-
-
 
 
 //#endregion
