@@ -23,9 +23,7 @@ export class TopicContainer {
   ) { }
 
   current$ = this.store.select(appSelectors.selectedTopic);
-  selectedQuestionOid$ = this.store.select(topicSelectors.getSelectedQuestionOid).pipe(
-    tap(console.log)
-  )
+  selectedQuestionOid$ = this.store.select(topicSelectors.getSelectedQuestionOid);
 
   @Input('topicTitleKebabCase')
   set title(topicTitleKebabCase: string) {
@@ -44,7 +42,5 @@ export class TopicContainer {
   submit() {
 
   }
-
-
 }
 //#endregion

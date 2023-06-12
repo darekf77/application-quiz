@@ -13,7 +13,6 @@ export const getCurrentTopic = createSelector(topicFeatureSelector, state => {
 export const getSelectedQuestionOid = createSelector(
   appSelectors.appRouterSelector,
   (route) => {
-    console.log(route.state.params)
     const questionOid = Number(route.state.params['questionOid']);
     return questionOid;
   }
