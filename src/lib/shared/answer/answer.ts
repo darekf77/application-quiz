@@ -3,6 +3,8 @@ import { _ } from 'tnp-core';
 import type { AnswerController } from './answer.controller';
 import { defaultModelValuesAnswer as defaultModelValues } from './answer.models';
 import { RawAnswer } from '../../models';
+import type { Topic } from '../topic';
+
 @Firedev.Entity({
   className: 'Answer',
   defaultModelValues,
@@ -31,6 +33,8 @@ export class Answer extends Firedev.Base.Entity<any> implements RawAnswer {
   //#region fields & getters
   ctrl: AnswerController;
 
+  topic: Topic;
+
   //#region @websql
   @Firedev.Orm.Column.Custom({
     type: 'varchar',
@@ -40,8 +44,13 @@ export class Answer extends Firedev.Base.Entity<any> implements RawAnswer {
   //#endregion
   title: string;
 
+  //#region @websql
+  @Firedev.Orm.Column.Boolean(false)
+  //#endregion
   isCorrect?: boolean;
 
+  userAnswer?: boolean;
+  answeredCorrectly?: boolean;
 
   //#region @websql
   @Firedev.Orm.Column.Generated()

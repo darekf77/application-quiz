@@ -4,7 +4,10 @@
 import { Firedev } from 'firedev';
 import { _ } from 'tnp-core';
 const host = 'http://localhost:4199';
-import { Answer, AnswerController, Question, QuestionController, Topic, TopicController } from './lib';
+import {
+  Answer, AnswerController, Question, QuestionController,
+  Topic, TopicController, User, UserController
+} from './lib';
 //#region @browser
 import { LayoutSimpleSmallAppModule } from './lib';
 import { Input, NgModule, NgZone, ViewChild, ViewEncapsulation } from '@angular/core';
@@ -124,12 +127,14 @@ async function start() {
       TopicController,
       QuestionController,
       AnswerController,
+      UserController,
       // PUT FIREDEV CONTORLLERS HERE
     ],
     entities: [
       Topic,
       Question,
       Answer,
+      User,
       // PUT FIREDEV ENTITIES HERE
     ],
     //#region @websql

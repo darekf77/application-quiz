@@ -1,6 +1,7 @@
 //#region @browser
 import { Component, Input, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, map, of } from 'rxjs';
+import { User } from '../../lib';
 
 @Component({
   selector: 'app-stats',
@@ -9,13 +10,18 @@ import { Subscription } from 'rxjs';
 })
 export class StatsContainer implements OnInit {
 
-  myId: number;
+  user$: Observable<User>;
 
-  @Input({
-    required: false
-  })
-  set id(v: string) {
-    this.myId = Number(v);
+  @Input('username')
+  set id(username: string) {
+    if (username) {
+      username = decodeURIComponent(username);
+      this.user$ = User.ctrl.getByUsername(encodeURIComponent(username)).received.observable.pipe(map(data => {
+        return data.body.json;
+      }))
+    } else {
+      this.user$ = of(void 0)
+    }
   }
 
   constructor() { }

@@ -1,7 +1,7 @@
 import { Firedev } from 'firedev';
 import { _ } from 'tnp-core';
 import type { UserController } from './user.controller';
-import { defaultModelValuesUser as defaultModelValues  } from './user.models';
+import { Stats, defaultModelValuesUser as defaultModelValues } from './user.models';
 @Firedev.Entity({
   className: 'User',
   defaultModelValues
@@ -35,6 +35,22 @@ export class User extends Firedev.Base.Entity<any> {
   //#endregion
   id: string;
 
+
+  //#region @websql
+  @Firedev.Orm.Column.Custom({
+    type: 'varchar',
+    length: '100',
+    unique: true,
+  })
+  //#endregion
+  username: string;
+
+  //#region @websql
+  @Firedev.Orm.Column.SimpleJson()
+  //#endregion
+  statistics?: Stats[];
+  //#endregion
+
   //#region @websql
   @Firedev.Orm.Column.Custom({
     type: 'varchar',
@@ -50,6 +66,19 @@ export class User extends Firedev.Base.Entity<any> {
     const { propsToOmit } = options || { propsToOmit: ['id', 'ctrl'] };
     return _.merge(new User(), _.omit(this, propsToOmit));
   }
+
+  getScored() {
+    return (this.statistics || []).reduce((a, b) => {
+      return a + b.scored;
+    }, 0)
+  }
+
+  getTotal() {
+    return (this.statistics || []).reduce((a, b) => {
+      return a + b.total;
+    }, 0)
+  }
+
   //#endregion
 
 }

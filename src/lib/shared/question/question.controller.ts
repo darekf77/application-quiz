@@ -55,7 +55,10 @@ export class QuestionController extends Firedev.Base.Controller<any> {
           questionId: question.id,
         }
       });
-      question.answers = answers;
+      question.answers = answers.map(a => {
+        delete a.isCorrect;
+        return a;
+      })
       return question;
     }
     //#endregion
