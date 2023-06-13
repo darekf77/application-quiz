@@ -13,21 +13,23 @@ export class UserController extends Firedev.Base.Controller<User> {
 
   /**
    *
-   * @param answers
+   * @param corectAnswersIds
    * @param username should be encoded encodeURIComponent
    * @returns
    */
-  @Firedev.Http.POST('/user/:username') // @ts-ignore
+  @Firedev.Http.POST('/submit/user/:username') // @ts-ignore
   submit(
-    @Firedev.Http.Param.Body('answers') answers: Answer[],
+    @Firedev.Http.Param.Body('answers') corectAnswersIds: Number[],
     @Firedev.Http.Param.Path('username') username: string,
+    @Firedev.Http.Param.Query('onlyTopicId') onlyTopicIds: Number[],
   ): Firedev.Response<User> {
     //#region @websqlFunc
     return async (req, res) => { // @ts-ignore
       username = decodeURIComponent(username)
       console.log({
-        answers,
+        answers: corectAnswersIds,
         username,
+        onlyTopicId: onlyTopicIds,
       })
 
       const userExists = (await this.repository.count({
@@ -61,6 +63,20 @@ export class UserController extends Firedev.Base.Controller<User> {
         });
       }
 
+      let answers = corectAnswersIds.map(id => {
+        const answer = allAnswers.find(a => a.id == id);
+        answer.userAnswer = true;
+        answer.topic = allTopics.find(topic => {
+          const question = allQuestions.find(q => q.id === answer.questionId);
+          return topic.id === question.id;
+        });
+        return answer;
+      });
+
+      if (onlyTopicIds) {
+        answers = answers.filter(f => onlyTopicIds.includes(f.topic.id));
+      }
+
       for (let index = 0; index < answers.length; index++) {
         const answer = answers[index];
         answer.topic = allTopics.find(topic => {
@@ -69,15 +85,23 @@ export class UserController extends Firedev.Base.Controller<User> {
         });
         answer.answeredCorrectly = (answer.userAnswer === allAnswers.find(a => a.id == answer.id).isCorrect);
       }
-      user.statistics = [] as any;
+      if (!Array.isArray(user.statistics)) {
+        user.statistics = [];
+      }
 
       for (let index = 0; index < allTopics.length; index++) {
         const topic = allTopics[index];
-        user.statistics.push({
+        const existedTopicIndex = (user.statistics || []).findIndex(f => f.topicName === topic.title);
+        const data = {
           topicName: topic.title,
           scored: answers.filter(a => (a.topic.id === topic.id) && a.answeredCorrectly).length,
           total: allAnswers.filter(a => (a.topic.id === topic.id) && a.answeredCorrectly).length,
-        });
+        };
+        if (existedTopicIndex !== -1) {
+          user.statistics[existedTopicIndex] = data;
+        } else {
+          user.statistics.push(data);
+        }
       }
 
       user = await this.repository.save(user);

@@ -1,6 +1,6 @@
 //#region @browser
 import { createAction, props } from "@ngrx/store";
-import { IQuestion } from "../../../../lib";
+import { Answer, IAnswer, IQuestion } from "../../../../lib";
 
 export const INIT = createAction(
   '[question] INIT',
@@ -19,6 +19,12 @@ export const FETCH_QUESTION_SUCCESS = createAction(
 export const FETCH_QUESTION_ERROR = createAction(
   '[question] FETCH_QUESTION_ERROR',
   props<{ error?: any }>()
+);
+
+
+export const MARK_ANSWERS = createAction(
+  '[question] MARK_ANSWERS',
+  props<{ answersIds: Number[]; }>()
 );
 
 

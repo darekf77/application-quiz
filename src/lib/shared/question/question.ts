@@ -3,6 +3,7 @@ import { _ } from 'tnp-core';
 import type { QuestionController } from './question.controller';
 import { defaultModelValuesQuestion as defaultModelValues } from './question.models';
 import { RawAnswer, RawQuestion } from '../../models';
+import { Answer } from '../answer';
 @Firedev.Entity({
   className: 'Question',
   defaultModelValues,
@@ -12,7 +13,9 @@ export class Question extends Firedev.Base.Entity<any> implements RawQuestion {
   //#region static
   static ctrl: QuestionController;
   static from(obj: Omit<Partial<Question>, 'ctrl'>) {
-    return _.merge(new Question(), obj) as Question;
+    const res = _.merge(new Question(), obj) as Question;
+    res.answers = (res.answers || []).map(a => Answer.from(a));
+    return res;
   }
   static getAll() {
     return this.ctrl.getAll();

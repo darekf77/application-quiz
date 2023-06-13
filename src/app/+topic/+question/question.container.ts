@@ -6,8 +6,9 @@ import * as questionSelectors from './selectors/question.selectors';
 import * as questionAction from './actions/question.actions';
 import { Observable, firstValueFrom, map, of, share, tap } from 'rxjs';
 import { _ } from 'tnp-core';
-import { ITopic, Question } from '../../../lib';
+import { Answer, ITopic, Question } from '../../../lib';
 import { AppService, appActions, appSelectors } from '../../../app.store';
+import { MatSelectionListChange } from '@angular/material/list';
 
 @Component({
   selector: 'app-question',
@@ -22,6 +23,7 @@ export class QuestionContainer {
 
   question$: Observable<Question>;
 
+  selectedAnswersForQuestion$ = this.store.select(questionSelectors.currentQuestionSelectedIds);
 
   @Input('questionOid')
   set id(questionOid) {
@@ -36,6 +38,14 @@ export class QuestionContainer {
     } else {
       this.question$ = of(void 0)
     }
+  }
+
+  onSelectionChange(e: MatSelectionListChange) {
+    const answersIds = e.source._value as any as Number[];
+    console.log({
+      answersIds
+    });
+    this.store.dispatch(questionAction.MARK_ANSWERS({ answersIds }))
   }
 
   async goNext(q: Question) {
