@@ -4,6 +4,8 @@ import * as _ from 'lodash';
 import * as questionActions from '../actions/question.actions'
 import { QuestionInitialState } from '../question.models';
 import { Helpers } from 'tnp-helpers';
+import { appActions } from '../../../../app.store';
+import * as topicActions from '../../actions/topic.actions';
 
 const initialState: QuestionInitialState = {
   currentQuestion: void 0,
@@ -20,11 +22,24 @@ export const questionReducer = createReducer(
     }
   ),
   on(
+    appActions.CHANGE_TOPIC,
+    (state) => {
+      return { ...state, ...{ currentQuestion: null } };
+    }
+  ),
+  on(
     questionActions.FETCH_QUESTION_SUCCESS,
     (state, { question }) => {
       const currentQuestion = _.cloneDeep(question)
       const allAnswers = _.cloneDeep(Helpers.arrays.uniqArray([...state.allAnswers, ...question.answers], 'id'));
       return { ...state, ...{ currentQuestion, allAnswers } };
+    }
+  ),
+  on(
+    topicActions.SUBMIT_SCORE_SUCCESS,
+    (state, action) => {
+      const selectedAnswersIds = [];
+      return { ...state, ...{ selectedAnswersIds } };
     }
   ),
   on(

@@ -8,7 +8,7 @@ export const backendQuizData: RawQuizApp = {
       title: 'Design Patterns',
       question: [
         {
-          title: 'What is S.O.I.D. in programming ?',
+          title: 'What is S.O.L.I.D. in programming ?',
           answers: [
             {
               title: 'single responsibility, open/closed, liskov substitution, interface segregation, dependency inversion.',
@@ -20,6 +20,14 @@ export const backendQuizData: RawQuizApp = {
             },
             {
               title: 'single responsibility, obligatory, liskov substitution, interface segregation, dependency inversion.',
+              isCorrect: false,
+            },
+            {
+              title: 'single resonable, obligatory, liskov substitution, interface segregation, dependency inversion.',
+              isCorrect: false,
+            },
+            {
+              title: 'single responsibility, onimbus, liskov substitution, interface segregation, dependency inversion.',
               isCorrect: false,
             }
           ]
@@ -39,6 +47,14 @@ export const backendQuizData: RawQuizApp = {
               title: 'Strategy',
               isCorrect: false,
             },
+            {
+              title: 'Adapter',
+              isCorrect: false,
+            },
+            {
+              title: 'Bridge',
+              isCorrect: false,
+            },
           ]
         },
         {
@@ -53,8 +69,16 @@ export const backendQuizData: RawQuizApp = {
               isCorrect: false,
             },
             {
+              title: 'a result smelly keyboard',
+              isCorrect: false,
+            },
+            {
               title: 'a result of poor or misguided programming',
               isCorrect: true,
+            },
+            {
+              title: 'a result using hamster instead of mouse',
+              isCorrect: false,
             },
           ]
         }
@@ -77,6 +101,14 @@ export const backendQuizData: RawQuizApp = {
             {
               title: '<ul *ngIf="async(allUsers())"   >',
               isCorrect: false,
+            },
+            {
+              title: '<ul *ngIf="async(allUsers()) | pipe"  >',
+              isCorrect: false,
+            },
+            {
+              title: '<ul ng-if="allUsers() | async; else loader;"  >',
+              isCorrect: false,
             }
           ]
         },
@@ -94,6 +126,14 @@ export const backendQuizData: RawQuizApp = {
             {
               title: 'directive is a component without template',
               isCorrect: true,
+            },
+            {
+              title: 'nothing beside name',
+              isCorrect: false,
+            },
+            {
+              title: 'it depends',
+              isCorrect: false,
             }
           ]
         },
@@ -106,11 +146,19 @@ export const backendQuizData: RawQuizApp = {
             },
             {
               title: 'ngOnInit',
-              isCorrect: true,
+              isCorrect: false,
             },
             {
               title: 'ngAfterContentInit',
               isCorrect: false,
+            },
+            {
+              title: 'ngOnChanges',
+              isCorrect: true,
+            },
+            {
+              title: 'ngDoCheck',
+              isCorrect: true,
             }
           ]
         }
@@ -134,6 +182,14 @@ export const backendQuizData: RawQuizApp = {
               title: 'A Java Applet is program that can be included in a HTML page and be executed in a java enabled client browser.',
               isCorrect: true,
             },
+            {
+              title: 'A Java Apple command line interface',
+              isCorrect: false,
+            },
+            {
+              title: 'All above answers are false',
+              isCorrect: false,
+            },
           ]
         },
         {
@@ -149,6 +205,14 @@ export const backendQuizData: RawQuizApp = {
             },
             {
               title: 'multiple thread are slower than multiple processes',
+              isCorrect: false,
+            },
+            {
+              title: 'it depens on CPU',
+              isCorrect: false,
+            },
+            {
+              title: 'it depens on GPU',
               isCorrect: false,
             }
           ]
@@ -167,6 +231,14 @@ export const backendQuizData: RawQuizApp = {
             {
               title: 'The servlet is a Java programming language class used to process client requests and generate dynamic web content.',
               isCorrect: true,
+            },
+            {
+              title: 'The servlet is a Java programming language class used to process server requests.',
+              isCorrect: false,
+            },
+            {
+              title: 'The servlet is a Java class used to process server requests.',
+              isCorrect: false,
             },
           ]
         }

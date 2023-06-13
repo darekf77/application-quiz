@@ -195,9 +195,6 @@ export class AppEffects {
 //#endregion
 
 //#region app selectors
-
-
-
 export namespace appSelectors {
 
   export const appSelector = createFeatureSelector<InitialAppState>(appStateKey);
@@ -254,6 +251,5 @@ export const metaReducers: MetaReducer<AppState>[] = (window['ENV'] as Models.en
   ? [logoutMeta]
   : [debugMeta, logoutMeta];
 //#endregion
-
 
 //#endregion
