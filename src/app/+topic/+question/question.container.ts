@@ -42,9 +42,6 @@ export class QuestionContainer {
 
   onSelectionChange(e: MatSelectionListChange) {
     const answersIds = e.source._value as any as Number[];
-    console.log({
-      answersIds
-    });
     this.store.dispatch(questionAction.MARK_ANSWERS({ answersIds }))
   }
 

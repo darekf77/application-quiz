@@ -1,4 +1,4 @@
-<ng-container *ngIf="current$ | async; let topic;" >
+<ng-container *ngIf="current$ | async; let topic;">
 
   <topic [topic]="topic"
          (questionOidChanged)="onQuestionOidChanged($event)"
@@ -8,14 +8,25 @@
 </ng-container>
 
 <br>
+
+<ng-template #buttons>
+  <button mat-raised-button
+          (click)="submit()">Submit Topic</button>
+  <button mat-raised-button
+          (click)="submit()">Submit All Topics</button>
+</ng-template>
+
+
 <columns-container>
   <column grow>
 
   </column>
-  <column [width]="400">
-    <button mat-raised-button
-            (click)="submit()">Submit Topic</button>
-    <button mat-raised-button
-            (click)="submit()">Submit All Topics</button>
+  <column [width]="400"
+          hideMobile>
+    <ng-container *ngTemplateOutlet="buttons"></ng-container>
+  </column>
+  <column grow
+          showMobile>
+    <ng-container *ngTemplateOutlet="buttons"></ng-container>
   </column>
 </columns-container>
