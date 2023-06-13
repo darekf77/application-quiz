@@ -2,10 +2,6 @@
 import { createAction, props } from "@ngrx/store";
 import { ITopic, IUser, Topic } from "../../../lib";
 
-export const INIT = createAction(
-  '[topic]  INIT'
-);
-
 export const FETCH_TOPIC = createAction(
   '[topic] FETCH_TOPIC'
 );

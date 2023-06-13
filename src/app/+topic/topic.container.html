@@ -1,17 +1,21 @@
 <ng-template #startInfo>
   <br>
-  <mtx-alert [type]="'info'"
+  <!-- <mtx-alert [type]="'info'"
              [elevation]="10"
              [dismissible]="false">
     <strong>Heads up!</strong> Please select quiz topic
-  </mtx-alert>
+  </mtx-alert> -->
+
+  <h2 style="text-align: right;">Please select quiz topic &nbsp; <mat-icon>arrow_upward</mat-icon>
+    &nbsp;&nbsp;&nbsp;&nbsp; </h2>
 </ng-template>
 
 <ng-template #selectQuesion>
   <br>
   <button mat-raised-button
+          color="accent"
           class="start-button"
-          (click)="start()">Press this button to start</button>
+          (click)="start()">Press this button to <strong>START</strong> </button>
 </ng-template>
 
 <ng-container *ngIf="currentTopic$ | async;else startInfo; let topic;">
@@ -23,8 +27,10 @@
   <br>
   <ng-template #buttons>
     <button mat-raised-button
+            color="primary"
             (click)="submit(topic)">Submit Topic</button>
     <button mat-raised-button
+            color="primary"
             (click)="submit()">Submit All Topics</button>
   </ng-template>
 

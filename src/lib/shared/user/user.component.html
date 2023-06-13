@@ -4,8 +4,9 @@
                  [allowedColumns]="['id','username']">
   </firedev-table>
 </div>
+<br>
 <div *ngIf="user">
-  Category Score for user <strong>{{user.username}}</strong>
+  Category Score For User: <strong>{{user.username}}</strong>
 </div>
 <h3 *ngIf="user">
   Results: {{user.getScored()}} / {{user.getTotal()}} questions answered correctly

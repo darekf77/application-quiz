@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { TopicInitialState } from './topic.models';
 import * as topicSelectors from './selectors/topic.selectors';
 import * as topicAction from './actions/topic.actions';
+import * as questionAction from './+question/actions/question.actions';
 import { Observable, firstValueFrom, map, of, takeUntil, tap } from 'rxjs';
 import { AppService, appActions, appSelectors } from '../../app.store';
 import { TopicService } from './services/topic.service';
@@ -68,7 +69,7 @@ export class TopicContainer {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(topicAction.INIT());
+    this.store.dispatch(questionAction.INIT());
   }
 }
 //#endregion
