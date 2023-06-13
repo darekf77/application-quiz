@@ -11,12 +11,12 @@ const routes: Routes = [
   {
     path: '',
     component: StatsContainer,
+    pathMatch: 'full',
   },
-  // {
-  //   path: 'anothermodulepath',
-  //   loadChildren: () => import('anothermodule')
-  //     .then(m => m.AnotherLazyModule),
-  // },
+  {
+    path: ':username',
+    component: StatsContainer,
+  },
 ];
 
 @NgModule({

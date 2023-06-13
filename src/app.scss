@@ -2,6 +2,10 @@
 
 @include mat-css-vars.init-material-css-vars();
 
+@import "@ng-matero/extensions/prebuilt-themes/indigo-pink.css";
+// @import "@ng-matero/extensions/prebuilt-themes/pink-bluegrey.css";
+
+
 .spacer{
   flex: 1 1 auto;
 }

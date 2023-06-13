@@ -14,6 +14,12 @@ const initialState: QuestionInitialState = {
 export const questionReducer = createReducer(
   initialState,
   on(
+    questionActions.INIT,
+    (state) => {
+      return { ...state, ...{ currentQuestion: null } };
+    }
+  ),
+  on(
     questionActions.FETCH_QUESTION_SUCCESS,
     (state, { question }) => {
       const currentQuestion = _.cloneDeep(question)

@@ -84,7 +84,7 @@ export class Answer extends Firedev.Base.Entity<any> implements RawAnswer {
   //#endregion
 
   //#region methods
-  clone(options?: { propsToOmit: keyof Answer[]; }): Answer {
+  clone(options?: { propsToOmit: (keyof Answer)[]; }): Answer {
     const { propsToOmit } = options || { propsToOmit: ['id', 'ctrl'] };
     return _.merge(new Answer(), _.omit(this, propsToOmit));
   }

@@ -4,6 +4,7 @@ import { Answer } from '../answer/answer';
 import { Stats } from './user.models';
 import { Topic } from '../topic';
 import { Question } from '../question';
+import { _ } from 'tnp-core';
 
 @Firedev.Controller({
   className: 'UserController',
@@ -21,16 +22,11 @@ export class UserController extends Firedev.Base.Controller<User> {
   submit(
     @Firedev.Http.Param.Body('answers') corectAnswersIds: Number[],
     @Firedev.Http.Param.Path('username') username: string,
-    @Firedev.Http.Param.Query('onlyTopicId') onlyTopicIds: Number[],
+    @Firedev.Http.Param.Query('onlyTopicId') onlyTopicId: Number,
   ): Firedev.Response<User> {
     //#region @websqlFunc
     return async (req, res) => { // @ts-ignore
       username = decodeURIComponent(username)
-      console.log({
-        answers: corectAnswersIds,
-        username,
-        onlyTopicId: onlyTopicIds,
-      })
 
       const userExists = (await this.repository.count({
         where: {
@@ -59,32 +55,31 @@ export class UserController extends Firedev.Base.Controller<User> {
         const answer = allAnswers[index];
         answer.topic = allTopics.find(topic => {
           const question = allQuestions.find(q => q.id === answer.questionId);
-          return topic.id === question.id;
+          return topic.id === question.topicId;
         });
       }
 
-      let answers = corectAnswersIds.map(id => {
-        const answer = allAnswers.find(a => a.id == id);
+      let userAnswers = corectAnswersIds.map(id => {
+        const answerFromDB = allAnswers.find(a => a.id == id);
+        const answer = answerFromDB.clone({ propsToOmit: ['ctrl'] });
         answer.userAnswer = true;
-        answer.topic = allTopics.find(topic => {
-          const question = allQuestions.find(q => q.id === answer.questionId);
-          return topic.id === question.id;
-        });
+        answer.topic = Topic.from(answer.topic);
         return answer;
       });
 
-      if (onlyTopicIds) {
-        answers = answers.filter(f => onlyTopicIds.includes(f.topic.id));
+      const updateOnlyForTopicId = _.isNumber(onlyTopicId) && !_.isNaN(onlyTopicId);
+
+      if (updateOnlyForTopicId) {
+        userAnswers = userAnswers.filter(f => onlyTopicId === f.topic.id);
       }
 
-      for (let index = 0; index < answers.length; index++) {
-        const answer = answers[index];
-        answer.topic = allTopics.find(topic => {
-          const question = allQuestions.find(q => q.id === answer.questionId);
-          return topic.id === question.id;
-        });
-        answer.answeredCorrectly = (answer.userAnswer === allAnswers.find(a => a.id == answer.id).isCorrect);
+      for (let index = 0; index < userAnswers.length; index++) {
+        const userAnswer = userAnswers[index];
+        userAnswer.answeredCorrectly = (
+          userAnswer.userAnswer === allAnswers.find(a => a.id == userAnswer.id).isCorrect
+        );
       }
+
       if (!Array.isArray(user.statistics)) {
         user.statistics = [];
       }
@@ -94,8 +89,8 @@ export class UserController extends Firedev.Base.Controller<User> {
         const existedTopicIndex = (user.statistics || []).findIndex(f => f.topicName === topic.title);
         const data = {
           topicName: topic.title,
-          scored: answers.filter(a => (a.topic.id === topic.id) && a.answeredCorrectly).length,
-          total: allAnswers.filter(a => (a.topic.id === topic.id) && a.answeredCorrectly).length,
+          scored: userAnswers.filter(a => (a.topic.id === topic.id) && a.answeredCorrectly).length,
+          total: allAnswers.filter(a => (a.topic.id === topic.id) && a.isCorrect).length,
         };
         if (existedTopicIndex !== -1) {
           user.statistics[existedTopicIndex] = data;

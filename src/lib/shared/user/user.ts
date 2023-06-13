@@ -4,7 +4,10 @@ import type { UserController } from './user.controller';
 import { Stats, defaultModelValuesUser as defaultModelValues } from './user.models';
 @Firedev.Entity({
   className: 'User',
-  defaultModelValues
+  defaultModelValues,
+  defaultModelMapping: {
+    statistics: 'Stats'
+  }
 })
 export class User extends Firedev.Base.Entity<any> {
 

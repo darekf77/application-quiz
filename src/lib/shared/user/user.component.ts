@@ -5,6 +5,9 @@ import { CommonModule } from '@angular/common';
 import { FiredevFullMaterialModule } from 'firedev-ui';
 import { StaticColumnsModule } from 'static-columns';
 import { User } from './user';
+import { FiredevTableModule } from 'firedev-ui';
+import { MtxGridColumn } from '@ng-matero/extensions/grid';
+import { AppService } from '../../../app.store';
 
 @Component({
   selector: 'user',
@@ -16,12 +19,63 @@ import { User } from './user';
     CommonModule,
     FiredevFullMaterialModule,
     StaticColumnsModule,
+    FiredevTableModule,
   ],
 })
 export class UserComponent implements OnInit {
+  entity = User;
   @Input() user: User;
+
+  statsColumns = [
+    {
+      header: 'Topic Name',
+      field: 'topicName',
+    },
+    {
+      header: 'Scored',
+      field: 'scored',
+      maxWidth: 100
+    },
+    {
+      header: 'Total',
+      field: 'total',
+      maxWidth: 100
+    }
+  ] as MtxGridColumn[];
+
+  usersColumns = [
+    {
+      header: 'ID',
+      field: 'id',
+      maxWidth: 100
+    },
+    {
+      header: 'Username',
+      field: 'username',
+    },
+    {
+      header: 'Go To Score Page',
+      field: 'goto',
+      right: '0px',
+      type: 'button',
+      buttons: [
+        {
+          type: 'icon',
+          text: 'Go To Score Page',
+          icon: 'navigate_next',
+          tooltip: 'Go To Score Page',
+          disabled: false,
+          click: (user:User) => {
+            this.appService.goToStats(user.username);
+          },
+        }
+      ],
+    }
+  ]
+
   constructor(
-    protected service: UserService
+    protected service: UserService,
+    protected appService: AppService,
   ) { }
 
   ngOnInit() {

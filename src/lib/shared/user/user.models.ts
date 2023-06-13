@@ -6,7 +6,7 @@ export const defaultModelValuesUser: Omit<IUser, 'ctrl' | 'clone'> = {
   description: '',
 }
 
-export interface Stats  {
+export interface Stats {
   topicName: string;
   scored: number;
   total: number;

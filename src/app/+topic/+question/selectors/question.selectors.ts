@@ -7,11 +7,11 @@ import { IAnswer } from '../../../../lib';
 const questionFeatureSelector = createFeatureSelector<QuestionInitialState>(questionFeatureKey);
 
 export const getCurrentQuestion = createSelector(questionFeatureSelector, state => {
-  return state.currentQuestion;
+  return state?.currentQuestion;
 });
 
 export const currentQuestionSelectedIds = createSelector(questionFeatureSelector, state => {
-  return (state.currentQuestion?.answers as IAnswer[] || [])
+  return (state?.currentQuestion?.answers as IAnswer[] || [])
     .filter(a => {
       return state.selectedAnswersIds.includes(a.id);
     })

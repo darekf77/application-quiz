@@ -1,5 +1,20 @@
-<ng-container *ngIf="current$ | async; let topic;">
+<ng-template #startInfo>
+  <br>
+  <mtx-alert [type]="'info'"
+             [elevation]="10"
+             [dismissible]="false">
+    <strong>Heads up!</strong> Please select quiz topic
+  </mtx-alert>
+</ng-template>
 
+<ng-template #selectQuesion>
+  <br>
+  <button mat-raised-button
+          class="start-button"
+          (click)="start()">Press this button to start</button>
+</ng-template>
+
+<ng-container *ngIf="currentTopic$ | async;else startInfo; let topic;">
   <topic [topic]="topic"
          (questionOidChanged)="onQuestionOidChanged($event)"
          [selectedQuestionOid]="selectedQuestionOid$ | async">
@@ -13,23 +28,23 @@
             (click)="submit()">Submit All Topics</button>
   </ng-template>
 
-  <columns-container>
-    <column grow>
+  <ng-container *ngIf="currentQuestion$ | async;else selectQuesion;">
+    <columns-container>
+      <column grow>
 
-    </column>
-    <column [width]="400"
-            hideMobile>
-      <ng-container *ngTemplateOutlet="buttons"></ng-container>
-    </column>
-    <column grow
-            showMobile>
-      <ng-container *ngTemplateOutlet="buttons"></ng-container>
-    </column>
-  </columns-container>
+      </column>
+      <column [width]="400"
+              hideMobile>
+        <ng-container *ngTemplateOutlet="buttons"></ng-container>
+      </column>
+      <column grow
+              showMobile>
+        <ng-container *ngTemplateOutlet="buttons"></ng-container>
+      </column>
+    </columns-container>
+  </ng-container>
 
 </ng-container>
-
-<ng-container></ng-container>
 
 <swal #usernamePopup
       title="Username input"

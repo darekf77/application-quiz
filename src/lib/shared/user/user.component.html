@@ -1,22 +1,18 @@
-<p *ngIf="!user">
-  Please provide user model to component
-</p>
-<h2 *ngIf="user">
-  Category Score
-</h2>
+<div *ngIf="!user">
+  <firedev-table [columns]="usersColumns"
+                 [entity]="entity"
+                 [allowedColumns]="['id','username']">
+  </firedev-table>
+</div>
+<div *ngIf="user">
+  Category Score for user <strong>{{user.username}}</strong>
+</div>
 <h3 *ngIf="user">
   Results: {{user.getScored()}} / {{user.getTotal()}} questions answered correctly
 </h3>
-<coulumns-container *ngIf="user">
-  <column grow>
-    <code *ngFor="let stat of user.statistics">
-      {{stat.topicName}}
-    </code>
-  </column>
-  <column [width]="200">
-    <code *ngFor="let stat of user.statistics">
-      {{stat.scored}} / {{stat.total}}
-    </code>
-  </column>
 
-</coulumns-container>
+<firedev-table *ngIf="user"
+               [columns]="statsColumns"
+               [rows]="user.statistics"
+               [allowedColumns]="['topicName','scored','total']">
+</firedev-table>

@@ -10,8 +10,9 @@ import { AppService, appActions, appSelectors } from '../../app.store';
 import { TopicService } from './services/topic.service';
 import { ActivatedRoute } from '@angular/router';
 import { _ } from 'tnp-core';
-import { Topic } from '../../lib';
+import { Question, Topic } from '../../lib';
 import { Actions, ofType } from '@ngrx/effects';
+import * as questionSelectors from './+question/selectors/question.selectors';
 
 @Component({
   selector: 'app-topic',
@@ -35,21 +36,23 @@ export class TopicContainer {
     });
   }
 
-  current$ = this.store.select(appSelectors.selectedTopic).pipe(map(t => Topic.from(t)));
+  currentTopic$ = this.store.select(appSelectors.selectedTopic).pipe(map(t => {
+    return t && Topic.from(t);
+  }));
+
+  currentQuestion$ = this.store.select(questionSelectors.getCurrentQuestion).pipe(map(t => {
+    return t && Question.from(t);
+  }));
+
   selectedQuestionOid$ = this.store.select(topicSelectors.getSelectedQuestionOid);
 
-  @Input('topicTitleKebabCase')
-  set title(topicTitleKebabCase: string) {
-    if (topicTitleKebabCase) {
-      this.store.dispatch(topicAction.INIT_QUESTION_WHEN_NOT_TOPICS({ topicTitleKebabCase }))
-    } else {
-      this.store.dispatch(appActions.MAKE_SURE_SELECTED_TOPIC())
-    }
+  async onQuestionOidChanged(navigateToQuestionOid) {
+    const topic = await firstValueFrom(this.currentTopic$);
+    this.service.appService.go(topic.topicTitleKebabCase, navigateToQuestionOid);
   }
 
-  async onQuestionOidChanged(navigateToQuestionOid) {
-    const topic = await firstValueFrom(this.current$);
-    this.service.appService.go(topic.topicTitleKebabCase, navigateToQuestionOid);
+  start() {
+    this.store.dispatch(topicAction.FETCH_TOPIC())
   }
 
   submit(topic: Topic) {
@@ -62,6 +65,10 @@ export class TopicContainer {
 
   emailEntered(username) {
     this.store.dispatch(topicAction.SUBMIT_SCORE({ username }))
+  }
+
+  ngOnInit(): void {
+    this.store.dispatch(topicAction.INIT());
   }
 }
 //#endregion

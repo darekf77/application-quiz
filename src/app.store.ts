@@ -94,13 +94,6 @@ export namespace appActions {
     props<{ topicTitleKebabCase: string }>()
   );
 
-  export const DUMMYACTION = createAction(
-    '[app] DUMMYACTION',
-  );
-
-  export const MAKE_SURE_SELECTED_TOPIC = createAction(
-    '[app] MAKE_SURE_SELECTED_TOPIC'
-  );
 
   //#region app actions / FETCH_TOPICS
   export const FETCH_TOPICS = createAction(
@@ -133,6 +126,11 @@ export class AppService {
 
   go(topicTitleKebabCase: string, questionOid?: number) {
     const urlToNavigate = `/quiz/topic/${topicTitleKebabCase}${questionOid ? `/question/num/${questionOid}` : ''}`
+    this.router.navigateByUrl(urlToNavigate);
+  }
+
+  goToStats(username: string) {
+    const urlToNavigate = `/stats/${encodeURIComponent(username)}`
     this.router.navigateByUrl(urlToNavigate);
   }
 
@@ -185,22 +183,6 @@ export class AppEffects {
       ))
   ));
 
-  selectAutomaticallyFirstTopic = createEffect(() => this.actions$.pipe(
-    ofType(appActions.FETCH_TOPICS_SUCCESS, appActions.MAKE_SURE_SELECTED_TOPIC),
-    withLatestFrom(
-      this.store.select(appSelectors.allTopics),
-      this.store.select(appSelectors.selectedTopic),
-    ),
-    tap(([state, topics, selectedTopic]) => {
-      if (!selectedTopic) {
-        selectedTopic = _.first(topics);
-        if (selectedTopic) {
-          const { topicTitleKebabCase } = selectedTopic;
-          this.service.goTo(topicTitleKebabCase);
-        }
-      }
-    })
-  ), { dispatch: false });
 
   naivigateToTopic = createEffect(() => this.actions$.pipe(
     ofType(appActions.CHANGE_TOPIC),
@@ -221,24 +203,18 @@ export namespace appSelectors {
   export const appSelector = createFeatureSelector<InitialAppState>(appStateKey);
   export const appRouterSelector = createFeatureSelector<RouterReducerState<RouterState>>(appRouterStateKey);
 
-  // export const {
-  //   selectCurrentRoute, // select the current route
-  //   selectFragment, // select the current route fragment
-  //   selectQueryParams, // select the current route query params
-  //   selectQueryParam, // factory function to select a query param
-  //   selectRouteParams, // select the current route params
-  //   selectRouteParam, // factory function to select a route param
-  //   selectRouteData, // select the current route data
-  //   selectUrl, // select the current url
-  // } = getRouterSelectors(appRouterSelector);
 
   export const selectedTopic = createSelector(
     appSelector,
     appRouterSelector,
     (state, route) => {
-      const selectedTopic = (state.topics || [])
-        .find(({ topicTitleKebabCase }) => topicTitleKebabCase === route?.state?.params['topicTitleKebabCase']) as ITopic;
-      return selectedTopic;
+      const topicTitleFromParam = route?.state?.params['topicTitleKebabCase'];
+      if (topicTitleFromParam) {
+        const selectedTopic = (state.topics || [])
+          .find(({ topicTitleKebabCase }) => topicTitleKebabCase === topicTitleFromParam) as ITopic;
+        return selectedTopic;
+      }
+      return void 0;
     }
   );
 

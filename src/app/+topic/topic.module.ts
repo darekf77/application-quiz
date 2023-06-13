@@ -13,6 +13,7 @@ import { TopicModule } from '../../lib';
 import { FiredevFullMaterialModule } from 'firedev-ui';
 import { StaticColumnsModule } from 'static-columns';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { MtxAlertModule } from '@ng-matero/extensions/alert'
 
 const routes: Routes = [
   {
@@ -44,6 +45,7 @@ const routes: Routes = [
     FiredevFullMaterialModule,
     StaticColumnsModule,
     TopicModule,
+    MtxAlertModule,
     SweetAlert2Module.forRoot({
 
     })
