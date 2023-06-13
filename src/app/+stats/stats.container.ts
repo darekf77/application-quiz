@@ -2,6 +2,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable, Subscription, map, of } from 'rxjs';
 import { User } from '../../lib';
+import { AppService } from '../../app.store';
 
 @Component({
   selector: 'app-stats',
@@ -24,9 +25,15 @@ export class StatsContainer implements OnInit {
     }
   }
 
-  constructor() { }
+  constructor(
+    private appService: AppService
+  ) { }
 
   ngOnInit() {
+  }
+
+  onUserGoTo(username: string) {
+    this.appService.goToStats(username);
   }
 
 }

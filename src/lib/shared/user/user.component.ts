@@ -1,5 +1,5 @@
 //#region @browser
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from './user.service';
 import { CommonModule } from '@angular/common';
 import { FiredevFullMaterialModule } from 'firedev-ui';
@@ -7,7 +7,6 @@ import { StaticColumnsModule } from 'static-columns';
 import { User } from './user';
 import { FiredevTableModule } from 'firedev-ui';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
-import { AppService } from '../../../app.store';
 
 @Component({
   selector: 'user',
@@ -25,6 +24,7 @@ import { AppService } from '../../../app.store';
 export class UserComponent implements OnInit {
   entity = User;
   @Input() user: User;
+  @Output() userGoTo = new EventEmitter();
 
   statsColumns = [
     {
@@ -65,8 +65,8 @@ export class UserComponent implements OnInit {
           icon: 'navigate_next',
           tooltip: 'Go To Score Page',
           disabled: false,
-          click: (user:User) => {
-            this.appService.goToStats(user.username);
+          click: (user: User) => {
+            this.userGoTo.next(user.username);
           },
         }
       ],
@@ -75,7 +75,6 @@ export class UserComponent implements OnInit {
 
   constructor(
     protected service: UserService,
-    protected appService: AppService,
   ) { }
 
   ngOnInit() {
