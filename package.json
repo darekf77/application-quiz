@@ -24,7 +24,7 @@
     "type": "isomorphic-lib"
   },
   "name": "application-quiz",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "@angular-devkit/build-angular": "~16.0.5",
     "@angular-devkit/core": "~16.0.5",
