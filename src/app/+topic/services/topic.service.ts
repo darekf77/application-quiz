@@ -7,7 +7,9 @@ import { AppService } from '../../../app.store';
 @Injectable()
 export class TopicService {
   constructor(
-    public appService: AppService) {
+    public appService: AppService,
+
+    ) {
 
   }
 }

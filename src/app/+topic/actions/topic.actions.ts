@@ -24,12 +24,17 @@ export const FETCH_TOPIC_ERROR = createAction(
 );
 
 export const SHOW_ENTER_USERNAME = createAction(
-  '[question] SHOW_ENTER_USERNAME'
+  '[question] SHOW_ENTER_USERNAME',
+  props<{ topic?: Topic; }>()
+);
+
+export const DISMISS_ENTER_USERNAME = createAction(
+  '[question] DISMISS_ENTER_USERNAME'
 );
 
 export const SUBMIT_SCORE = createAction(
   '[question] SUBMIT_SCORE',
-  props<{ username: string; onlyTopic?: Number[]; }>()
+  props<{ username: string; }>()
 );
 
 export const SUBMIT_SCORE_SUCCESS = createAction(

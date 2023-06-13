@@ -10,6 +10,14 @@ export const getCurrentTopic = createSelector(topicFeatureSelector, state => {
   return state?.currentTopic;
 });
 
+export const showInputPopup = createSelector(topicFeatureSelector, state => {
+  return state?.showInputPopup;
+});
+
+export const getTopicToSubmit = createSelector(topicFeatureSelector, state => {
+  return state?.topicsToSubmit;
+});
+
 export const getSelectedQuestionOid = createSelector(
   appSelectors.appRouterSelector,
   (route) => {

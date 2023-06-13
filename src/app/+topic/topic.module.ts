@@ -12,6 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TopicModule } from '../../lib';
 import { FiredevFullMaterialModule } from 'firedev-ui';
 import { StaticColumnsModule } from 'static-columns';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 const routes: Routes = [
   {
@@ -43,6 +44,9 @@ const routes: Routes = [
     FiredevFullMaterialModule,
     StaticColumnsModule,
     TopicModule,
+    SweetAlert2Module.forRoot({
+
+    })
   ],
   declarations: [TopicContainer],
   providers: [TopicService],

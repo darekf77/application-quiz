@@ -194,8 +194,10 @@ export class AppEffects {
     tap(([state, topics, selectedTopic]) => {
       if (!selectedTopic) {
         selectedTopic = _.first(topics);
-        const { topicTitleKebabCase } = selectedTopic;
-        this.service.goTo(topicTitleKebabCase);
+        if (selectedTopic) {
+          const { topicTitleKebabCase } = selectedTopic;
+          this.service.goTo(topicTitleKebabCase);
+        }
       }
     })
   ), { dispatch: false });
