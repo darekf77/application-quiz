@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1686699985668,
+  "timestamp": 1686704614730,
   "index": "/application-quiz/index.html",
   "assetGroups": [
     {
@@ -18,7 +18,7 @@
         "/application-quiz/948.53ad36bcc0d5b55a.js",
         "/application-quiz/favicon.ico",
         "/application-quiz/index.html",
-        "/application-quiz/main.69a7d3dbaac0c99d.js",
+        "/application-quiz/main.ab155541f3f3d97e.js",
         "/application-quiz/manifest.webmanifest",
         "/application-quiz/polyfills.0c94083c463a549c.js",
         "/application-quiz/runtime.9d8cde3b7e92ce6e.js",
@@ -132,8 +132,8 @@
     "/application-quiz/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/application-quiz/assets/sql-wasm.wasm": "fcc42ce03c2b5af20e90acc2b75263acc502d736",
     "/application-quiz/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/application-quiz/index.html": "d7722b579b090d6415bcbafb3fa7fbdca6dbc73c",
-    "/application-quiz/main.69a7d3dbaac0c99d.js": "608c215bbd7998a5ce8f9f40ccfd4ff07a0473b7",
+    "/application-quiz/index.html": "de83a03fff7b97f397fe6a95cab916168dc2b1b7",
+    "/application-quiz/main.ab155541f3f3d97e.js": "375808db80b7ca15f0b5199d06cb253f413a929a",
     "/application-quiz/manifest.webmanifest": "da0780ccfb42ecd0ff569f2bc760452879c27d77",
     "/application-quiz/polyfills.0c94083c463a549c.js": "c1ba607ee86c061cba6015362b42de54596d3f5a",
     "/application-quiz/runtime.9d8cde3b7e92ce6e.js": "02abb94777b1128762ab2102d626a2e4f3a6b692",

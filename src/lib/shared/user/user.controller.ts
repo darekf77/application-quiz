@@ -99,7 +99,7 @@ export class UserController extends Firedev.Base.Controller<User> {
         }
       }
 
-      user = await this.repository.save(user);
+      await this.repository.update(user.id, user);
       return user;
     }
     //#endregion

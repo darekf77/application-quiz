@@ -38,7 +38,8 @@ export class Question extends Firedev.Base.Entity<any> implements RawQuestion {
   @Firedev.Orm.Column.Custom({
     type: 'varchar',
     length: 100,
-    default: defaultModelValues.description
+    default: defaultModelValues.title,
+    nullable: true,
   })
   //#endregion
   title: string;
@@ -83,7 +84,8 @@ export class Question extends Firedev.Base.Entity<any> implements RawQuestion {
   @Firedev.Orm.Column.Custom({
     type: 'varchar',
     length: 100,
-    default: defaultModelValues.description
+    default: defaultModelValues.description,
+    nullable: true,
   })
   //#endregion
   description?: string;

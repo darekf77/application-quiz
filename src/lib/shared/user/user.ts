@@ -44,6 +44,7 @@ export class User extends Firedev.Base.Entity<any> {
     type: 'varchar',
     length: '100',
     unique: true,
+    nullable: true,
   })
   //#endregion
   username: string;
@@ -58,7 +59,8 @@ export class User extends Firedev.Base.Entity<any> {
   @Firedev.Orm.Column.Custom({
     type: 'varchar',
     length: 100,
-    default: defaultModelValues.description
+    default: defaultModelValues.description,
+    nullable: true,
   })
   //#endregion
   description?: string;

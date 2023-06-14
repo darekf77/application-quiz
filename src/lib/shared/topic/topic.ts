@@ -35,7 +35,8 @@ export class Topic extends Firedev.Base.Entity<any> implements RawTopic {
   @Firedev.Orm.Column.Custom({
     type: 'varchar',
     length: 200,
-    default: defaultModelValues.title
+    default: defaultModelValues.title,
+    nullable: true,
   })
   //#endregion
   title: string;
@@ -44,7 +45,8 @@ export class Topic extends Firedev.Base.Entity<any> implements RawTopic {
   @Firedev.Orm.Column.Custom({
     type: 'varchar',
     length: 200,
-    default: defaultModelValues.topicTitleKebabCase
+    default: defaultModelValues.topicTitleKebabCase,
+    nullable: true,
   })
   //#endregion
   topicTitleKebabCase: string;
@@ -65,7 +67,8 @@ export class Topic extends Firedev.Base.Entity<any> implements RawTopic {
   @Firedev.Orm.Column.Custom({
     type: 'varchar',
     length: 100,
-    default: defaultModelValues.description
+    default: defaultModelValues.description,
+    nullable: true,
   })
   //#endregion
   description?: string;

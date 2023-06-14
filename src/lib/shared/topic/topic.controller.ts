@@ -84,9 +84,6 @@ export class TopicController extends Firedev.Base.Controller<any> {
 
         question = await repo.question.save(question);
 
-        if (index2 === 0) {
-          topic = await repo.topic.save(topic);
-        }
         topic.question[index2] = question;
         for (let index3 = 0; index3 < anwsers.length; index3++) {
           let answer = Answer.from(anwsers[index3]);
