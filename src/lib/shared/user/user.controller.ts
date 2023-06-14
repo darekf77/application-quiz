@@ -122,11 +122,7 @@ export class UserController extends Firedev.Base.Controller<User> {
 
 
   //#region @websql
-  async initExampleDbData() {
-    // const repo = this.connection.getRepository(User);
-    // await repo.save(new User())
-    // const all = await repo.find()
-  }
+  async initExampleDbData() { }
   //#endregion
 
 }

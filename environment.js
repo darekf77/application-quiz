@@ -5,15 +5,18 @@ var { config } = { config: {} };
 config = {
   loading: {
     preAngularBootstrap: {
-      loader: './logo.png',
-      background: '#ececec',
+      loader: {
+        name: 'lds-grid',
+        color: '#c85958'
+      },
+      background: '#c6c6c6',
     },
     afterAngularBootstrap: {
       loader: {
         name: 'lds-grid',
         color: '#c85958'
       },
-      background: '##c6c6c6',
+      background: '#c6c6c6',
     },
   },
   domain: 'application-quiz.example.domain.com',
