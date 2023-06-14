@@ -3,6 +3,11 @@ const path = require('path')
 var { config } = { config: {} };
 
 config = {
+  plugins: {
+    'ngx-progressbar': {
+      spinnerPosition: 'left'
+    }
+  },
   loading: {
     preAngularBootstrap: {
       loader: {

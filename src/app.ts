@@ -14,7 +14,7 @@ import { Input, NgModule, NgZone, ViewChild, ViewEncapsulation } from '@angular/
 import { Component, OnInit } from '@angular/core';
 import { PreloadAllModules, Router, RouterModule, Routes } from "@angular/router";
 import { MaterialCssVarsModule } from 'angular-material-css-vars';
-import { FiredevFullMaterialModule } from 'firedev-ui';
+import { FiredevFullMaterialModule, FiredevGithubForkMeCornerModule } from 'firedev-ui';
 import { Store, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { MatMenuTrigger } from '@angular/material/menu';
@@ -106,6 +106,7 @@ export class ApplicationQuizComponent implements OnInit {
       accent: '#fedfdd'
       // ...
     }),
+    FiredevGithubForkMeCornerModule,
   ],
   exports: [ApplicationQuizComponent],
   declarations: [ApplicationQuizComponent],
