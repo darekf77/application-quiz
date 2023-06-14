@@ -36,9 +36,12 @@ firedev start  # and go to http://localhost:4200
 <p style="text-align: center;"><img src="./__images/sqlite-server-start.png" ></p>
 
 # Bugs / Todo
-- exhaustMap rxjs for buttons
+- typos fixes
+- exhaustMap rxjs for buttons routing
+- fromEvent rxjs for buttons
 - remove firstValueFrom -> make it reactive
-- production bug (TypeORM is adding on production empty entities to db)
+- production bug (TypeORM is adding on production empty entities to db - better validation)
+- answers statistics algorithm needs logic fix
 - tests: unit (jest, cucumber component tests) + e2e (cucumber e2e)
 
 
