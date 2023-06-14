@@ -21,13 +21,13 @@ npm i -g firedev
 
 2. Start application with TypeORM/SQL.js db inside BROWSER - simplest way to develop.
 ```
-firedev start --websql    # and got to http://localhost:4201
+firedev start --websql    # and go to http://localhost:4201
 ```
 
 or start normal NodeJS server from vscode
 
 ```
-firedev start  # and got to http://localhost:4200 
+firedev start  # and go to http://localhost:4200 
 ```
       
 <p style="text-align: center;"><img src="./__images/sqlite-server-start.png" ></p>
