@@ -18,8 +18,11 @@
 npm i -g firedev
 ```
 
+2. Go do *firedev-quiz* folder.
 
-2. Start application with TypeORM/SQL.js db inside BROWSER - simplest way to develop.
+**There is no need for node_modules installation with firedev framework !!!** 
+
+3. Start application with TypeORM/SQL.js db inside BROWSER - simplest way to develop.
 ```
 firedev start --websql    # and go to http://localhost:4201
 ```
