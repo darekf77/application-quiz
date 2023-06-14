@@ -36,6 +36,7 @@ firedev start  # and go to http://localhost:4200
 - exhaustMap rxjs for buttons
 - remove firstValueFrom -> make it reactive
 - production bug (TypeORM is adding on production empty entities to db)
+- tests: unit (jest, cucumber component tests) + e2e (cucumber e2e)
 
 
 # DEMO SQL.JS DATABASE IN BROWSER
