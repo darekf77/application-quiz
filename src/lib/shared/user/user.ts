@@ -47,7 +47,7 @@ export class User extends Firedev.Base.Entity<any> {
     nullable: true,
   })
   //#endregion
-  username: string;
+  usernamemaster: string;
 
   //#region @websql
   @Firedev.Orm.Column.SimpleJson()
