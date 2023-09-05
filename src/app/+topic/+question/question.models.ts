@@ -1,4 +1,4 @@
-import { IAnswer, IQuestion } from "../../../lib";
+import { IAnswer, IQuestion } from "application-quiz";
 
 //#region @browser
 export const questionFeatureKey = 'questionsFeature';

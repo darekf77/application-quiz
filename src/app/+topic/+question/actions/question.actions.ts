@@ -1,6 +1,6 @@
 //#region @browser
 import { createAction, props } from "@ngrx/store";
-import { Answer, IAnswer, IQuestion } from "../../../../lib";
+import { Answer, IAnswer, IQuestion } from "application-quiz";
 
 export const INIT = createAction(
   '[question] INIT',

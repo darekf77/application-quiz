@@ -9,7 +9,7 @@ import { questionFeatureKey } from './question.models';
 import { questionReducer } from './reducers/question.reducers';
 import { QuestionService } from './services/question.service';
 import { RouterModule, Routes } from '@angular/router';
-import { AnswerModule, QuestionModule } from '../../../lib';
+import { AnswerModule, QuestionModule } from 'application-quiz';
 import { FiredevFullMaterialModule } from 'firedev-ui';
 import { StaticColumnsModule } from 'static-columns';
 

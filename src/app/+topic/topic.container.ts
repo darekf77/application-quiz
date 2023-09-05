@@ -11,7 +11,7 @@ import { AppService, appActions, appSelectors } from '../../app.store';
 import { TopicService } from './services/topic.service';
 import { ActivatedRoute } from '@angular/router';
 import { _ } from 'tnp-core';
-import { Question, Topic } from '../../lib';
+import { Question, Topic } from 'application-quiz';
 import { Actions, ofType } from '@ngrx/effects';
 import * as questionSelectors from './+question/selectors/question.selectors';
 

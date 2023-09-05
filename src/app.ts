@@ -7,9 +7,9 @@ const host = 'http://localhost:4199';
 import {
   Answer, AnswerController, Question, QuestionController,
   Topic, TopicController, User, UserController
-} from './lib';
+} from 'application-quiz';
 //#region @browser
-import { LayoutSimpleSmallAppModule } from './lib';
+import { LayoutSimpleSmallAppModule } from 'application-quiz';
 import { Input, NgModule, NgZone, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { PreloadAllModules, Router, RouterModule, Routes } from "@angular/router";

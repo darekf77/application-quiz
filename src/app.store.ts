@@ -32,7 +32,7 @@ import {
   select,
 } from '@ngrx/store';
 import { Models } from 'tnp-models';
-import { ITopic, Topic } from './lib';
+import { ITopic, Topic } from 'application-quiz';
 //#endregion
 
 //#region models

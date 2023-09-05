@@ -9,7 +9,7 @@ import { topicFeatureKey } from './topic.models';
 import { topicReducer } from './reducers/topic.reducers';
 import { TopicService } from './services/topic.service';
 import { RouterModule, Routes } from '@angular/router';
-import { TopicModule } from '../../lib';
+import { TopicModule } from 'application-quiz';
 import { FiredevFullMaterialModule } from 'firedev-ui';
 import { StaticColumnsModule } from 'static-columns';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';

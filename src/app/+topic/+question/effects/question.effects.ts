@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as questionActions from '../actions/question.actions'
 import { switchMap, map, of, catchError, withLatestFrom, throttleTime } from "rxjs";
 import { Store } from '@ngrx/store';
-import { Question, Topic } from '../../../../lib';
+import { Question, Topic } from 'application-quiz';
 import { AppState, appSelectors } from '../../../../app.store';
 
 @Injectable()

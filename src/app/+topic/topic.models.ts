@@ -1,4 +1,4 @@
-import { ITopic } from "../../lib";
+import { ITopic } from "application-quiz";
 
 //#region @browser
 export const topicFeatureKey = 'topicsFeature';

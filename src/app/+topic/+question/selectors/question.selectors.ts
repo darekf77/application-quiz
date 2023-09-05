@@ -2,7 +2,7 @@
 import { _ } from 'tnp-core';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { questionFeatureKey, QuestionInitialState } from '../question.models';
-import { IAnswer } from '../../../../lib';
+import { IAnswer } from 'application-quiz';
 
 const questionFeatureSelector = createFeatureSelector<QuestionInitialState>(questionFeatureKey);
 

@@ -6,7 +6,7 @@ import * as questionSelectors from './selectors/question.selectors';
 import * as questionAction from './actions/question.actions';
 import { Observable, firstValueFrom, map, of, share, tap } from 'rxjs';
 import { _ } from 'tnp-core';
-import { Answer, ITopic, Question } from '../../../lib';
+import { Answer, ITopic, Question } from 'application-quiz';
 import { AppService, appActions, appSelectors } from '../../../app.store';
 import { MatSelectionListChange } from '@angular/material/list';
 

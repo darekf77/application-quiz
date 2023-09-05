@@ -1,7 +1,7 @@
 //#region @browser
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable, Subscription, map, of } from 'rxjs';
-import { User } from '../../lib';
+import { User } from 'application-quiz';
 import { AppService } from '../../app.store';
 
 @Component({

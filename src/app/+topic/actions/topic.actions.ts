@@ -1,6 +1,6 @@
 //#region @browser
 import { createAction, props } from "@ngrx/store";
-import { ITopic, IUser, Topic } from "../../../lib";
+import { ITopic, IUser, Topic } from "application-quiz";
 
 export const FETCH_TOPIC = createAction(
   '[topic] FETCH_TOPIC'

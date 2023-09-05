@@ -8,7 +8,7 @@ import { switchMap, map, of, tap, catchError, debounce, throttleTime, exhaustMap
 import { TopicService } from '../services/topic.service';
 import { Store } from '@ngrx/store';
 import { TopicInitialState } from '../topic.models';
-import { Topic, User } from '../../../lib';
+import { Topic, User } from 'application-quiz';
 import { appSelectors } from '../../../app.store';
 
 @Injectable()

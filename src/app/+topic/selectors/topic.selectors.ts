@@ -1,7 +1,7 @@
 //#region @browser
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { topicFeatureKey, TopicInitialState } from '../topic.models';
-import { Topic } from '../../../lib';
+
 import { appSelectors } from '../../../app.store';
 
 const topicFeatureSelector = createFeatureSelector<TopicInitialState>(topicFeatureKey);
