@@ -66,7 +66,7 @@ export class UserComponent implements OnInit {
           tooltip: 'Go To Score Page',
           disabled: false,
           click: (user: User) => {
-            this.userGoTo.next(user.usernamemaster);
+            this.userGoTo.next(user.username);
           },
         }
       ],

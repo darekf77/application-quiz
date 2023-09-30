@@ -68,7 +68,7 @@ export class TopicEffects {
   navigateToUserStats = createEffect(() => this.actions$.pipe(
     ofType(topicActions.SUBMIT_SCORE_SUCCESS),
     tap(({ user }) => {
-      this.service.appService.goToStats(user.usernamemaster);
+      this.service.appService.goToStats(user.username);
     })
   ), { dispatch: false });
 

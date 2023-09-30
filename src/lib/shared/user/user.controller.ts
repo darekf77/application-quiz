@@ -30,7 +30,7 @@ export class UserController extends Firedev.Base.Controller<User> {
 
       const userExists = (await this.repository.count({
         where: {
-          usernamemaster: username,
+          username,
         }
       })) > 0;
 
@@ -39,7 +39,7 @@ export class UserController extends Firedev.Base.Controller<User> {
       }
 
       let user = await this.repository.save(User.from({
-        usernamemaster: username,
+        username,
       }));
 
       const repo = {
@@ -111,7 +111,7 @@ export class UserController extends Firedev.Base.Controller<User> {
     return async (req, res) => { // @ts-ignore
       const user = await this.repository.findOne({
         where: {
-          usernamemaster: decodeURIComponent(username)
+          username: decodeURIComponent(username)
         }
       });
 

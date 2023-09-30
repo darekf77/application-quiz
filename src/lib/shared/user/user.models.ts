@@ -19,7 +19,7 @@ export type IUSER = { [prop in keyof Required<typeof defaultModelValuesUser>]: T
 
 export class USER implements IUSER {
   id: TransformField;
-  usernamemaster: TransformField;
+  username: TransformField;
   statistics: TransformField;
   description: TransformField;
 
