@@ -41,23 +41,23 @@ header {
   overflow-x: hidden;
   overflow-y: auto;
 
-  >ng-scrollbar {
-    background: transparent;
+  // >ng-scrollbar {
+  //   background: transparent;
 
-    >div {
-      >div {
-        >div {
-          >div {
-            >mat-card {
-              margin          : 10px;
-              background: whitesmoke;
-            }
-          }
-        }
-      }
-    }
+  //   >div {
+  //     >div {
+  //       >div {
+  //         >div {
+  //           >mat-card {
+  //             margin          : 10px;
+  //             background: whitesmoke;
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
 
-  }
+  // }
 
 }
 

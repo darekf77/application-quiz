@@ -1,5 +1,6 @@
 <ng-template #header>
-  <h1 shrinkOnMobile shrinkOnTablet >
+  <h1 shrinkOnMobile
+      shrinkOnTablet>
     <mat-icon>psychology_alt</mat-icon>
     Application Quiz
   </h1>
@@ -23,11 +24,10 @@
 </header>
 
 <div class="bg-text-open">
-  <ng-scrollbar>
-    <mat-card class="wrapper">
-      <ng-content></ng-content>
-    </mat-card>
-  </ng-scrollbar>
+
+  <mat-card class="wrapper">
+    <ng-content></ng-content>
+  </mat-card>
 </div>
 
-<footer>Copyright 2023 Dariusz Filipiak, <a href="https://firedev.io" >FIREDEV.IO</a> </footer>
+<footer>Copyright 2023 Dariusz Filipiak, <a href="https://firedev.io">FIREDEV.IO</a> </footer>

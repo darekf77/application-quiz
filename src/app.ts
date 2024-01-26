@@ -1,9 +1,9 @@
 //#region @notForNpm
-
+import { HOST_BACKEND_PORT } from './app.hosts';
 //#region imports
 import { Firedev } from 'firedev';
 import { _ } from 'tnp-core';
-const host = 'http://localhost:4199';
+const host = 'http://localhost:' + HOST_BACKEND_PORT;
 import {
   Answer, AnswerController, Question, QuestionController,
   Topic, TopicController, User, UserController
@@ -22,6 +22,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { AppEffects, AppState, RouterSerializer, appActions, appSelectors, metaReducers, reducers, AppService } from './app.store';
 import { CommonModule } from '@angular/common';
+
 //#endregion
 //#endregion
 
