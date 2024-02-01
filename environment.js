@@ -25,6 +25,7 @@ config = {
     },
   },
   domain: 'application-quiz.example.domain.com',
+  useGlobalNgxScrollbar: true,
   useDomain: false,
   title: 'Application Quiz',
   pwa: {
