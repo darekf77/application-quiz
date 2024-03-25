@@ -31,7 +31,7 @@ import {
   props,
   select,
 } from '@ngrx/store';
-import { Models } from 'tnp-models';
+
 import { ITopic, Topic } from 'application-quiz';
 //#endregion
 
@@ -247,7 +247,7 @@ const logoutMeta = (reducer: ActionReducer<any>): ActionReducer<any> => {
   };
 };
 
-export const metaReducers: MetaReducer<AppState>[] = (window['ENV'] as Models.env.EnvConfig).angularProd
+export const metaReducers: MetaReducer<AppState>[] = (window['ENV'] as any).angularProd
   ? [logoutMeta]
   : [debugMeta, logoutMeta];
 //#endregion
