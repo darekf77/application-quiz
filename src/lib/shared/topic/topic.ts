@@ -1,5 +1,5 @@
-import { Firedev } from 'firedev';
-import { _ } from 'tnp-core';
+import { Firedev } from 'firedev/src';
+import { _ } from 'tnp-core/src';
 import type { TopicController } from './topic.controller';
 import { defaultModelValuesTopic as defaultModelValues } from './topic.models';
 import { RawQuestion, RawTopic } from '../../models';
@@ -8,7 +8,6 @@ import { RawQuestion, RawTopic } from '../../models';
   defaultModelValues,
 })
 export class Topic extends Firedev.Base.Entity<any> implements RawTopic {
-
   //#region static
   static ctrl: TopicController;
   static from(obj: Omit<Partial<Topic>, 'ctrl'>) {
@@ -23,7 +22,8 @@ export class Topic extends Firedev.Base.Entity<any> implements RawTopic {
   //#endregion
 
   //#region constructor
-  private constructor(...args) { // @ts-ignore
+  private constructor(...args) {
+    // @ts-ignore
     super(...args);
   }
   //#endregion
@@ -61,7 +61,7 @@ export class Topic extends Firedev.Base.Entity<any> implements RawTopic {
   //#region @websql
   @Firedev.Orm.Column.SimpleJson()
   //#endregion
-  questionsOids: number[]
+  questionsOids: number[];
 
   //#region @websql
   @Firedev.Orm.Column.Custom({
@@ -75,10 +75,9 @@ export class Topic extends Firedev.Base.Entity<any> implements RawTopic {
   //#endregion
 
   //#region methods
-  clone(options?: { propsToOmit: keyof Topic[]; }): Topic {
+  clone(options?: { propsToOmit: keyof Topic[] }): Topic {
     const { propsToOmit } = options || { propsToOmit: ['id', 'ctrl'] };
     return _.merge(new Topic(), _.omit(this, propsToOmit));
   }
   //#endregion
-
 }

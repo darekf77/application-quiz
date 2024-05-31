@@ -1,16 +1,18 @@
-import { Firedev } from 'firedev';
-import { _ } from 'tnp-core';
+import { Firedev } from 'firedev/src';
+import { _ } from 'tnp-core/src';
 import type { UserController } from './user.controller';
-import { Stats, defaultModelValuesUser as defaultModelValues } from './user.models';
+import {
+  Stats,
+  defaultModelValuesUser as defaultModelValues,
+} from './user.models';
 @Firedev.Entity({
   className: 'User',
   defaultModelValues,
   defaultModelMapping: {
-    statistics: 'Stats'
-  }
+    statistics: 'Stats',
+  },
 })
-export class User extends Firedev.Base.Entity<any> {
-
+export class User extends Firedev.Base.Entity {
   //#region static
   static ctrl: UserController;
   static from(obj: Omit<Partial<User>, 'ctrl'>) {
@@ -25,7 +27,8 @@ export class User extends Firedev.Base.Entity<any> {
   //#endregion
 
   //#region constructor
-  private constructor(...args) { // @ts-ignore
+  private constructor(...args) {
+    // @ts-ignore
     super(...args);
   }
   //#endregion
@@ -37,7 +40,6 @@ export class User extends Firedev.Base.Entity<any> {
   @Firedev.Orm.Column.Generated()
   //#endregion
   id: string;
-
 
   //#region @websql
   @Firedev.Orm.Column.Custom({
@@ -67,7 +69,7 @@ export class User extends Firedev.Base.Entity<any> {
   //#endregion
 
   //#region methods
-  clone(options?: { propsToOmit: keyof User[]; }): User {
+  clone(options?: { propsToOmit: keyof User[] }): User {
     const { propsToOmit } = options || { propsToOmit: ['id', 'ctrl'] };
     return _.merge(new User(), _.omit(this, propsToOmit));
   }
@@ -75,15 +77,14 @@ export class User extends Firedev.Base.Entity<any> {
   getScored() {
     return (this.statistics || []).reduce((a, b) => {
       return a + b.scored;
-    }, 0)
+    }, 0);
   }
 
   getTotal() {
     return (this.statistics || []).reduce((a, b) => {
       return a + b.total;
-    }, 0)
+    }, 0);
   }
 
   //#endregion
-
 }

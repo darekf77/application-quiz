@@ -9,11 +9,11 @@ import { topicFeatureKey } from './topic.models';
 import { topicReducer } from './reducers/topic.reducers';
 import { TopicService } from './services/topic.service';
 import { RouterModule, Routes } from '@angular/router';
-import { TopicModule } from 'application-quiz';
-import { FiredevFullMaterialModule } from 'firedev-ui';
-import { StaticColumnsModule } from 'static-columns';
+import { TopicModule } from 'application-quiz/src';
+import { FiredevFullMaterialModule } from 'firedev-ui/src';
+import { StaticColumnsModule } from 'static-columns/src';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { MtxAlertModule } from '@ng-matero/extensions/alert'
+import { MtxAlertModule } from '@ng-matero/extensions/alert';
 
 const routes: Routes = [
   {
@@ -27,14 +27,14 @@ const routes: Routes = [
     children: [
       {
         path: 'question',
-        loadChildren: () => import('./+question/question.module')
-          .then(m => m.QuestionContainerModule),
+        loadChildren: () =>
+          import('./+question/question.module').then(
+            m => m.QuestionContainerModule,
+          ),
       },
-    ]
+    ],
   },
-
 ];
-
 
 @NgModule({
   imports: [
@@ -46,12 +46,10 @@ const routes: Routes = [
     StaticColumnsModule,
     TopicModule,
     MtxAlertModule,
-    SweetAlert2Module.forRoot({
-
-    })
+    SweetAlert2Module.forRoot({}),
   ],
   declarations: [TopicContainer],
   providers: [TopicService],
 })
-export class TopicContainerModule { }
+export class TopicContainerModule {}
 //#endregion

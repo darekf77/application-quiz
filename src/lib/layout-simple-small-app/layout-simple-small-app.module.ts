@@ -2,9 +2,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutSimpleSmallAppComponent } from './layout-simple-small-app.component';
-import { FiredevFullMaterialModule } from 'firedev-ui';
+import { FiredevFullMaterialModule } from 'firedev-ui/src';
 import { NgScrollbarModule } from 'ngx-scrollbar';
-import { StaticColumnsModule } from "static-columns";
+import { StaticColumnsModule } from 'static-columns/src';
 
 @NgModule({
   imports: [
@@ -16,5 +16,5 @@ import { StaticColumnsModule } from "static-columns";
   declarations: [LayoutSimpleSmallAppComponent],
   exports: [LayoutSimpleSmallAppComponent],
 })
-export class LayoutSimpleSmallAppModule { }
+export class LayoutSimpleSmallAppModule {}
 //#endregion

@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { StatsContainer } from './stats.container';
-import { UserComponent } from 'application-quiz';
-import { FiredevFullMaterialModule } from 'firedev-ui';
-import { StaticColumnsModule } from 'static-columns';
+import { UserComponent } from 'application-quiz/src';
+import { FiredevFullMaterialModule } from 'firedev-ui/src';
+import { StaticColumnsModule } from 'static-columns/src';
 
 const routes: Routes = [
   {
@@ -29,5 +29,5 @@ const routes: Routes = [
   ],
   declarations: [StatsContainer],
 })
-export class StatsModule { }
+export class StatsModule {}
 //#endregion

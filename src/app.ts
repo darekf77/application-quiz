@@ -1,26 +1,55 @@
 //#region @notForNpm
 import { HOST_BACKEND_PORT } from './app.hosts';
 //#region imports
-import { Firedev } from 'firedev';
-import { _ } from 'tnp-core';
+import { Firedev } from 'firedev/src';
+import { _ } from 'tnp-core/src';
 const host = 'http://localhost:' + HOST_BACKEND_PORT;
 import {
-  Answer, AnswerController, Question, QuestionController,
-  Topic, TopicController, User, UserController
-} from 'application-quiz';
+  Answer,
+  AnswerController,
+  Question,
+  QuestionController,
+  Topic,
+  TopicController,
+  User,
+  UserController,
+} from 'application-quiz/src';
 //#region @browser
-import { LayoutSimpleSmallAppModule } from 'application-quiz';
-import { Input, NgModule, NgZone, ViewChild, ViewEncapsulation } from '@angular/core';
+import { LayoutSimpleSmallAppModule } from 'application-quiz/src';
+import {
+  Input,
+  NgModule,
+  NgZone,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { PreloadAllModules, Router, RouterModule, Routes } from "@angular/router";
+import {
+  PreloadAllModules,
+  Router,
+  RouterModule,
+  Routes,
+} from '@angular/router';
 import { MaterialCssVarsModule } from 'angular-material-css-vars';
-import { FiredevFullMaterialModule, FiredevGithubForkMeCornerModule } from 'firedev-ui';
+import {
+  FiredevFullMaterialModule,
+  FiredevGithubForkMeCornerModule,
+} from 'firedev-ui/src';
 import { Store, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { AppEffects, AppState, RouterSerializer, appActions, appSelectors, metaReducers, reducers, AppService } from './app.store';
+import {
+  AppEffects,
+  AppState,
+  RouterSerializer,
+  appActions,
+  appSelectors,
+  metaReducers,
+  reducers,
+  AppService,
+} from './app.store';
 import { CommonModule } from '@angular/common';
 
 //#endregion
@@ -37,13 +66,13 @@ const routes: Routes = [
   },
   {
     path: 'quiz',
-    loadChildren: () => import('./app/+topic/topic.module')
-      .then(m => m.TopicContainerModule),
+    loadChildren: () =>
+      import('./app/+topic/topic.module').then(m => m.TopicContainerModule),
   },
   {
     path: 'stats',
-    loadChildren: () => import('./app/+stats/stats.module')
-      .then(m => m.StatsModule),
+    loadChildren: () =>
+      import('./app/+stats/stats.module').then(m => m.StatsModule),
   },
 ];
 //#endregion
@@ -56,11 +85,10 @@ const routes: Routes = [
   templateUrl: './app.html',
 })
 export class ApplicationQuizComponent implements OnInit {
-
   constructor(
     private store: Store<AppState>,
     private router: Router,
-  ) { }
+  ) {}
 
   topics$ = this.store.select(appSelectors.allTopics);
   selected$ = this.store.select(appSelectors.selectedTopic);
@@ -87,7 +115,7 @@ export class ApplicationQuizComponent implements OnInit {
       useHash: true,
       preloadingStrategy: PreloadAllModules,
       enableTracing: false,
-      bindToComponentInputs: true
+      bindToComponentInputs: true,
     }),
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([AppEffects]),
@@ -104,7 +132,7 @@ export class ApplicationQuizComponent implements OnInit {
       // all optional
       isAutoContrast: true,
       primary: '#4758b8',
-      accent: '#fedfdd'
+      accent: '#fedfdd',
       // ...
     }),
     FiredevGithubForkMeCornerModule,
@@ -113,7 +141,7 @@ export class ApplicationQuizComponent implements OnInit {
   declarations: [ApplicationQuizComponent],
   providers: [AppService],
 })
-export class ApplicationQuizModule { }
+export class ApplicationQuizModule {}
 //#endregion
 
 //#endregion
@@ -140,20 +168,20 @@ async function start() {
       // PUT FIREDEV ENTITIES HERE
     ],
     //#region @websql
-    config: {
-      type: 'better-sqlite3',
-      database: 'tmp-db.sqlite',
-      logging: false,
-    }
+    // config: {
+    //   type: 'better-sqlite3',
+    //   database: 'tmp-db.sqlite',
+    //   logging: false,
+    // },
     //#endregion
   });
   //#endregion
 
   //#region @backend
   if (Firedev.isNode) {
-    context.node.app.get('/hello', (req, res) => {
-      res.send('Hello application-quiz')
-    })
+    // context.node.app.get('/hello', (req, res) => {
+    //   res.send('Hello application-quiz');
+    // });
   }
   //#endregion
 }

@@ -1,5 +1,5 @@
-import { Firedev } from 'firedev';
-import { _ } from 'tnp-core';
+import { Firedev } from 'firedev/src';
+import { _ } from 'tnp-core/src';
 import type { AnswerController } from './answer.controller';
 import { defaultModelValuesAnswer as defaultModelValues } from './answer.models';
 import { RawAnswer } from '../../models';
@@ -10,7 +10,6 @@ import type { Topic } from '../topic';
   defaultModelValues,
 })
 export class Answer extends Firedev.Base.Entity<any> implements RawAnswer {
-
   //#region static
   static ctrl: AnswerController;
   static from(obj: Omit<Partial<Answer>, 'ctrl'>) {
@@ -25,7 +24,8 @@ export class Answer extends Firedev.Base.Entity<any> implements RawAnswer {
   //#endregion
 
   //#region constructor
-  private constructor(...args) { // @ts-ignore
+  private constructor(...args) {
+    // @ts-ignore
     super(...args);
   }
   //#endregion
@@ -86,10 +86,9 @@ export class Answer extends Firedev.Base.Entity<any> implements RawAnswer {
   //#endregion
 
   //#region methods
-  clone(options?: { propsToOmit: (keyof Answer)[]; }): Answer {
+  clone(options?: { propsToOmit: (keyof Answer)[] }): Answer {
     const { propsToOmit } = options || { propsToOmit: ['id', 'ctrl'] };
     return _.merge(new Answer(), _.omit(this, propsToOmit));
   }
   //#endregion
-
 }

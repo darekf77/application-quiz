@@ -1,5 +1,13 @@
 //#region @browser
-import { Component, EventEmitter, HostBinding, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnInit,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,14 +22,12 @@ export class LayoutSimpleSmallAppComponent implements OnInit {
   @Output() layoutSimpleSmallAppDataChanged = new EventEmitter();
   @Input() layoutSimpleSmallAppData: any = {};
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnDestroy(): void {
     this.handlers.forEach(h => h.unsubscribe());
   }
-
 }
 //#endregion

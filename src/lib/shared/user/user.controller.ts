@@ -1,17 +1,18 @@
-import { Firedev } from 'firedev';
+import { Firedev } from 'firedev/src';
 import { User } from './user';
 import { Answer } from '../answer/answer';
 import { Stats } from './user.models';
 import { Topic } from '../topic';
 import { Question } from '../question';
-import { _ } from 'tnp-core';
+import { _ } from 'tnp-core/src';
 
 @Firedev.Controller({
   className: 'UserController',
-  entity: User
 })
-export class UserController extends Firedev.Base.Controller<User> {
-
+export class UserController extends Firedev.Base.CrudController<User> {
+  entity() {
+    return User;
+  }
   /**
    *
    * @param corectAnswersIds
@@ -25,22 +26,26 @@ export class UserController extends Firedev.Base.Controller<User> {
     @Firedev.Http.Param.Query('onlyTopicId') onlyTopicId: Number,
   ): Firedev.Response<User> {
     //#region @websqlFunc
-    return async (req, res) => { // @ts-ignore
-      username = decodeURIComponent(username)
+    return async (req, res) => {
+      // @ts-ignore
+      username = decodeURIComponent(username);
 
-      const userExists = (await this.repository.count({
-        where: {
-          username,
-        }
-      })) > 0;
+      const userExists =
+        (await this.repository.count({
+          where: {
+            username,
+          },
+        })) > 0;
 
       if (userExists) {
         throw new Error(`Username exists or not correct`);
       }
 
-      let user = await this.repository.save(User.from({
-        username,
-      }));
+      let user = await this.repository.save(
+        User.from({
+          username,
+        }),
+      );
 
       const repo = {
         answer: this.connection.getRepository(Answer),
@@ -67,7 +72,8 @@ export class UserController extends Firedev.Base.Controller<User> {
         return answer;
       });
 
-      const updateOnlyForTopicId = _.isNumber(onlyTopicId) && !_.isNaN(onlyTopicId);
+      const updateOnlyForTopicId =
+        _.isNumber(onlyTopicId) && !_.isNaN(onlyTopicId);
 
       if (updateOnlyForTopicId) {
         userAnswers = userAnswers.filter(f => onlyTopicId === f.topic.id);
@@ -75,9 +81,9 @@ export class UserController extends Firedev.Base.Controller<User> {
 
       for (let index = 0; index < userAnswers.length; index++) {
         const userAnswer = userAnswers[index];
-        userAnswer.answeredCorrectly = (
-          userAnswer.userAnswer === allAnswers.find(a => a.id == userAnswer.id).isCorrect
-        );
+        userAnswer.answeredCorrectly =
+          userAnswer.userAnswer ===
+          allAnswers.find(a => a.id == userAnswer.id).isCorrect;
       }
 
       if (!Array.isArray(user.statistics)) {
@@ -86,11 +92,16 @@ export class UserController extends Firedev.Base.Controller<User> {
 
       for (let index = 0; index < allTopics.length; index++) {
         const topic = allTopics[index];
-        const existedTopicIndex = (user.statistics || []).findIndex(f => f.topicName === topic.title);
+        const existedTopicIndex = (user.statistics || []).findIndex(
+          f => f.topicName === topic.title,
+        );
         const data = {
           topicName: topic.title,
-          scored: userAnswers.filter(a => (a.topic.id === topic.id) && a.answeredCorrectly).length,
-          total: allAnswers.filter(a => (a.topic.id === topic.id) && a.isCorrect).length,
+          scored: userAnswers.filter(
+            a => a.topic.id === topic.id && a.answeredCorrectly,
+          ).length,
+          total: allAnswers.filter(a => a.topic.id === topic.id && a.isCorrect)
+            .length,
         };
         if (existedTopicIndex !== -1) {
           user.statistics[existedTopicIndex] = data;
@@ -101,28 +112,29 @@ export class UserController extends Firedev.Base.Controller<User> {
 
       await this.repository.update(user.id, user);
       return user;
-    }
+    };
     //#endregion
   }
 
   @Firedev.Http.POST('/stats/for/user/:username') // @ts-ignore
-  getByUsername(@Firedev.Http.Param.Path('username') username: string,): Firedev.Response<User> {
+  getByUsername(
+    @Firedev.Http.Param.Path('username') username: string,
+  ): Firedev.Response<User> {
     //#region @websqlFunc
-    return async (req, res) => { // @ts-ignore
+    return async (req, res) => {
+      // @ts-ignore
       const user = await this.repository.findOne({
         where: {
-          username: decodeURIComponent(username)
-        }
+          username: decodeURIComponent(username),
+        },
       });
 
       return user;
-    }
+    };
     //#endregion
   }
 
-
   //#region @websql
-  async initExampleDbData() { }
+  async initExampleDbData() {}
   //#endregion
-
 }

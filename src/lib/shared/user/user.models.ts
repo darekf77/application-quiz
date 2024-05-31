@@ -1,10 +1,14 @@
-import type { User } from "./user";
+import type { User } from './user';
+import { FiredevEntityKeysToOmit } from 'firedev/src';
 
 export type IUser = Partial<User>;
 
-export const defaultModelValuesUser: Omit<IUser, 'ctrl' | 'clone' | 'clone' | 'getScored' | 'getTotal'> = {
+export const defaultModelValuesUser: Omit<
+  IUser,
+  FiredevEntityKeysToOmit | 'getScored' | 'getTotal' | ''
+> = {
   description: '',
-}
+};
 
 export interface Stats {
   topicName: string;
@@ -12,15 +16,17 @@ export interface Stats {
   total: number;
 }
 
-export class TransformField { id: string; }
+export class TransformField {
+  id: string;
+}
 
-export type IUSER = { [prop in keyof Required<typeof defaultModelValuesUser>]: TransformField; }
-
+export type IUSER = {
+  [prop in keyof Required<typeof defaultModelValuesUser>]: TransformField;
+};
 
 export class USER implements IUSER {
   id: TransformField;
   username: TransformField;
   statistics: TransformField;
   description: TransformField;
-
 }

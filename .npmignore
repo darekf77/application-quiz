@@ -1,11 +1,8 @@
 .vscode
-dist/
-src/
+/dist
+/src
 /docs
 /preview
 /tests
 tsconfig.json
 npm-debug.log*
-.npmrc
-tslint.json
-.editorconfig

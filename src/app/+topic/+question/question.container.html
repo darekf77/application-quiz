@@ -2,24 +2,30 @@
 
 <ng-container *ngIf="question$ | async; let question;">
   <question [question]="question">
-    <mat-selection-list (selectionChange)="onSelectionChange($event)"
-                        #shoes>
-      <mat-list-option *ngFor="let answer of question?.answers"
-                       [selected]="(selectedAnswersForQuestion$ | async).includes(answer.id)"
-                       [value]="answer.id">
+    <mat-selection-list
+      (selectionChange)="onSelectionChange($event)"
+      #shoes>
+      <mat-list-option
+        *ngFor="let answer of question?.answers"
+        [selected]="(selectedAnswersForQuestion$ | async).includes(answer.id)"
+        [value]="answer.id">
         <answer [answer]="answer"></answer>
       </mat-list-option>
     </mat-selection-list>
-
   </question>
 
-  <br>
-  <button mat-raised-button
-          [disabled]="!question.prevOid"
-          (click)="goPrev(question)">Prev</button>
+  <br />
+  <button
+    mat-raised-button
+    [disabled]="!question.prevOid"
+    (click)="goPrev(question)">
+    Prev
+  </button>
   &nbsp;&nbsp;
-  <button mat-raised-button
-          [disabled]="!question.nextOid"
-          (click)="goNext(question)">Next</button>
-
+  <button
+    mat-raised-button
+    [disabled]="!question.nextOid"
+    (click)="goNext(question)">
+    Next
+  </button>
 </ng-container>

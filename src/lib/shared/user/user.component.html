@@ -1,19 +1,22 @@
 <div *ngIf="!user">
-  <firedev-table [columns]="usersColumns"
-                 [entity]="entity"
-                 [allowedColumns]="['id','username']">
+  <firedev-table
+    [columns]="usersColumns"
+    [entity]="entity"
+    [allowedColumns]="['id', 'username']">
   </firedev-table>
 </div>
-<br>
+<br />
 <div *ngIf="user">
-  Category score for user: <strong>{{user.username}}</strong>
+  Category score for user: <strong>{{ user.username }}</strong>
 </div>
 <h3 *ngIf="user">
-  Results: {{user.getScored()}} / {{user.getTotal()}} questions answered correctly
+  Results: {{ user.getScored() }} / {{ user.getTotal() }} questions answered
+  correctly
 </h3>
 
-<firedev-table *ngIf="user"
-               [columns]="statsColumns"
-               [rows]="user.statistics"
-               [allowedColumns]="['topicName','scored','total']">
+<firedev-table
+  *ngIf="user"
+  [columns]="statsColumns"
+  [rows]="user.statistics"
+  [allowedColumns]="['topicName', 'scored', 'total']">
 </firedev-table>

@@ -11,12 +11,25 @@ const initialState: InitialAppState = {
 
 //#region imports
 import { Params, Router, RouterStateSnapshot } from '@angular/router';
-import { RouterReducerState, RouterStateSerializer, getRouterSelectors } from '@ngrx/router-store';
+import {
+  RouterReducerState,
+  RouterStateSerializer,
+  getRouterSelectors,
+} from '@ngrx/router-store';
 import { routerReducer } from '@ngrx/router-store';
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { switchMap, map, of, exhaustMap, catchError, retry, tap, withLatestFrom } from "rxjs";
-import { _ } from 'tnp-core';
+import {
+  switchMap,
+  map,
+  of,
+  exhaustMap,
+  catchError,
+  retry,
+  tap,
+  withLatestFrom,
+} from 'rxjs';
+import { _ } from 'tnp-core/src';
 import {
   ActionReducer,
   ActionReducerMap,
@@ -31,8 +44,8 @@ import {
   props,
   select,
 } from '@ngrx/store';
-import { Models } from 'tnp-models';
-import { ITopic, Topic } from 'application-quiz';
+
+import { ITopic, Topic } from 'application-quiz/src';
 //#endregion
 
 //#region models
@@ -56,7 +69,7 @@ export interface AppState {
 export class RouterSerializer implements RouterStateSerializer<RouterState> {
   serialize(routerState: RouterStateSnapshot): RouterState {
     let route = routerState.root;
-    let params = {}
+    let params = {};
 
     while (true) {
       params = {
@@ -72,7 +85,7 @@ export class RouterSerializer implements RouterStateSerializer<RouterState> {
 
     const {
       url,
-      root: { queryParams }
+      root: { queryParams },
     } = routerState;
 
     const routerData = { url, params, queryParams };
@@ -80,7 +93,6 @@ export class RouterSerializer implements RouterStateSerializer<RouterState> {
     return routerData;
   }
 }
-
 
 //#endregion
 
@@ -91,53 +103,45 @@ export namespace appActions {
 
   export const CHANGE_TOPIC = createAction(
     '[app] CHANGE_TOPIC',
-    props<{ topicTitleKebabCase: string }>()
+    props<{ topicTitleKebabCase: string }>(),
   );
-
 
   //#region app actions / FETCH_TOPICS
-  export const FETCH_TOPICS = createAction(
-    '[app] FETCH_TOPICS',
-  );
+  export const FETCH_TOPICS = createAction('[app] FETCH_TOPICS');
 
   export const FETCH_TOPICS_SUCCESS = createAction(
     '[app] FETCH_TOPICS_SUCCESS',
-    props<{ topics: ITopic[] }>()
+    props<{ topics: ITopic[] }>(),
   );
   export const FETCH_TOPICS_ERROR = createAction(
     '[app] FETCH_TOPICS_ERROR',
-    props<{ error: any; }>()
+    props<{ error: any }>(),
   );
   //#endregion
-
 }
 //#endregion
 
 //#region app service
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AppService {
-  constructor(
-    private router: Router
-  ) {
-
-  }
+  constructor(private router: Router) {}
 
   go(topicTitleKebabCase: string, questionOid?: number) {
-    const urlToNavigate = `/quiz/topic/${topicTitleKebabCase}${questionOid ? `/question/num/${questionOid}` : ''}`
+    const urlToNavigate = `/quiz/topic/${topicTitleKebabCase}${questionOid ? `/question/num/${questionOid}` : ''}`;
     this.router.navigateByUrl(urlToNavigate);
   }
 
   goToStats(username: string) {
-    const urlToNavigate = `/stats/${encodeURIComponent(username)}`
+    const urlToNavigate = `/stats/${encodeURIComponent(username)}`;
     this.router.navigateByUrl(urlToNavigate);
   }
 
   navigateToFirstQuestion(topic: Topic) {
     setTimeout(() => {
       this.go(topic.topicTitleKebabCase, 1);
-    })
+    });
   }
 
   goTo(topicTitleKebabCase: string) {
@@ -149,10 +153,9 @@ export class AppService {
 //#region app reducers
 export const appReducer = createReducer(
   initialState,
-  on(appActions.FETCH_TOPICS_SUCCESS,
-    (state, { topics }) => {
-      return { ...state, topics: _.cloneDeep(topics) };
-    })
+  on(appActions.FETCH_TOPICS_SUCCESS, (state, { topics }) => {
+    return { ...state, topics: _.cloneDeep(topics) };
+  }),
 );
 //#endregion
 
@@ -163,43 +166,52 @@ export class AppEffects {
     private actions$: Actions,
     private store: Store<any>,
     private service: AppService,
-  ) { }
+  ) {}
 
-  init = createEffect(() => this.actions$.pipe(
-    ofType(appActions.INIT),
-    switchMap(() => of(appActions.FETCH_TOPICS()))
-  ));
+  init = createEffect(() =>
+    this.actions$.pipe(
+      ofType(appActions.INIT),
+      switchMap(() => of(appActions.FETCH_TOPICS())),
+    ),
+  );
 
-  fetchTasks = createEffect(() => this.actions$.pipe(
-    ofType(appActions.FETCH_TOPICS),
-    switchMap(() =>
-      Topic.ctrl.getAll().received.observable.pipe(
-        map(data => {
-          return appActions.FETCH_TOPICS_SUCCESS({ topics: data.body.rawJson })
+  fetchTasks = createEffect(() =>
+    this.actions$.pipe(
+      ofType(appActions.FETCH_TOPICS),
+      switchMap(() =>
+        Topic.ctrl.getAll().received.observable.pipe(
+          map(data => {
+            return appActions.FETCH_TOPICS_SUCCESS({
+              topics: data.body.rawJson,
+            });
+          }),
+          catchError(error => {
+            return of(appActions.FETCH_TOPICS_ERROR({ error }));
+          }),
+        ),
+      ),
+    ),
+  );
+
+  naivigateToTopic = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(appActions.CHANGE_TOPIC),
+        tap(({ topicTitleKebabCase }) => {
+          this.service.goTo(topicTitleKebabCase);
         }),
-        catchError((error) => {
-          return of(appActions.FETCH_TOPICS_ERROR({ error }));
-        }),
-      ))
-  ));
-
-
-  naivigateToTopic = createEffect(() => this.actions$.pipe(
-    ofType(appActions.CHANGE_TOPIC),
-    tap(({ topicTitleKebabCase }) => {
-      this.service.goTo(topicTitleKebabCase);
-    })
-  ), { dispatch: false });
-
+      ),
+    { dispatch: false },
+  );
 }
 //#endregion
 
 //#region app selectors
 export namespace appSelectors {
-
-  export const appSelector = createFeatureSelector<InitialAppState>(appStateKey);
-  export const appRouterSelector = createFeatureSelector<RouterReducerState<RouterState>>(appRouterStateKey);
-
+  export const appSelector =
+    createFeatureSelector<InitialAppState>(appStateKey);
+  export const appRouterSelector =
+    createFeatureSelector<RouterReducerState<RouterState>>(appRouterStateKey);
 
   export const selectedTopic = createSelector(
     appSelector,
@@ -207,16 +219,18 @@ export namespace appSelectors {
     (state, route) => {
       const topicTitleFromParam = route?.state?.params['topicTitleKebabCase'];
       if (topicTitleFromParam) {
-        const selectedTopic = (state.topics || [])
-          .find(({ topicTitleKebabCase }) => topicTitleKebabCase === topicTitleFromParam) as ITopic;
+        const selectedTopic = (state.topics || []).find(
+          ({ topicTitleKebabCase }) =>
+            topicTitleKebabCase === topicTitleFromParam,
+        ) as ITopic;
         return selectedTopic;
       }
       return void 0;
-    }
+    },
   );
 
   export const allTopics = createSelector(appSelector, state => {
-    return (state.topics || []);
+    return state.topics || [];
   });
 
   export const showQuizSelect = createSelector(appRouterSelector, state => {
@@ -228,7 +242,7 @@ export namespace appSelectors {
 //#region meta reducers
 export const reducers: ActionReducerMap<AppState> = {
   [appStateKey]: appReducer,
-  [appRouterStateKey]: routerReducer
+  [appRouterStateKey]: routerReducer,
 };
 
 const debugMeta = (reducer: ActionReducer<any>): ActionReducer<any> => {
@@ -247,7 +261,8 @@ const logoutMeta = (reducer: ActionReducer<any>): ActionReducer<any> => {
   };
 };
 
-export const metaReducers: MetaReducer<AppState>[] = (window['ENV'] as Models.env.EnvConfig).angularProd
+export const metaReducers: MetaReducer<AppState>[] = (window['ENV'] as any)
+  .angularProd
   ? [logoutMeta]
   : [debugMeta, logoutMeta];
 //#endregion

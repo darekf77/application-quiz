@@ -4,7 +4,8 @@ import { topicFeatureKey, TopicInitialState } from '../topic.models';
 
 import { appSelectors } from '../../../app.store';
 
-const topicFeatureSelector = createFeatureSelector<TopicInitialState>(topicFeatureKey);
+const topicFeatureSelector =
+  createFeatureSelector<TopicInitialState>(topicFeatureKey);
 
 export const getCurrentTopic = createSelector(topicFeatureSelector, state => {
   return state?.currentTopic;
@@ -20,11 +21,10 @@ export const getTopicToSubmit = createSelector(topicFeatureSelector, state => {
 
 export const getSelectedQuestionOid = createSelector(
   appSelectors.appRouterSelector,
-  (route) => {
+  route => {
     const questionOid = Number(route.state.params['questionOid']);
     return questionOid;
-  }
+  },
 );
-
 
 //#endregion

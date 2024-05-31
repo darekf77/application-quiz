@@ -9,9 +9,9 @@ import { questionFeatureKey } from './question.models';
 import { questionReducer } from './reducers/question.reducers';
 import { QuestionService } from './services/question.service';
 import { RouterModule, Routes } from '@angular/router';
-import { AnswerModule, QuestionModule } from 'application-quiz';
-import { FiredevFullMaterialModule } from 'firedev-ui';
-import { StaticColumnsModule } from 'static-columns';
+import { AnswerModule, QuestionModule } from 'application-quiz/src';
+import { FiredevFullMaterialModule } from 'firedev-ui/src';
+import { StaticColumnsModule } from 'static-columns/src';
 
 const routes: Routes = [
   {
@@ -24,7 +24,6 @@ const routes: Routes = [
     component: QuestionContainer,
   },
 ];
-
 
 @NgModule({
   imports: [
@@ -40,5 +39,5 @@ const routes: Routes = [
   declarations: [QuestionContainer],
   providers: [QuestionService],
 })
-export class QuestionContainerModule { }
+export class QuestionContainerModule {}
 //#endregion

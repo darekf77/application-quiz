@@ -1,24 +1,38 @@
-<firedev-github-fork-me-corner url="https://github.com/darekf77/application-quiz" ></firedev-github-fork-me-corner>
+<firedev-github-fork-me-corner
+  url="https://github.com/darekf77/application-quiz">
+</firedev-github-fork-me-corner>
 <layout-simple-small-app>
   <mat-toolbar color="primary">
     <!-- <span>User Management</span>
     <div class="spacer"></div> -->
-    <a mat-button
-       routerLinkActive="active-link"
-       routerLink="/quiz">Quiz</a>
-    <a mat-button
-       routerLinkActive="active-link"
-       routerLink="/stats">Statistics</a>
+    <a
+      mat-button
+      routerLinkActive="active-link"
+      routerLink="/quiz"
+      >Quiz</a
+    >
+    <a
+      mat-button
+      routerLinkActive="active-link"
+      routerLink="/stats"
+      >Statistics</a
+    >
     <div class="spacer"></div>
-    <button mat-button
-            *ngIf="showQuizSelect$ | async"
-            mat-raised-button
-            color="accent"
-            [matMenuTriggerFor]="menu">{{ (selected$ | async)?.title ?? 'Select Quiz Topic...' }}</button>
+    <button
+      mat-button
+      *ngIf="showQuizSelect$ | async"
+      mat-raised-button
+      color="accent"
+      [matMenuTriggerFor]="menu">
+      {{ (selected$ | async)?.title ?? 'Select Quiz Topic...' }}
+    </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item
-              (click)="changeTopic(topic)"
-              *ngFor="let topic of (topics$ | async)">{{ topic.title }} </button>
+      <button
+        mat-menu-item
+        (click)="changeTopic(topic)"
+        *ngFor="let topic of (topics$ | async)">
+        {{ topic.title }}
+      </button>
     </mat-menu>
     &nbsp;
   </mat-toolbar>

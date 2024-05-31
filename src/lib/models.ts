@@ -6,6 +6,7 @@ export interface RawQuizApp {
 export interface RawTopic {
   title: string;
   question: RawQuestion[];
+  test?: boolean;
 }
 
 export interface RawQuestion {

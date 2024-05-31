@@ -1,5 +1,11 @@
 //#region @browser
-import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { AnswerService } from './answer.service';
 import type { Answer } from './answer';
 
@@ -7,17 +13,13 @@ import type { Answer } from './answer';
   selector: 'answer',
   templateUrl: './answer.component.html',
   styleUrls: ['./answer.component.scss'],
-  providers: [AnswerService]
+  providers: [AnswerService],
 })
 export class AnswerComponent implements OnInit {
   @ViewChild('exposedTemplate') exposedTemplate: TemplateRef<any>;
   @Input() answer: Answer;
-  constructor(
-    protected service: AnswerService
-  ) { }
+  constructor(protected service: AnswerService) {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
 //#endregion

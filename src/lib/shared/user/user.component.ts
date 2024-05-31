@@ -2,10 +2,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from './user.service';
 import { CommonModule } from '@angular/common';
-import { FiredevFullMaterialModule } from 'firedev-ui';
-import { StaticColumnsModule } from 'static-columns';
+import { FiredevFullMaterialModule } from 'firedev-ui/src';
+import { StaticColumnsModule } from 'static-columns/src';
 import { User } from './user';
-import { FiredevTableModule } from 'firedev-ui';
+import { FiredevTableModule } from 'firedev-ui/src';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
 
 @Component({
@@ -34,20 +34,20 @@ export class UserComponent implements OnInit {
     {
       header: 'Scored',
       field: 'scored',
-      maxWidth: 100
+      maxWidth: 100,
     },
     {
       header: 'Total',
       field: 'total',
-      maxWidth: 100
-    }
+      maxWidth: 100,
+    },
   ] as MtxGridColumn[];
 
   usersColumns = [
     {
       header: 'ID',
       field: 'id',
-      maxWidth: 100
+      maxWidth: 100,
     },
     {
       header: 'Username',
@@ -68,17 +68,13 @@ export class UserComponent implements OnInit {
           click: (user: User) => {
             this.userGoTo.next(user.username);
           },
-        }
+        },
       ],
-    }
-  ]
+    },
+  ];
 
-  constructor(
-    protected service: UserService,
-  ) { }
+  constructor(protected service: UserService) {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
 //#endregion

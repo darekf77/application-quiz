@@ -1,5 +1,5 @@
 //#region @websql
-import { RawQuizApp } from "./models";
+import { RawQuizApp } from './models';
 
 export const backendQuizData: RawQuizApp = {
   title: 'Quiz Application UI',
@@ -11,26 +11,31 @@ export const backendQuizData: RawQuizApp = {
           title: 'What is S.O.L.I.D. in programming ?',
           answers: [
             {
-              title: 'single responsibility, open/closed, liskov substitution, interface segregation, dependency inversion.',
+              title:
+                'single responsibility, open/closed, liskov substitution, interface segregation, dependency inversion.',
               isCorrect: true,
             },
             {
-              title: 'single responsibility, opennnes, liskov substitution, interface segregation, dependency inversion.',
+              title:
+                'single responsibility, opennnes, liskov substitution, interface segregation, dependency inversion.',
               isCorrect: false,
             },
             {
-              title: 'single responsibility, obligatory, liskov substitution, interface segregation, dependency inversion.',
+              title:
+                'single responsibility, obligatory, liskov substitution, interface segregation, dependency inversion.',
               isCorrect: false,
             },
             {
-              title: 'single resonable, obligatory, liskov substitution, interface segregation, dependency inversion.',
+              title:
+                'single resonable, obligatory, liskov substitution, interface segregation, dependency inversion.',
               isCorrect: false,
             },
             {
-              title: 'single responsibility, onimbus, liskov substitution, interface segregation, dependency inversion.',
+              title:
+                'single responsibility, onimbus, liskov substitution, interface segregation, dependency inversion.',
               isCorrect: false,
-            }
-          ]
+            },
+          ],
         },
         {
           title: 'What is the main design pattern implemented in RxJS library',
@@ -55,7 +60,7 @@ export const backendQuizData: RawQuizApp = {
               title: 'Bridge',
               isCorrect: false,
             },
-          ]
+          ],
         },
         {
           title: 'What are "code smells" in programming ?',
@@ -80,15 +85,16 @@ export const backendQuizData: RawQuizApp = {
               title: 'a result using hamster instead of mouse',
               isCorrect: false,
             },
-          ]
-        }
-      ]
+          ],
+        },
+      ],
     },
     {
       title: 'Angular',
       question: [
         {
-          title: 'What is the proper way of using async pipe in angular template ?',
+          title:
+            'What is the proper way of using async pipe in angular template ?',
           answers: [
             {
               title: '<ul *ngIf="allUsers() | async; else loader; let users" >',
@@ -109,11 +115,12 @@ export const backendQuizData: RawQuizApp = {
             {
               title: '<ul ng-if="allUsers() | async; else loader;"  >',
               isCorrect: false,
-            }
-          ]
+            },
+          ],
         },
         {
-          title: 'What are the differences between Component and Directive in Angular ?',
+          title:
+            'What are the differences between Component and Directive in Angular ?',
           answers: [
             {
               title: 'no difference',
@@ -134,8 +141,8 @@ export const backendQuizData: RawQuizApp = {
             {
               title: 'it depends',
               isCorrect: false,
-            }
-          ]
+            },
+          ],
         },
         {
           title: 'Which hook is going to fire first in Angular ?',
@@ -159,10 +166,10 @@ export const backendQuizData: RawQuizApp = {
             {
               title: 'ngDoCheck',
               isCorrect: true,
-            }
-          ]
-        }
-      ]
+            },
+          ],
+        },
+      ],
     },
     {
       title: 'Java',
@@ -171,15 +178,18 @@ export const backendQuizData: RawQuizApp = {
           title: 'What is an Java Applet ?',
           answers: [
             {
-              title: 'A Java Applet is program that can be included in mysql database',
+              title:
+                'A Java Applet is program that can be included in mysql database',
               isCorrect: false,
             },
             {
-              title: 'A Java Applet is program that can be included command line',
+              title:
+                'A Java Applet is program that can be included command line',
               isCorrect: false,
             },
             {
-              title: 'A Java Applet is program that can be included in a HTML page and be executed in a java enabled client browser.',
+              title:
+                'A Java Applet is program that can be included in a HTML page and be executed in a java enabled client browser.',
               isCorrect: true,
             },
             {
@@ -190,13 +200,14 @@ export const backendQuizData: RawQuizApp = {
               title: 'All above answers are false',
               isCorrect: false,
             },
-          ]
+          ],
         },
         {
           title: 'What is the difference between processes and threads?',
           answers: [
             {
-              title: 'a Process is a program which is executing some code and Thread is an independent path of execution in the process.',
+              title:
+                'a Process is a program which is executing some code and Thread is an independent path of execution in the process.',
               isCorrect: true,
             },
             {
@@ -214,36 +225,41 @@ export const backendQuizData: RawQuizApp = {
             {
               title: 'it depens on GPU',
               isCorrect: false,
-            }
-          ]
+            },
+          ],
         },
         {
           title: ' What is a Servlet ?',
           answers: [
             {
-              title: 'The servlet is a Java programming language class used to process client requests and generate database entites.',
+              title:
+                'The servlet is a Java programming language class used to process client requests and generate database entites.',
               isCorrect: false,
             },
             {
-              title: 'The servlet is a Java programming language class used to process client requests and generate stdin inputs.',
+              title:
+                'The servlet is a Java programming language class used to process client requests and generate stdin inputs.',
               isCorrect: false,
             },
             {
-              title: 'The servlet is a Java programming language class used to process client requests and generate dynamic web content.',
+              title:
+                'The servlet is a Java programming language class used to process client requests and generate dynamic web content.',
               isCorrect: true,
             },
             {
-              title: 'The servlet is a Java programming language class used to process server requests.',
+              title:
+                'The servlet is a Java programming language class used to process server requests.',
               isCorrect: false,
             },
             {
-              title: 'The servlet is a Java class used to process server requests.',
+              title:
+                'The servlet is a Java class used to process server requests.',
               isCorrect: false,
             },
-          ]
-        }
-      ]
-    }
-  ]
-}
+          ],
+        },
+      ],
+    },
+  ],
+};
 //#endregion
