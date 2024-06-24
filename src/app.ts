@@ -3,23 +3,14 @@ import { HOST_BACKEND_PORT } from './app.hosts';
 //#region imports
 import { Firedev } from 'firedev/src';
 import { _ } from 'tnp-core/src';
-const host = 'http://localhost:' + HOST_BACKEND_PORT;
 import {
-  Answer,
-  AnswerController,
-  Question,
-  QuestionController,
-  Topic,
-  TopicController,
-  User,
-  UserController,
+  Topic, TopicController
 } from 'application-quiz/src';
+import { ApplicationQuizContext } from './app.context';
 //#region @browser
 import { LayoutSimpleSmallAppModule } from 'application-quiz/src';
 import {
-  Input,
   NgModule,
-  NgZone,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -151,30 +142,7 @@ async function start() {
   // Firedev.enableProductionMode();
 
   //#region init context
-  const context = await Firedev.init({
-    host,
-    controllers: [
-      TopicController,
-      QuestionController,
-      AnswerController,
-      UserController,
-      // PUT FIREDEV CONTORLLERS HERE
-    ],
-    entities: [
-      Topic,
-      Question,
-      Answer,
-      User,
-      // PUT FIREDEV ENTITIES HERE
-    ],
-    //#region @websql
-    // config: {
-    //   type: 'better-sqlite3',
-    //   database: 'tmp-db.sqlite',
-    //   logging: false,
-    // },
-    //#endregion
-  });
+  const context = await ApplicationQuizContext.initialize();
   //#endregion
 
   //#region @backend
@@ -183,7 +151,16 @@ async function start() {
     //   res.send('Hello application-quiz');
     // });
   }
-  //#endregion
+   //#endregion
+  if (Firedev.isBrowser) {
+    const ref = await ApplicationQuizContext.ref();
+    const users = (await ref.getInstanceBy(TopicController).getAll().received)
+      .body?.json;
+    console.log({
+      'users from backend': users,
+    });
+  }
+
 }
 //#endregion
 

@@ -5,6 +5,7 @@ import {
   Stats,
   defaultModelValuesUser as defaultModelValues,
 } from './user.models';
+
 @Firedev.Entity({
   className: 'User',
   defaultModelValues,
@@ -14,27 +15,17 @@ import {
 })
 export class User extends Firedev.Base.Entity {
   //#region static
-  static ctrl: UserController;
+
   static from(obj: Omit<Partial<User>, 'ctrl'>) {
     return _.merge(new User(), obj) as User;
   }
-  static getAll() {
-    return this.ctrl.getAll();
-  }
+
   static empty() {
     return User.from(defaultModelValues);
   }
   //#endregion
 
-  //#region constructor
-  private constructor(...args) {
-    // @ts-ignore
-    super(...args);
-  }
-  //#endregion
-
   //#region fields & getters
-  ctrl: UserController;
 
   //#region @websql
   @Firedev.Orm.Column.Generated()

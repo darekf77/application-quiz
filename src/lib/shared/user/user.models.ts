@@ -5,7 +5,18 @@ export type IUser = Partial<User>;
 
 export const defaultModelValuesUser: Omit<
   IUser,
-  FiredevEntityKeysToOmit | 'getScored' | 'getTotal' | ''
+  | FiredevEntityKeysToOmit
+  | 'getScored'
+  | 'getTotal'
+  | 'inject'
+  | 'injectRepo'
+  | 'injectCustomRepository'
+  | 'injectCustomRepo'
+  | 'injectController'
+  | 'injectCtrl'
+  | 'injectGlobalProvider'
+  | 'injectLocalProvider'
+  | 'injectContextProvider'
 > = {
   description: '',
 };

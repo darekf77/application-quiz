@@ -46,6 +46,9 @@ import {
 } from '@ngrx/store';
 
 import { ITopic, Topic } from 'application-quiz/src';
+import { Firedev } from 'firedev/src';
+import { ApplicationQuizContext } from './app.context';
+import { TopicController } from 'application-quiz/src';
 //#endregion
 
 //#region models
@@ -175,11 +178,18 @@ export class AppEffects {
     ),
   );
 
+  // eslint-disable-next-line @typescript-eslint/typedef
+  topicController = Firedev.inject(() =>
+    ApplicationQuizContext.get(TopicController),
+  );
+
+  // eslint-disable-next-line @typescript-eslint/typedef
   fetchTasks = createEffect(() =>
     this.actions$.pipe(
       ofType(appActions.FETCH_TOPICS),
-      switchMap(() =>
-        Topic.ctrl.getAll().received.observable.pipe(
+      switchMap(() => {
+
+        return this.topicController.getAll().received.observable.pipe(
           map(data => {
             return appActions.FETCH_TOPICS_SUCCESS({
               topics: data.body.rawJson,
@@ -188,8 +198,8 @@ export class AppEffects {
           catchError(error => {
             return of(appActions.FETCH_TOPICS_ERROR({ error }));
           }),
-        ),
-      ),
+        );
+      }),
     ),
   );
 

@@ -21,9 +21,22 @@ import { Store } from '@ngrx/store';
 import { TopicInitialState } from '../topic.models';
 import { Topic, User } from 'application-quiz/src';
 import { appSelectors } from '../../../app.store';
+import { Firedev } from 'firedev/src';
+import { UserController } from 'application-quiz/src';
+import { ApplicationQuizContext } from '../../../app.context';
+import { TopicController } from 'application-quiz/src';
 
 @Injectable()
 export class TopicEffects {
+  // eslint-disable-next-line @typescript-eslint/typedef
+  userController = Firedev.inject(() =>
+    ApplicationQuizContext.get(UserController),
+  );
+
+  topicController = Firedev.inject(() =>
+    ApplicationQuizContext.get(TopicController),
+  );
+
   constructor(
     private actions$: Actions,
     private service: TopicService,
@@ -37,7 +50,7 @@ export class TopicEffects {
         of(action).pipe(
           withLatestFrom(this.store.select(appSelectors.selectedTopic)),
           switchMap(([action, { topicTitleKebabCase }]) =>
-            Topic.ctrl
+            this.topicController
               .getByTitleKebabCase(topicTitleKebabCase)
               .received.observable.pipe(
                 map(data => {
@@ -66,6 +79,7 @@ export class TopicEffects {
     { dispatch: false },
   );
 
+  // eslint-disable-next-line @typescript-eslint/typedef
   submit = createEffect(() =>
     this.actions$.pipe(
       ofType(topicActions.SUBMIT_SCORE),
@@ -74,7 +88,7 @@ export class TopicEffects {
         this.store.select(questionSelectors.currentQuestionSelectedIds),
       ),
       exhaustMap(([{ username }, topic, anwsersIds]) => {
-        return User.ctrl
+        return this.userController
           .submit(
             anwsersIds,
             encodeURIComponent(username),

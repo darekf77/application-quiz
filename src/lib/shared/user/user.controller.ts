@@ -10,9 +10,15 @@ import { _ } from 'tnp-core/src';
   className: 'UserController',
 })
 export class UserController extends Firedev.Base.CrudController<User> {
-  entity() {
-    return User;
+  entityClassResolveFn = () => User;
+
+  get userRepository() {
+    return this.db;
   }
+  questionRepository = this.injectRepo(Question);
+  topicRepository = this.injectRepo(Topic);
+  answerRepository = this.injectRepo(Answer);
+
   /**
    *
    * @param corectAnswersIds
@@ -31,7 +37,7 @@ export class UserController extends Firedev.Base.CrudController<User> {
       username = decodeURIComponent(username);
 
       const userExists =
-        (await this.repository.count({
+        (await this.userRepository.count({
           where: {
             username,
           },
@@ -41,20 +47,15 @@ export class UserController extends Firedev.Base.CrudController<User> {
         throw new Error(`Username exists or not correct`);
       }
 
-      let user = await this.repository.save(
+      let user = await this.userRepository.save(
         User.from({
           username,
         }),
       );
 
-      const repo = {
-        answer: this.connection.getRepository(Answer),
-        topic: this.connection.getRepository(Topic),
-        question: this.connection.getRepository(Question),
-      };
-      const allTopics = await repo.topic.find();
-      const allQuestions = await repo.question.find();
-      const allAnswers = await repo.answer.find();
+      const allTopics = (await this.topicRepository.find()) as Topic[];
+      const allQuestions = (await this.questionRepository.find()) as Question[];
+      const allAnswers = (await this.answerRepository.find()) as Answer[];
 
       for (let index = 0; index < allAnswers.length; index++) {
         const answer = allAnswers[index];
@@ -66,7 +67,7 @@ export class UserController extends Firedev.Base.CrudController<User> {
 
       let userAnswers = corectAnswersIds.map(id => {
         const answerFromDB = allAnswers.find(a => a.id == id);
-        const answer = answerFromDB.clone({ propsToOmit: ['ctrl'] });
+        const answer = answerFromDB.clone();
         answer.userAnswer = true;
         answer.topic = Topic.from(answer.topic);
         return answer;
@@ -99,7 +100,7 @@ export class UserController extends Firedev.Base.CrudController<User> {
           topicName: topic.title,
           scored: userAnswers.filter(
             a => a.topic.id === topic.id && a.answeredCorrectly,
-          ).length,
+          ).length, // @ts-ignore
           total: allAnswers.filter(a => a.topic.id === topic.id && a.isCorrect)
             .length,
         };
@@ -110,7 +111,7 @@ export class UserController extends Firedev.Base.CrudController<User> {
         }
       }
 
-      await this.repository.update(user.id, user);
+      await this.userRepository.updateById(user.id, user);
       return user;
     };
     //#endregion
@@ -123,7 +124,7 @@ export class UserController extends Firedev.Base.CrudController<User> {
     //#region @websqlFunc
     return async (req, res) => {
       // @ts-ignore
-      const user = await this.repository.findOne({
+      const user = await this.db.findOne({
         where: {
           username: decodeURIComponent(username),
         },

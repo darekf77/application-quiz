@@ -5,9 +5,7 @@ import { Answer } from './answer';
   className: 'AnswerController',
 })
 export class AnswerController extends Firedev.Base.CrudController<any> {
-  entity() {
-    return Answer;
-  }
+  entityClassResolveFn = () => Answer;
 
   @Firedev.Http.GET()
   hello(): Firedev.Response<string> {
@@ -16,15 +14,18 @@ export class AnswerController extends Firedev.Base.CrudController<any> {
     };
   }
 
-  @Firedev.Http.GET(`/${Firedev.symbols.CRUD_TABLE_MODELS}`) // @ts-ignore
+  @Firedev.Http.GET() // @ts-ignore
   getAll(
     @Firedev.Http.Param.Query('limit') limit = Infinity,
   ): Firedev.Response<Answer[]> {
     //#region @websqlFunc
-    const config = super.getAll();
+    const config = this.db;
     return async (req, res) => {
       // @ts-ignore
-      let arr = (await Firedev.getResponseValue(config, req, res)) as Answer[];
+      let arr = (await Firedev.getResponseValue(config, {
+        req,
+        res,
+      })) as Answer[];
       if (arr.length > limit) {
         arr = arr.slice(0, limit - 1);
       }

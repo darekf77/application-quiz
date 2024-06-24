@@ -1,35 +1,25 @@
-import { Firedev } from 'firedev/src';
+import { ClassHelpers, Firedev } from 'firedev/src';
 import { _ } from 'tnp-core/src';
 import type { TopicController } from './topic.controller';
 import { defaultModelValuesTopic as defaultModelValues } from './topic.models';
 import { RawQuestion, RawTopic } from '../../models';
+
 @Firedev.Entity({
   className: 'Topic',
   defaultModelValues,
 })
 export class Topic extends Firedev.Base.Entity<any> implements RawTopic {
   //#region static
-  static ctrl: TopicController;
   static from(obj: Omit<Partial<Topic>, 'ctrl'>) {
     return _.merge(new Topic(), obj) as Topic;
   }
-  static getAll() {
-    return this.ctrl.getAll();
-  }
+
   static empty() {
     return Topic.from(defaultModelValues);
   }
   //#endregion
 
-  //#region constructor
-  private constructor(...args) {
-    // @ts-ignore
-    super(...args);
-  }
-  //#endregion
-
   //#region fields & getters
-  ctrl: TopicController;
 
   //#region @websql
   @Firedev.Orm.Column.Custom({

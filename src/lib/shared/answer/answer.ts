@@ -11,27 +11,17 @@ import type { Topic } from '../topic';
 })
 export class Answer extends Firedev.Base.Entity<any> implements RawAnswer {
   //#region static
-  static ctrl: AnswerController;
+
   static from(obj: Omit<Partial<Answer>, 'ctrl'>) {
     return _.merge(new Answer(), obj) as Answer;
   }
-  static getAll() {
-    return this.ctrl.getAll();
-  }
+
   static empty() {
     return Answer.from(defaultModelValues);
   }
   //#endregion
 
-  //#region constructor
-  private constructor(...args) {
-    // @ts-ignore
-    super(...args);
-  }
-  //#endregion
-
   //#region fields & getters
-  ctrl: AnswerController;
 
   topic: Topic;
 

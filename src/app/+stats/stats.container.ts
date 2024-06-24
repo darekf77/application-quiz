@@ -3,20 +3,28 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable, Subscription, map, of } from 'rxjs';
 import { User } from 'application-quiz/src';
 import { AppService } from '../../app.store';
+import { ApplicationQuizContext } from '../../app.context';
+import { Firedev } from 'firedev/src';
+import { UserController } from 'application-quiz/src';
 
 @Component({
   selector: 'app-stats',
   templateUrl: './stats.container.html',
   styleUrls: ['./stats.container.scss'],
 })
-export class StatsContainer implements OnInit {
+export class StatsContainer {
   user$: Observable<User>;
 
+  userController = Firedev.inject(() =>
+    ApplicationQuizContext.get(UserController),
+  );
+
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('username')
   set id(username: string) {
     if (username) {
       username = decodeURIComponent(username);
-      this.user$ = User.ctrl
+      this.user$ = this.userController
         .getByUsername(encodeURIComponent(username))
         .received.observable.pipe(
           map(data => {
@@ -29,8 +37,6 @@ export class StatsContainer implements OnInit {
   }
 
   constructor(private appService: AppService) {}
-
-  ngOnInit() {}
 
   onUserGoTo(username: string) {
     this.appService.goToStats(username);

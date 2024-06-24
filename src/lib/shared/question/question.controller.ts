@@ -7,9 +7,15 @@ import { Topic } from '../topic';
   className: 'QuestionController',
 })
 export class QuestionController extends Firedev.Base.CrudController<any> {
-  entity() {
-    return Question;
+  entityClassResolveFn = () => Question;
+
+  get questionRepository() {
+    return this.db;
   }
+
+  topicRepository = this.injectRepo(Topic);
+  anwserRepository = this.injectRepo(Answer);
+
   @Firedev.Http.GET()
   hello(): Firedev.Response<string> {
     return async () => {
@@ -17,7 +23,7 @@ export class QuestionController extends Firedev.Base.CrudController<any> {
     };
   }
 
-  @Firedev.Http.GET(`/${Firedev.symbols.CRUD_TABLE_MODELS}`) // @ts-ignore
+  @Firedev.Http.GET()
   getAll(
     @Firedev.Http.Param.Query('limit') limit = Infinity,
   ): Firedev.Response<Question[]> {
@@ -25,11 +31,10 @@ export class QuestionController extends Firedev.Base.CrudController<any> {
     const config = super.getAll();
     return async (req, res) => {
       // @ts-ignore
-      let arr = (await Firedev.getResponseValue(
-        config,
+      let arr = (await Firedev.getResponseValue(config, {
         req,
         res,
-      )) as Question[];
+      })) as Question[];
       if (arr.length > limit) {
         arr = arr.slice(0, limit - 1);
       }
@@ -47,18 +52,18 @@ export class QuestionController extends Firedev.Base.CrudController<any> {
     const config = super.getAll();
     return async (req, res) => {
       // @ts-ignore
-      const topic = await this.connection.getRepository(Topic).findOne({
+      const topic = await this.topicRepository.findOne({
         where: {
           topicTitleKebabCase,
         },
       });
-      let question = await this.connection.getRepository(Question).findOne({
+      let question = await this.questionRepository.findOne({
         where: {
           oid: questionOid,
           topicId: topic.id,
         },
       });
-      const answers = await this.connection.getRepository(Answer).find({
+      const answers = await this.anwserRepository.find({
         where: {
           questionId: question.id,
         },
