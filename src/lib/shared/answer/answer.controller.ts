@@ -1,28 +1,28 @@
-import { Firedev } from 'firedev/src';
+import { Taon } from 'firedev/src';
 import { Answer } from './answer';
 
-@Firedev.Controller({
+@Taon.Controller({
   className: 'AnswerController',
 })
-export class AnswerController extends Firedev.Base.CrudController<any> {
+export class AnswerController extends Taon.Base.CrudController<any> {
   entityClassResolveFn = () => Answer;
 
-  @Firedev.Http.GET()
-  hello(): Firedev.Response<string> {
+  @Taon.Http.GET()
+  hello(): Taon.Response<string> {
     return async () => {
       return 'Hello world';
     };
   }
 
-  @Firedev.Http.GET() // @ts-ignore
+  @Taon.Http.GET() // @ts-ignore
   getAll(
-    @Firedev.Http.Param.Query('limit') limit = Infinity,
-  ): Firedev.Response<Answer[]> {
+    @Taon.Http.Param.Query('limit') limit = Infinity,
+  ): Taon.Response<Answer[]> {
     //#region @websqlFunc
     const config = this.db;
     return async (req, res) => {
       // @ts-ignore
-      let arr = (await Firedev.getResponseValue(config, {
+      let arr = (await Taon.getResponseValue(config, {
         req,
         res,
       })) as Answer[];

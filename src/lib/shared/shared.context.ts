@@ -1,4 +1,4 @@
-import { Firedev,BaseContext } from 'firedev/src';
+import { Taon,BaseContext } from 'firedev/src';
 import { TopicController } from './topic/topic.controller';
 import { QuestionController } from './question/question.controller';
 import { AnswerController } from './answer/answer.controller';
@@ -8,7 +8,7 @@ import { Question } from './question';
 import { Answer } from './answer';
 import { User } from './user';
 
-export const SharedContext = Firedev.createContext(() => ({
+export const SharedContext = Taon.createContext(() => ({
   contextName: 'SharedContext',
   abstract: true,
   contexts: { BaseContext },

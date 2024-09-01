@@ -15,11 +15,11 @@ import { Question, Topic } from 'application-quiz/src';
 import { AppState, appSelectors } from '../../../../app.store';
 import { ApplicationQuizContext } from '../../../../app.context';
 import { QuestionController } from 'application-quiz/src';
-import { Firedev } from 'firedev/src';
+import { Taon } from 'firedev/src';
 
 @Injectable()
 export class QuestionEffects {
-  questionController = Firedev.inject(() =>
+  questionController = Taon.inject(() =>
     ApplicationQuizContext.get(QuestionController),
   );
 

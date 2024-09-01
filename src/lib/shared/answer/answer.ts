@@ -1,15 +1,15 @@
-import { Firedev } from 'firedev/src';
+import { Taon } from 'firedev/src';
 import { _ } from 'tnp-core/src';
 import type { AnswerController } from './answer.controller';
 import { defaultModelValuesAnswer as defaultModelValues } from './answer.models';
 import { RawAnswer } from '../../models';
 import type { Topic } from '../topic';
 
-@Firedev.Entity({
+@Taon.Entity({
   className: 'Answer',
   defaultModelValues,
 })
-export class Answer extends Firedev.Base.Entity<any> implements RawAnswer {
+export class Answer extends Taon.Base.Entity<any> implements RawAnswer {
   //#region static
 
   static from(obj: Omit<Partial<Answer>, 'ctrl'>) {
@@ -26,7 +26,7 @@ export class Answer extends Firedev.Base.Entity<any> implements RawAnswer {
   topic: Topic;
 
   //#region @websql
-  @Firedev.Orm.Column.Custom({
+  @Taon.Orm.Column.Custom({
     type: 'varchar',
     length: 200,
     default: defaultModelValues.title,
@@ -36,7 +36,7 @@ export class Answer extends Firedev.Base.Entity<any> implements RawAnswer {
   title: string;
 
   //#region @websql
-  @Firedev.Orm.Column.Boolean(false)
+  @Taon.Orm.Column.Boolean(false)
   //#endregion
   isCorrect?: boolean;
 
@@ -44,12 +44,12 @@ export class Answer extends Firedev.Base.Entity<any> implements RawAnswer {
   answeredCorrectly?: boolean;
 
   //#region @websql
-  @Firedev.Orm.Column.Generated()
+  @Taon.Orm.Column.Generated()
   //#endregion
   id: number;
 
   //#region @websql
-  @Firedev.Orm.Column.Custom({
+  @Taon.Orm.Column.Custom({
     type: 'int',
   })
   //#endregion
@@ -57,7 +57,7 @@ export class Answer extends Firedev.Base.Entity<any> implements RawAnswer {
   //#endregion
 
   //#region @websql
-  @Firedev.Orm.Column.Custom({
+  @Taon.Orm.Column.Custom({
     type: 'int',
   })
   //#endregion
@@ -65,7 +65,7 @@ export class Answer extends Firedev.Base.Entity<any> implements RawAnswer {
   //#endregion
 
   //#region @websql
-  @Firedev.Orm.Column.Custom({
+  @Taon.Orm.Column.Custom({
     type: 'varchar',
     length: 100,
     default: defaultModelValues.description,

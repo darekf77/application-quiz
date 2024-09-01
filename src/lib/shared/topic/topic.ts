@@ -1,14 +1,14 @@
-import { ClassHelpers, Firedev } from 'firedev/src';
+import { ClassHelpers, Taon } from 'firedev/src';
 import { _ } from 'tnp-core/src';
 import type { TopicController } from './topic.controller';
 import { defaultModelValuesTopic as defaultModelValues } from './topic.models';
 import { RawQuestion, RawTopic } from '../../models';
 
-@Firedev.Entity({
+@Taon.Entity({
   className: 'Topic',
   defaultModelValues,
 })
-export class Topic extends Firedev.Base.Entity<any> implements RawTopic {
+export class Topic extends Taon.Base.Entity<any> implements RawTopic {
   //#region static
   static from(obj: Omit<Partial<Topic>, 'ctrl'>) {
     return _.merge(new Topic(), obj) as Topic;
@@ -22,7 +22,7 @@ export class Topic extends Firedev.Base.Entity<any> implements RawTopic {
   //#region fields & getters
 
   //#region @websql
-  @Firedev.Orm.Column.Custom({
+  @Taon.Orm.Column.Custom({
     type: 'varchar',
     length: 200,
     default: defaultModelValues.title,
@@ -32,7 +32,7 @@ export class Topic extends Firedev.Base.Entity<any> implements RawTopic {
   title: string;
 
   //#region @websql
-  @Firedev.Orm.Column.Custom({
+  @Taon.Orm.Column.Custom({
     type: 'varchar',
     length: 200,
     default: defaultModelValues.topicTitleKebabCase,
@@ -44,17 +44,17 @@ export class Topic extends Firedev.Base.Entity<any> implements RawTopic {
   question: RawQuestion[];
 
   //#region @websql
-  @Firedev.Orm.Column.Generated()
+  @Taon.Orm.Column.Generated()
   //#endregion
   id: number;
 
   //#region @websql
-  @Firedev.Orm.Column.SimpleJson()
+  @Taon.Orm.Column.SimpleJson()
   //#endregion
   questionsOids: number[];
 
   //#region @websql
-  @Firedev.Orm.Column.Custom({
+  @Taon.Orm.Column.Custom({
     type: 'varchar',
     length: 100,
     default: defaultModelValues.description,

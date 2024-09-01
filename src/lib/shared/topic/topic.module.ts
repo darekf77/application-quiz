@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TopicComponent } from './topic.component';
 import { StaticColumnsModule } from 'static-columns/src';
-import { FiredevFullMaterialModule } from 'firedev-ui/src';
+import { TaonFullMaterialModule } from 'firedev-ui/src';
 
 @NgModule({
-  imports: [CommonModule, FiredevFullMaterialModule, StaticColumnsModule],
+  imports: [CommonModule, TaonFullMaterialModule, StaticColumnsModule],
   declarations: [TopicComponent],
   exports: [TopicComponent],
 })

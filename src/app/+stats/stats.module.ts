@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { StatsContainer } from './stats.container';
 import { UserComponent } from 'application-quiz/src';
-import { FiredevFullMaterialModule } from 'firedev-ui/src';
+import { TaonFullMaterialModule } from 'firedev-ui/src';
 import { StaticColumnsModule } from 'static-columns/src';
 
 const routes: Routes = [
@@ -23,7 +23,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    FiredevFullMaterialModule,
+    TaonFullMaterialModule,
     StaticColumnsModule,
     UserComponent,
   ],

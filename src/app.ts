@@ -1,7 +1,7 @@
 //#region @notForNpm
 import { HOST_BACKEND_PORT } from './app.hosts';
 //#region imports
-import { Firedev } from 'firedev/src';
+import { Taon } from 'firedev/src';
 import { _ } from 'tnp-core/src';
 import {
   Topic, TopicController
@@ -23,8 +23,8 @@ import {
 } from '@angular/router';
 import { MaterialCssVarsModule } from 'angular-material-css-vars';
 import {
-  FiredevFullMaterialModule,
-  FiredevGithubForkMeCornerModule,
+  TaonFullMaterialModule,
+  TaonGithubForkMeCornerModule,
 } from 'firedev-ui/src';
 import { Store, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -118,7 +118,7 @@ export class ApplicationQuizComponent implements OnInit {
       serializer: RouterSerializer,
     }),
     LayoutSimpleSmallAppModule,
-    FiredevFullMaterialModule,
+    TaonFullMaterialModule,
     MaterialCssVarsModule.forRoot({
       // all optional
       isAutoContrast: true,
@@ -126,7 +126,7 @@ export class ApplicationQuizComponent implements OnInit {
       accent: '#fedfdd',
       // ...
     }),
-    FiredevGithubForkMeCornerModule,
+    TaonGithubForkMeCornerModule,
   ],
   exports: [ApplicationQuizComponent],
   declarations: [ApplicationQuizComponent],
@@ -139,20 +139,20 @@ export class ApplicationQuizModule {}
 
 //#region firedev start function
 async function start() {
-  // Firedev.enableProductionMode();
+  // Taon.enableProductionMode();
 
   //#region init context
   const context = await ApplicationQuizContext.initialize();
   //#endregion
 
   //#region @backend
-  if (Firedev.isNode) {
+  if (Taon.isNode) {
     // context.node.app.get('/hello', (req, res) => {
     //   res.send('Hello application-quiz');
     // });
   }
    //#endregion
-  if (Firedev.isBrowser) {
+  if (Taon.isBrowser) {
     const ref = await ApplicationQuizContext.ref();
     const users = (await ref.getInstanceBy(TopicController).getAll().received)
       .body?.json;

@@ -1,4 +1,4 @@
-import { Firedev } from 'firedev/src';
+import { Taon } from 'firedev/src';
 import { _ } from 'tnp-core/src';
 import type { UserController } from './user.controller';
 import {
@@ -6,14 +6,14 @@ import {
   defaultModelValuesUser as defaultModelValues,
 } from './user.models';
 
-@Firedev.Entity({
+@Taon.Entity({
   className: 'User',
   defaultModelValues,
   defaultModelMapping: {
     statistics: 'Stats',
   },
 })
-export class User extends Firedev.Base.Entity {
+export class User extends Taon.Base.Entity {
   //#region static
 
   static from(obj: Omit<Partial<User>, 'ctrl'>) {
@@ -28,12 +28,12 @@ export class User extends Firedev.Base.Entity {
   //#region fields & getters
 
   //#region @websql
-  @Firedev.Orm.Column.Generated()
+  @Taon.Orm.Column.Generated()
   //#endregion
   id: string;
 
   //#region @websql
-  @Firedev.Orm.Column.Custom({
+  @Taon.Orm.Column.Custom({
     type: 'varchar',
     length: '100',
     unique: true,
@@ -43,13 +43,13 @@ export class User extends Firedev.Base.Entity {
   username: string;
 
   //#region @websql
-  @Firedev.Orm.Column.SimpleJson()
+  @Taon.Orm.Column.SimpleJson()
   //#endregion
   statistics?: Stats[];
   //#endregion
 
   //#region @websql
-  @Firedev.Orm.Column.Custom({
+  @Taon.Orm.Column.Custom({
     type: 'varchar',
     length: 100,
     default: defaultModelValues.description,

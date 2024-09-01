@@ -4,7 +4,7 @@ import { Observable, Subscription, map, of } from 'rxjs';
 import { User } from 'application-quiz/src';
 import { AppService } from '../../app.store';
 import { ApplicationQuizContext } from '../../app.context';
-import { Firedev } from 'firedev/src';
+import { Taon } from 'firedev/src';
 import { UserController } from 'application-quiz/src';
 
 @Component({
@@ -15,7 +15,7 @@ import { UserController } from 'application-quiz/src';
 export class StatsContainer {
   user$: Observable<User>;
 
-  userController = Firedev.inject(() =>
+  userController = Taon.inject(() =>
     ApplicationQuizContext.get(UserController),
   );
 

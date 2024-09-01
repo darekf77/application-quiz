@@ -1,4 +1,4 @@
-import { Firedev } from 'firedev/src';
+import { Taon } from 'firedev/src';
 import { User } from './user';
 import { Answer } from '../answer/answer';
 import { Stats } from './user.models';
@@ -6,10 +6,10 @@ import { Topic } from '../topic';
 import { Question } from '../question';
 import { _ } from 'tnp-core/src';
 
-@Firedev.Controller({
+@Taon.Controller({
   className: 'UserController',
 })
-export class UserController extends Firedev.Base.CrudController<User> {
+export class UserController extends Taon.Base.CrudController<User> {
   entityClassResolveFn = () => User;
 
   get userRepository() {
@@ -25,12 +25,12 @@ export class UserController extends Firedev.Base.CrudController<User> {
    * @param username should be encoded encodeURIComponent
    * @returns
    */
-  @Firedev.Http.POST('/submit/user/:username') // @ts-ignore
+  @Taon.Http.POST('/submit/user/:username') // @ts-ignore
   submit(
-    @Firedev.Http.Param.Body('answers') corectAnswersIds: Number[],
-    @Firedev.Http.Param.Path('username') username: string,
-    @Firedev.Http.Param.Query('onlyTopicId') onlyTopicId: Number,
-  ): Firedev.Response<User> {
+    @Taon.Http.Param.Body('answers') corectAnswersIds: Number[],
+    @Taon.Http.Param.Path('username') username: string,
+    @Taon.Http.Param.Query('onlyTopicId') onlyTopicId: Number,
+  ): Taon.Response<User> {
     //#region @websqlFunc
     return async (req, res) => {
       // @ts-ignore
@@ -117,10 +117,10 @@ export class UserController extends Firedev.Base.CrudController<User> {
     //#endregion
   }
 
-  @Firedev.Http.POST('/stats/for/user/:username') // @ts-ignore
+  @Taon.Http.POST('/stats/for/user/:username') // @ts-ignore
   getByUsername(
-    @Firedev.Http.Param.Path('username') username: string,
-  ): Firedev.Response<User> {
+    @Taon.Http.Param.Path('username') username: string,
+  ): Taon.Response<User> {
     //#region @websqlFunc
     return async (req, res) => {
       // @ts-ignore

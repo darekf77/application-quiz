@@ -4,7 +4,7 @@
 <p style="text-align: center;"><img src="./__images/app.png" ></p>
 
 # Technolgies
-- Firedev v16 (firedev.io)
+- Taon v16 (firedev.io)
 - Angular v16
 - NgRx v16
 - TypeORM (SQL.js in browser/ SQLite in Nodejs server)

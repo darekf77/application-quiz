@@ -2,10 +2,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from './user.service';
 import { CommonModule } from '@angular/common';
-import { FiredevFullMaterialModule } from 'firedev-ui/src';
+import { TaonFullMaterialModule } from 'firedev-ui/src';
 import { StaticColumnsModule } from 'static-columns/src';
 import { User } from './user';
-import { FiredevTableModule } from 'firedev-ui/src';
+import { TaonTableModule } from 'firedev-ui/src';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
 
 @Component({
@@ -16,9 +16,9 @@ import { MtxGridColumn } from '@ng-matero/extensions/grid';
   standalone: true,
   imports: [
     CommonModule,
-    FiredevFullMaterialModule,
+    TaonFullMaterialModule,
     StaticColumnsModule,
-    FiredevTableModule,
+    TaonTableModule,
   ],
 })
 export class UserComponent implements OnInit {

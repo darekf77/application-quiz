@@ -10,7 +10,7 @@ import { questionReducer } from './reducers/question.reducers';
 import { QuestionService } from './services/question.service';
 import { RouterModule, Routes } from '@angular/router';
 import { AnswerModule, QuestionModule } from 'application-quiz/src';
-import { FiredevFullMaterialModule } from 'firedev-ui/src';
+import { TaonFullMaterialModule } from 'firedev-ui/src';
 import { StaticColumnsModule } from 'static-columns/src';
 
 const routes: Routes = [
@@ -31,7 +31,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     StoreModule.forFeature(questionFeatureKey, questionReducer),
     EffectsModule.forFeature([QuestionEffects]),
-    FiredevFullMaterialModule,
+    TaonFullMaterialModule,
     StaticColumnsModule,
     AnswerModule,
     QuestionModule,

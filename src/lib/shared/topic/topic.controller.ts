@@ -1,4 +1,4 @@
-import { ClassHelpers, Firedev } from 'firedev/src';
+import { ClassHelpers, Taon } from 'firedev/src';
 import { _ } from 'tnp-core/src';
 import { Topic } from './topic';
 //#region @websql
@@ -7,32 +7,32 @@ import { backendQuizData } from '../../application-quiz.data';
 import { Question } from '../question';
 import { Answer } from '../answer';
 
-@Firedev.Controller({
+@Taon.Controller({
   className: 'TopicController',
 })
-export class TopicController extends Firedev.Base.CrudController<any> {
+export class TopicController extends Taon.Base.CrudController<any> {
   entityClassResolveFn = () => Topic;
 
   questionRepository = this.injectRepo(Question);
   topicRepository = this.injectRepo(Topic);
   answerRepository = this.injectRepo(Answer);
 
-  @Firedev.Http.GET()
-  hello(): Firedev.Response<string> {
+  @Taon.Http.GET()
+  hello(): Taon.Response<string> {
     return async () => {
       return 'Hello world';
     };
   }
 
-  @Firedev.Http.GET()
+  @Taon.Http.GET()
   getAll(
-    @Firedev.Http.Param.Query('limit') limit = Infinity,
-  ): Firedev.Response<Topic[]> {
+    @Taon.Http.Param.Query('limit') limit = Infinity,
+  ): Taon.Response<Topic[]> {
     //#region @websqlFunc
     const config = super.getAll();
     return async (req, res) => {
       // @ts-ignore
-      let arr = (await Firedev.getResponseValue(config, {
+      let arr = (await Taon.getResponseValue(config, {
         req,
         res,
       })) as Topic[];
@@ -44,10 +44,10 @@ export class TopicController extends Firedev.Base.CrudController<any> {
     //#endregion
   }
 
-  @Firedev.Http.GET(`/by/title/:topicTitleKebabCase`)
+  @Taon.Http.GET(`/by/title/:topicTitleKebabCase`)
   getByTitleKebabCase(
-    @Firedev.Http.Param.Path('topicTitleKebabCase') topicTitleKebabCase: string,
-  ): Firedev.Response<Topic> {
+    @Taon.Http.Param.Path('topicTitleKebabCase') topicTitleKebabCase: string,
+  ): Taon.Response<Topic> {
     //#region @websqlFunc
     return async (req, res) => {
       // @ts-ignore

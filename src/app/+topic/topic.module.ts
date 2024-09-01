@@ -10,7 +10,7 @@ import { topicReducer } from './reducers/topic.reducers';
 import { TopicService } from './services/topic.service';
 import { RouterModule, Routes } from '@angular/router';
 import { TopicModule } from 'application-quiz/src';
-import { FiredevFullMaterialModule } from 'firedev-ui/src';
+import { TaonFullMaterialModule } from 'firedev-ui/src';
 import { StaticColumnsModule } from 'static-columns/src';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { MtxAlertModule } from '@ng-matero/extensions/alert';
@@ -42,7 +42,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     StoreModule.forFeature(topicFeatureKey, topicReducer),
     EffectsModule.forFeature([TopicEffects]),
-    FiredevFullMaterialModule,
+    TaonFullMaterialModule,
     StaticColumnsModule,
     TopicModule,
     MtxAlertModule,

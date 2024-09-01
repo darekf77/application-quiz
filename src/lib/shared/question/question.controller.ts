@@ -1,12 +1,12 @@
-import { Firedev } from 'firedev/src';
+import { Taon } from 'firedev/src';
 import { Question } from './question';
 import { Answer } from '../answer';
 import { Topic } from '../topic';
 
-@Firedev.Controller({
+@Taon.Controller({
   className: 'QuestionController',
 })
-export class QuestionController extends Firedev.Base.CrudController<any> {
+export class QuestionController extends Taon.Base.CrudController<any> {
   entityClassResolveFn = () => Question;
 
   get questionRepository() {
@@ -16,22 +16,22 @@ export class QuestionController extends Firedev.Base.CrudController<any> {
   topicRepository = this.injectRepo(Topic);
   anwserRepository = this.injectRepo(Answer);
 
-  @Firedev.Http.GET()
-  hello(): Firedev.Response<string> {
+  @Taon.Http.GET()
+  hello(): Taon.Response<string> {
     return async () => {
       return 'Hello world';
     };
   }
 
-  @Firedev.Http.GET()
+  @Taon.Http.GET()
   getAll(
-    @Firedev.Http.Param.Query('limit') limit = Infinity,
-  ): Firedev.Response<Question[]> {
+    @Taon.Http.Param.Query('limit') limit = Infinity,
+  ): Taon.Response<Question[]> {
     //#region @websqlFunc
     const config = super.getAll();
     return async (req, res) => {
       // @ts-ignore
-      let arr = (await Firedev.getResponseValue(config, {
+      let arr = (await Taon.getResponseValue(config, {
         req,
         res,
       })) as Question[];
@@ -43,11 +43,11 @@ export class QuestionController extends Firedev.Base.CrudController<any> {
     //#endregion
   }
 
-  @Firedev.Http.GET(`/question/:questionOid/topic/:topicTitleKebabCase`) // @ts-ignore
+  @Taon.Http.GET(`/question/:questionOid/topic/:topicTitleKebabCase`) // @ts-ignore
   getQuestionWithAswers(
-    @Firedev.Http.Param.Path('questionOid') questionOid: number,
-    @Firedev.Http.Param.Path('topicTitleKebabCase') topicTitleKebabCase: string,
-  ): Firedev.Response<Question> {
+    @Taon.Http.Param.Path('questionOid') questionOid: number,
+    @Taon.Http.Param.Path('topicTitleKebabCase') topicTitleKebabCase: string,
+  ): Taon.Response<Question> {
     //#region @websqlFunc
     const config = super.getAll();
     return async (req, res) => {

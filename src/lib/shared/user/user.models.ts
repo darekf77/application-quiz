@@ -1,11 +1,11 @@
 import type { User } from './user';
-import { FiredevEntityKeysToOmit } from 'firedev/src';
+import { TaonEntityKeysToOmit } from 'firedev/src';
 
 export type IUser = Partial<User>;
 
 export const defaultModelValuesUser: Omit<
   IUser,
-  | FiredevEntityKeysToOmit
+  | TaonEntityKeysToOmit
   | 'getScored'
   | 'getTotal'
   | 'inject'

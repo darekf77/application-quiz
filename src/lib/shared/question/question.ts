@@ -1,14 +1,14 @@
-import { Firedev } from 'firedev/src';
+import { Taon } from 'firedev/src';
 import { _ } from 'tnp-core/src';
 import type { QuestionController } from './question.controller';
 import { defaultModelValuesQuestion as defaultModelValues } from './question.models';
 import { RawAnswer, RawQuestion } from '../../models';
 import { Answer } from '../answer';
-@Firedev.Entity({
+@Taon.Entity({
   className: 'Question',
   defaultModelValues,
 })
-export class Question extends Firedev.Base.Entity<any> implements RawQuestion {
+export class Question extends Taon.Base.Entity<any> implements RawQuestion {
   //#region static
 
   static from(obj: Omit<Partial<Question>, 'ctrl'>) {
@@ -25,7 +25,7 @@ export class Question extends Firedev.Base.Entity<any> implements RawQuestion {
   //#region fields & getters
 
   //#region @websql
-  @Firedev.Orm.Column.Custom({
+  @Taon.Orm.Column.Custom({
     type: 'varchar',
     length: 100,
     default: defaultModelValues.title,
@@ -36,19 +36,19 @@ export class Question extends Firedev.Base.Entity<any> implements RawQuestion {
   answers: RawAnswer[];
 
   //#region @websql
-  @Firedev.Orm.Column.Generated()
+  @Taon.Orm.Column.Generated()
   //#endregion
   id: number;
 
   //#region @websql
-  @Firedev.Orm.Column.Custom({
+  @Taon.Orm.Column.Custom({
     type: 'int',
   })
   //#endregion
   topicId?: number;
 
   //#region @websql
-  @Firedev.Orm.Column.Custom({
+  @Taon.Orm.Column.Custom({
     type: 'int',
     nullable: true,
   })
@@ -56,7 +56,7 @@ export class Question extends Firedev.Base.Entity<any> implements RawQuestion {
   nextOid?: number;
 
   //#region @websql
-  @Firedev.Orm.Column.Custom({
+  @Taon.Orm.Column.Custom({
     type: 'int',
     nullable: true,
   })
@@ -64,14 +64,14 @@ export class Question extends Firedev.Base.Entity<any> implements RawQuestion {
   prevOid?: number;
 
   //#region @websql
-  @Firedev.Orm.Column.Custom({
+  @Taon.Orm.Column.Custom({
     type: 'int',
   })
   //#endregion
   oid?: number;
 
   //#region @websql
-  @Firedev.Orm.Column.Custom({
+  @Taon.Orm.Column.Custom({
     type: 'varchar',
     length: 100,
     default: defaultModelValues.description,
