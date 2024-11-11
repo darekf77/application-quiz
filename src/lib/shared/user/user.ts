@@ -1,4 +1,4 @@
-import { Taon } from 'firedev/src';
+import { Taon } from 'taon/src';
 import { _ } from 'tnp-core/src';
 import type { UserController } from './user.controller';
 import {

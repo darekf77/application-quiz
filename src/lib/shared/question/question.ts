@@ -1,4 +1,4 @@
-import { Taon } from 'firedev/src';
+import { Taon } from 'taon/src';
 import { _ } from 'tnp-core/src';
 import type { QuestionController } from './question.controller';
 import { defaultModelValuesQuestion as defaultModelValues } from './question.models';

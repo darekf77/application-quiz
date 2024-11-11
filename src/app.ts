@@ -1,7 +1,7 @@
 //#region @notForNpm
 import { HOST_BACKEND_PORT } from './app.hosts';
 //#region imports
-import { Taon } from 'firedev/src';
+import { Taon } from 'taon/src';
 import { _ } from 'tnp-core/src';
 import {
   Topic, TopicController
@@ -25,7 +25,7 @@ import { MaterialCssVarsModule } from 'angular-material-css-vars';
 import {
   TaonFullMaterialModule,
   TaonGithubForkMeCornerModule,
-} from 'firedev-ui/src';
+} from 'taon-ui/src';
 import { Store, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { MatMenuTrigger } from '@angular/material/menu';
@@ -137,7 +137,7 @@ export class ApplicationQuizModule {}
 
 //#endregion
 
-//#region firedev start function
+//#region taon start function
 async function start() {
   // Taon.enableProductionMode();
 

@@ -1,9 +1,9 @@
 <div *ngIf="!user">
-  <firedev-table
+  <taon-table
     [columns]="usersColumns"
     [entity]="entity"
     [allowedColumns]="['id', 'username']">
-  </firedev-table>
+  </taon-table>
 </div>
 <br />
 <div *ngIf="user">
@@ -14,9 +14,9 @@
   correctly
 </h3>
 
-<firedev-table
+<taon-table
   *ngIf="user"
   [columns]="statsColumns"
   [rows]="user.statistics"
   [allowedColumns]="['topicName', 'scored', 'total']">
-</firedev-table>
+</taon-table>

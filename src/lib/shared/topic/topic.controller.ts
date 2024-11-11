@@ -1,4 +1,4 @@
-import { ClassHelpers, Taon } from 'firedev/src';
+import { ClassHelpers, Taon } from 'taon/src';
 import { _ } from 'tnp-core/src';
 import { Topic } from './topic';
 //#region @websql

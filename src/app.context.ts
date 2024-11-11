@@ -1,4 +1,4 @@
-import { Taon } from 'firedev/src';
+import { Taon } from 'taon/src';
 import { HOST_BACKEND_PORT } from './app.hosts';
 const host = 'http://localhost:' + HOST_BACKEND_PORT;
 import { SharedContext } from 'application-quiz/src';

@@ -2,10 +2,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from './user.service';
 import { CommonModule } from '@angular/common';
-import { TaonFullMaterialModule } from 'firedev-ui/src';
+import { TaonFullMaterialModule } from 'taon-ui/src';
 import { StaticColumnsModule } from 'static-columns/src';
 import { User } from './user';
-import { TaonTableModule } from 'firedev-ui/src';
+import { TaonTableModule } from 'taon-ui/src';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
 
 @Component({

@@ -1,5 +1,5 @@
 import type { User } from './user';
-import { TaonEntityKeysToOmit } from 'firedev/src';
+import { TaonEntityKeysToOmit } from 'taon/src';
 
 export type IUser = Partial<User>;
 

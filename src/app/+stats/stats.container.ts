@@ -4,7 +4,7 @@ import { Observable, Subscription, map, of } from 'rxjs';
 import { User } from 'application-quiz/src';
 import { AppService } from '../../app.store';
 import { ApplicationQuizContext } from '../../app.context';
-import { Taon } from 'firedev/src';
+import { Taon } from 'taon/src';
 import { UserController } from 'application-quiz/src';
 
 @Component({
@@ -16,7 +16,7 @@ export class StatsContainer {
   user$: Observable<User>;
 
   userController = Taon.inject(() =>
-    ApplicationQuizContext.get(UserController),
+    ApplicationQuizContext.getClass(UserController),
   );
 
   // eslint-disable-next-line @angular-eslint/no-input-rename

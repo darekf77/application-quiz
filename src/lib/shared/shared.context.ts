@@ -1,4 +1,4 @@
-import { Taon,BaseContext } from 'firedev/src';
+import { Taon,BaseContext } from 'taon/src';
 import { TopicController } from './topic/topic.controller';
 import { QuestionController } from './question/question.controller';
 import { AnswerController } from './answer/answer.controller';

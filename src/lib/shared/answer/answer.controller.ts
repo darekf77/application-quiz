@@ -1,4 +1,4 @@
-import { Taon } from 'firedev/src';
+import { Taon } from 'taon/src';
 import { Answer } from './answer';
 
 @Taon.Controller({

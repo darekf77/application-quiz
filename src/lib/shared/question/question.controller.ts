@@ -1,4 +1,4 @@
-import { Taon } from 'firedev/src';
+import { Taon } from 'taon/src';
 import { Question } from './question';
 import { Answer } from '../answer';
 import { Topic } from '../topic';
