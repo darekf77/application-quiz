@@ -67,7 +67,7 @@ export class TopicEffects {
     ),
   );
 
-  navigateToQuesiton = createEffect(
+  navigateToQuestion = createEffect(
     () =>
       this.actions$.pipe(
         ofType(topicActions.FETCH_TOPIC_SUCCESS),

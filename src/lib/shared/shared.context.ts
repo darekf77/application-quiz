@@ -17,14 +17,14 @@ export const SharedContext = Taon.createContext(() => ({
     QuestionController,
     AnswerController,
     UserController,
-    // PUT FIREDEV CONTORLLERS HERE
+    // PUT TAON CONTROLLERS HERE
   },
   entities: {
     Topic,
     Question,
     Answer,
     User,
-    // PUT FIREDEV ENTITIES HERE
+    // PUT TAON ENTITIES HERE
   },
   logs: true,
 }));
