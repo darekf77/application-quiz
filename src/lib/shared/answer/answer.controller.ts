@@ -14,14 +14,14 @@ export class AnswerController extends Taon.Base.CrudController<any> {
     };
   }
 
-  @Taon.Http.GET() // @ts-ignore
+  @Taon.Http.GET() //
   getAll(
     @Taon.Http.Param.Query('limit') limit = Infinity,
   ): Taon.Response<Answer[]> {
     //#region @websqlFunc
     const config = this.db;
     return async (req, res) => {
-      // @ts-ignore
+      const config = await super.getAll();
       let arr = (await Taon.getResponseValue(config, {
         req,
         res,
