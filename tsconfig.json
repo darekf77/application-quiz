@@ -1,16 +1,10 @@
 {
   "extends": "./tsconfig.isomorphic.json",
   "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "strictNullChecks": false,
-    "rootDir": "./src",
-    "paths": {
-      "application-quiz": [
-        "./src/lib"
-      ],
-      "application-quiz/*": [
-        "./src/lib/*"
-      ]
-    }
+    "rootDir": "./src"
   },
   "include": [
     "src/**/*"

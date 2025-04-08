@@ -1,21 +1,9 @@
 {
-  "resources": [],
-  "overrided": {
-    "linkedFolders": [],
-    "ignoreDepsPattern": [],
-    "npmFixes": [],
-    "includeAsDev": [],
-    "includeOnly": [],
-    "dependencies": {},
-  },
-  "smartContainerBuildTarget": "",
-  "linkedRepos": [],
-  "libReleaseOptions": {
-    "cliBuildNoDts": false,
-    "cliBuildObscure": false,
-    "cliBuildUglify": false,
-    "cliBuildIncludeNodeModules": false,
-  },
-  "version": "v18",
   "type": "isomorphic-lib",
+  "version": "v18",
+  "dependenciesNamesForNpmLib": [],
+  "resources": [],
+  "packageJsonOverride": {
+    "author": "Dariusz Filipiak"
+  }
 }
