@@ -1,21 +1,16 @@
 {
-  "resources": [],
-  "overrided": {
-    "linkedFolders": [],
-    "ignoreDepsPattern": [],
-    "npmFixes": [],
-    "includeAsDev": [],
-    "includeOnly": [],
-    "dependencies": {},
-  },
-  "smartContainerBuildTarget": "",
-  "linkedRepos": [],
-  "libReleaseOptions": {
-    "cliBuildNoDts": false,
-    "cliBuildObscure": false,
-    "cliBuildUglify": false,
-    "cliBuildIncludeNodeModules": false,
-  },
-  "version": "v16",
   "type": "isomorphic-lib",
+  "version": "v19",
+  "dependenciesNamesForNpmLib": [],
+  "resources": [],
+  "autoReleaseConfigAllowedItems": [
+    {
+      "artifactName": "angular-node-app",
+      "envName": "demo",
+      "releaseType": "static-pages"
+    },
+  ],
+  "packageJsonOverride": {
+    "author": "Dariusz Filipiak",
+  },
 }

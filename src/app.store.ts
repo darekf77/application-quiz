@@ -46,7 +46,7 @@ import {
 } from '@ngrx/store';
 
 import { ITopic, Topic } from 'application-quiz/src';
-import { Taon } from 'firedev/src';
+import { Taon } from 'taon/src';
 import { ApplicationQuizContext } from './app.context';
 import { TopicController } from 'application-quiz/src';
 //#endregion
@@ -180,7 +180,7 @@ export class AppEffects {
 
   // eslint-disable-next-line @typescript-eslint/typedef
   topicController = Taon.inject(() =>
-    ApplicationQuizContext.get(TopicController),
+    ApplicationQuizContext.getClass(TopicController),
   );
 
   // eslint-disable-next-line @typescript-eslint/typedef

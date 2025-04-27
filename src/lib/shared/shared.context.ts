@@ -1,4 +1,4 @@
-import { Taon,BaseContext } from 'firedev/src';
+import { Taon,BaseContext } from 'taon/src';
 import { TopicController } from './topic/topic.controller';
 import { QuestionController } from './question/question.controller';
 import { AnswerController } from './answer/answer.controller';
@@ -17,14 +17,14 @@ export const SharedContext = Taon.createContext(() => ({
     QuestionController,
     AnswerController,
     UserController,
-    // PUT FIREDEV CONTORLLERS HERE
+    // PUT TAON CONTROLLERS HERE
   },
   entities: {
     Topic,
     Question,
     Answer,
     User,
-    // PUT FIREDEV ENTITIES HERE
+    // PUT TAON ENTITIES HERE
   },
   logs: true,
 }));

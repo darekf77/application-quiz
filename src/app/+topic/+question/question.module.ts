@@ -10,7 +10,7 @@ import { questionReducer } from './reducers/question.reducers';
 import { QuestionService } from './services/question.service';
 import { RouterModule, Routes } from '@angular/router';
 import { AnswerModule, QuestionModule } from 'application-quiz/src';
-import { TaonFullMaterialModule } from 'firedev-ui/src';
+import { TaonFullMaterialModule } from 'taon/src';
 import { StaticColumnsModule } from 'static-columns/src';
 
 const routes: Routes = [

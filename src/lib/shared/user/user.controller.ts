@@ -1,4 +1,4 @@
-import { Taon } from 'firedev/src';
+import { Taon } from 'taon/src';
 import { User } from './user';
 import { Answer } from '../answer/answer';
 import { Stats } from './user.models';
@@ -25,7 +25,7 @@ export class UserController extends Taon.Base.CrudController<User> {
    * @param username should be encoded encodeURIComponent
    * @returns
    */
-  @Taon.Http.POST('/submit/user/:username') // @ts-ignore
+  @Taon.Http.POST('/submit/user/:username') //
   submit(
     @Taon.Http.Param.Body('answers') corectAnswersIds: Number[],
     @Taon.Http.Param.Path('username') username: string,
@@ -33,7 +33,7 @@ export class UserController extends Taon.Base.CrudController<User> {
   ): Taon.Response<User> {
     //#region @websqlFunc
     return async (req, res) => {
-      // @ts-ignore
+      //
       username = decodeURIComponent(username);
 
       const userExists =
@@ -100,7 +100,7 @@ export class UserController extends Taon.Base.CrudController<User> {
           topicName: topic.title,
           scored: userAnswers.filter(
             a => a.topic.id === topic.id && a.answeredCorrectly,
-          ).length, // @ts-ignore
+          ).length, //
           total: allAnswers.filter(a => a.topic.id === topic.id && a.isCorrect)
             .length,
         };
@@ -117,13 +117,13 @@ export class UserController extends Taon.Base.CrudController<User> {
     //#endregion
   }
 
-  @Taon.Http.POST('/stats/for/user/:username') // @ts-ignore
+  @Taon.Http.POST('/stats/for/user/:username') //
   getByUsername(
     @Taon.Http.Param.Path('username') username: string,
   ): Taon.Response<User> {
     //#region @websqlFunc
     return async (req, res) => {
-      // @ts-ignore
+      //
       const user = await this.db.findOne({
         where: {
           username: decodeURIComponent(username),

@@ -4,7 +4,7 @@
 <p style="text-align: center;"><img src="./__images/app.png" ></p>
 
 # Technolgies
-- Taon v16 (firedev.io)
+- Taon v16 (taon.io)
 - Angular v16
 - NgRx v16
 - TypeORM (SQL.js in browser/ SQLite in Nodejs server)
@@ -13,24 +13,24 @@
 
 # Development
 
-1. Instal firedev:
+1. Instal taon:
 ```
-npm i -g firedev
+npm i -g taon
 ```
 
-2. Go do *firedev-quiz* folder.
+2. Go do *taon-quiz* folder.
 
-**There is no need for node_modules installation with firedev framework !!!** 
+**There is no need for node_modules installation with taon framework !!!** 
 
 3. Start application with TypeORM/SQL.js db inside BROWSER - simplest way to develop.
 ```
-firedev start --websql    # and go to http://localhost:4201
+taon start --websql    # and go to http://localhost:4201
 ```
 
 or start normal NodeJS server from vscode
 
 ```
-firedev start  # and go to http://localhost:4200 
+taon start  # and go to http://localhost:4200 
 ```
       
 <p style="text-align: center;"><img src="./__images/sqlite-server-start.png" ></p>

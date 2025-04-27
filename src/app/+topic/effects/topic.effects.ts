@@ -21,7 +21,7 @@ import { Store } from '@ngrx/store';
 import { TopicInitialState } from '../topic.models';
 import { Topic, User } from 'application-quiz/src';
 import { appSelectors } from '../../../app.store';
-import { Taon } from 'firedev/src';
+import { Taon } from 'taon/src';
 import { UserController } from 'application-quiz/src';
 import { ApplicationQuizContext } from '../../../app.context';
 import { TopicController } from 'application-quiz/src';
@@ -30,11 +30,11 @@ import { TopicController } from 'application-quiz/src';
 export class TopicEffects {
   // eslint-disable-next-line @typescript-eslint/typedef
   userController = Taon.inject(() =>
-    ApplicationQuizContext.get(UserController),
+    ApplicationQuizContext.getClass(UserController),
   );
 
   topicController = Taon.inject(() =>
-    ApplicationQuizContext.get(TopicController),
+    ApplicationQuizContext.getClass(TopicController),
   );
 
   constructor(
@@ -67,7 +67,7 @@ export class TopicEffects {
     ),
   );
 
-  navigateToQuesiton = createEffect(
+  navigateToQuestion = createEffect(
     () =>
       this.actions$.pipe(
         ofType(topicActions.FETCH_TOPIC_SUCCESS),

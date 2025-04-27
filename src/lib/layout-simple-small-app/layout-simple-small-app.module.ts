@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutSimpleSmallAppComponent } from './layout-simple-small-app.component';
-import { TaonFullMaterialModule } from 'firedev-ui/src';
+import { TaonFullMaterialModule } from 'taon/src';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { StaticColumnsModule } from 'static-columns/src';
 

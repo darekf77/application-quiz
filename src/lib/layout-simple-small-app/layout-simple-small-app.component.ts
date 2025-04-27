@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'layout-simple-small-app',
+  standalone: false,
   templateUrl: './layout-simple-small-app.component.html',
   styleUrls: ['./layout-simple-small-app.component.scss'],
   encapsulation: ViewEncapsulation.None,

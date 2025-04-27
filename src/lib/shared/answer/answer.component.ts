@@ -11,6 +11,7 @@ import type { Answer } from './answer';
 
 @Component({
   selector: 'answer',
+  standalone: false,
   templateUrl: './answer.component.html',
   styleUrls: ['./answer.component.scss'],
   providers: [AnswerService],

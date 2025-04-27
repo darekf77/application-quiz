@@ -1,19 +1,12 @@
-//#region @notForNpm
 import { HOST_BACKEND_PORT } from './app.hosts';
 //#region imports
-import { Taon } from 'firedev/src';
+import { Taon } from 'taon/src';
 import { _ } from 'tnp-core/src';
-import {
-  Topic, TopicController
-} from 'application-quiz/src';
+import { Topic, TopicController } from 'application-quiz/src';
 import { ApplicationQuizContext } from './app.context';
 //#region @browser
 import { LayoutSimpleSmallAppModule } from 'application-quiz/src';
-import {
-  NgModule,
-  ViewChild,
-  ViewEncapsulation,
-} from '@angular/core';
+import { NgModule, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import {
   PreloadAllModules,
@@ -25,7 +18,7 @@ import { MaterialCssVarsModule } from 'angular-material-css-vars';
 import {
   TaonFullMaterialModule,
   TaonGithubForkMeCornerModule,
-} from 'firedev-ui/src';
+} from 'taon/src';
 import { Store, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { MatMenuTrigger } from '@angular/material/menu';
@@ -71,6 +64,7 @@ const routes: Routes = [
 //#region main component
 @Component({
   selector: 'app-application-quiz',
+  standalone: false,
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./app.scss'],
   templateUrl: './app.html',
@@ -137,7 +131,7 @@ export class ApplicationQuizModule {}
 
 //#endregion
 
-//#region firedev start function
+//#region taon start function
 async function start() {
   // Taon.enableProductionMode();
 
@@ -151,18 +145,16 @@ async function start() {
     //   res.send('Hello application-quiz');
     // });
   }
-   //#endregion
+  //#endregion
   if (Taon.isBrowser) {
-    const ref = await ApplicationQuizContext.ref();
+    const ref = await ApplicationQuizContext.__refSync;
     const users = (await ref.getInstanceBy(TopicController).getAll().received)
       .body?.json;
     console.log({
       'users from backend': users,
     });
   }
-
 }
 //#endregion
 
 export default start;
-//#endregion

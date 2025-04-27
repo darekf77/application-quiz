@@ -1,6 +1,5 @@
 //#region @browser
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 import { TopicInitialState } from './topic.models';
 import * as topicSelectors from './selectors/topic.selectors';
@@ -17,6 +16,7 @@ import * as questionSelectors from './+question/selectors/question.selectors';
 
 @Component({
   selector: 'app-topic',
+  standalone: false,
   templateUrl: './topic.container.html',
   styleUrls: ['./topic.container.scss'],
 })
@@ -29,8 +29,8 @@ export class TopicContainer {
     private route: ActivatedRoute,
     private updates$: Actions,
   ) {
-    updates$
-      .pipe(ofType(topicAction.SHOW_ENTER_USERNAME), takeUntilDestroyed())
+    updates$ // TODO destroy @LAST
+      .pipe(ofType(topicAction.SHOW_ENTER_USERNAME))
       .subscribe(() => {
         this.usernamePopup.fire();
       });

@@ -4,6 +4,7 @@ speed-measure-plugin*.json
 
 # misc
 /.sass-cache
+/**/tmp-*
 /connect.lock
 /coverage
 /libpeerconnection.log
@@ -12,19 +13,21 @@ yarn-error.log
 testem.log
 /typings
 app.hosts.ts
-/linked-repos
-
+/.firedev
+/.taon
+/.tnp
+/docs-config.schema.json
+/**/BUILD-INFO.md
 /tests-environments
 /src/lib/lib-info.md
 /src/migrations/migrations-info.md
 /src/tests/mocha-tests-info.md
 /src/assets/shared/shared_folder_info.txt
+.vscode/launch.json
 
 # System Files
 .DS_Store
 Thumbs.db
-
-
 /node_modules
 /tmp*
 /dist*
@@ -43,29 +46,22 @@ Thumbs.db
 /npm-debug.log*
 /.sass-cache
 /.sourcemaps
-/tsconfig.isomorphic.json
-/tsconfig.isomorphic-flat-dist.json
-/tsconfig.browser.json
-/tsconfig.json
-/tsconfig.backend.dist.json
 /index.js
 /index.d.ts
 /index.js.map
+/taon-config-standalone.schema.json
+/taon-config-container.schema.json
 /webpack.config.js
-/webpack.backend-dist-build.js
 /run.js
 /run-org.js
-/tsconfig.isomorphic.json.filetemplate
-/tsconfig.isomorphic-flat-dist.json.filetemplate
-/tsconfig.browser.json.filetemplate
-/tsconfig.json.filetemplate
-/tsconfig.backend.dist.json.filetemplate
-/tsconfig.backend.dist.json
+/update-vscode-package-json.js
+/eslint.config.js
+/projects/tmp*
+!tsconfig*
+!webpack.*
+
 # =====================
-!firedev.json
-!firedev.jsonc
+!taon.jsonc
 *.filetemplate
-
-
-
-/.vscode/launch.json
+/*.sqlite
+/*.rest
