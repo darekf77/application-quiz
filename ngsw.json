@@ -1,0 +1,149 @@
+{
+  "configVersion": 1,
+  "timestamp": 1745785396000,
+  "index": "/application-quiz/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/application-quiz/339.644f23571a12e201.js",
+        "/application-quiz/707.2f6f98a0b2049cb7.js",
+        "/application-quiz/788.3e6de30e73177251.js",
+        "/application-quiz/82.9c10dd878f0094f1.js",
+        "/application-quiz/95.579dfefeb29143bc.js",
+        "/application-quiz/favicon.ico",
+        "/application-quiz/index.html",
+        "/application-quiz/main.3e9dddfe87967b6d.js",
+        "/application-quiz/manifest.webmanifest",
+        "/application-quiz/polyfills.6504ecb8c31f33f5.js",
+        "/application-quiz/runtime.b9e5ce058cad1c37.js",
+        "/application-quiz/styles.17ad769e3347bc0c.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/application-quiz/assets/assets-for/application-quiz/GasoekOne-Regular.ttf",
+        "/application-quiz/assets/assets-for/application-quiz/Gasoek_One.zip",
+        "/application-quiz/assets/assets-for/application-quiz/OFL.txt",
+        "/application-quiz/assets/assets-for/application-quiz/logo.png",
+        "/application-quiz/assets/assets-for/application-quiz/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/incremental-compiler/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/isomorphic-region-loader/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/json10-writer/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/json10/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/lodash-walk-object/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/magic-renamer/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/ng-talkback/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/ng2-logger/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/ng2-rest-swagger-generator/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/ng2-rest/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/node-cli-tester/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/record-replay-req-res-scenario/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/static-columns/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/taon-storage/shared/logo.png",
+        "/application-quiz/assets/assets-for/taon-storage/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/taon-type-sql/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/taon-typeorm/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/taon/shared/logo-header-admin-mode.png",
+        "/application-quiz/assets/assets-for/taon/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/tnp-config/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/tnp-core/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/tnp-helpers/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/tnp-models/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/tnp/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/typescript-class-helpers/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-for/vpn-split/shared/shared_folder_info.txt",
+        "/application-quiz/assets/assets-list.json",
+        "/application-quiz/assets/sql-wasm.wasm",
+        "/application-quiz/primeicons.19e14e488f5edc90.svg",
+        "/application-quiz/primeicons.310a7310efb91ab1.ttf",
+        "/application-quiz/primeicons.7f7722745590608a.woff",
+        "/application-quiz/primeicons.e1a53edb6ea00325.woff2"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/application-quiz/339.644f23571a12e201.js": "4841f4bda86772cc11d68b386fd78684d569c56b",
+    "/application-quiz/707.2f6f98a0b2049cb7.js": "8a6f465119aa59e84ed3ef470c3b9d8821188106",
+    "/application-quiz/788.3e6de30e73177251.js": "5e394ae9cc722829da994d46e2cc3f307d3e2947",
+    "/application-quiz/82.9c10dd878f0094f1.js": "fb940f4bb28b1f4fb00ad11b7d7bf1e7d2951e63",
+    "/application-quiz/95.579dfefeb29143bc.js": "c86dee2563c289400ea0de91f7c0108e63c7776b",
+    "/application-quiz/assets/assets-for/application-quiz/GasoekOne-Regular.ttf": "418a25a1ae82cb08c6211e4039b3f3a8ff37738d",
+    "/application-quiz/assets/assets-for/application-quiz/Gasoek_One.zip": "2dd2260feab29f2cf99702e0f278472a9966d3fd",
+    "/application-quiz/assets/assets-for/application-quiz/OFL.txt": "3a646c7dff9e770643d94aad170afe4f82985165",
+    "/application-quiz/assets/assets-for/application-quiz/logo.png": "11d04c64a986bf3dac6052a608eab59238072fb2",
+    "/application-quiz/assets/assets-for/application-quiz/shared/shared_folder_info.txt": "a40c31a3ba883f7beca2e63f98465b338f99c053",
+    "/application-quiz/assets/assets-for/incremental-compiler/shared/shared_folder_info.txt": "539c7c2abee2b1e1363e838211a9d0bc13b360de",
+    "/application-quiz/assets/assets-for/isomorphic-region-loader/shared/shared_folder_info.txt": "1deb021c521614480525d84d1865690e78fe60a7",
+    "/application-quiz/assets/assets-for/json10-writer/shared/shared_folder_info.txt": "ba6d6fb1fbebb8da6553bdb42e96c75db0fb3d6b",
+    "/application-quiz/assets/assets-for/json10/shared/shared_folder_info.txt": "c5cd0bf46f7414783953f8d4decce18df8ac32f1",
+    "/application-quiz/assets/assets-for/lodash-walk-object/shared/shared_folder_info.txt": "714ae2190b3e58be949267cf4f0f8118e2a3d7e8",
+    "/application-quiz/assets/assets-for/magic-renamer/shared/shared_folder_info.txt": "23426b1647bf9a9abfb554c76406fa51122570cf",
+    "/application-quiz/assets/assets-for/ng-talkback/shared/shared_folder_info.txt": "d05ca8bef943753f737c3f19da0b70c4856d6938",
+    "/application-quiz/assets/assets-for/ng2-logger/shared/shared_folder_info.txt": "6a58fab1c80234310afed5e670a8772db85effe7",
+    "/application-quiz/assets/assets-for/ng2-rest-swagger-generator/shared/shared_folder_info.txt": "0e60190c8aaa9aa9d95f1403ed0062507e0b2a31",
+    "/application-quiz/assets/assets-for/ng2-rest/shared/shared_folder_info.txt": "8bac9a6bc725a625c6f5a6b8089ddce14129c621",
+    "/application-quiz/assets/assets-for/node-cli-tester/shared/shared_folder_info.txt": "a289412f5adcf757e9c374120840421e1368b2a8",
+    "/application-quiz/assets/assets-for/record-replay-req-res-scenario/shared/shared_folder_info.txt": "a1d02037896eb2830f30139e60536998071dd8f6",
+    "/application-quiz/assets/assets-for/static-columns/shared/shared_folder_info.txt": "c986cff75999afc3e7d57a3d44f91e47d88470ba",
+    "/application-quiz/assets/assets-for/taon-storage/shared/logo.png": "793b91cbeaebc1810aebf8312a1e24876e904403",
+    "/application-quiz/assets/assets-for/taon-storage/shared/shared_folder_info.txt": "594bc418e9c028ed2b5292be31f7cc48d3cfc231",
+    "/application-quiz/assets/assets-for/taon-type-sql/shared/shared_folder_info.txt": "46108253c640ccd90fc8c435096f2cd9ca7b82bb",
+    "/application-quiz/assets/assets-for/taon-typeorm/shared/shared_folder_info.txt": "9a7574eb7d514d367f00778f00458de5d38bce1d",
+    "/application-quiz/assets/assets-for/taon/shared/logo-header-admin-mode.png": "f1239eae631538310e79cf52c203df59127eadf4",
+    "/application-quiz/assets/assets-for/taon/shared/shared_folder_info.txt": "3e40b703456e9bcba60f8c309bbfb1cac86743b3",
+    "/application-quiz/assets/assets-for/tnp-config/shared/shared_folder_info.txt": "9f7c27a88a99d69c0206f8a9294b18386270df29",
+    "/application-quiz/assets/assets-for/tnp-core/shared/shared_folder_info.txt": "1f350fb672b32154a2eb6dce7ce026dca6deaf2b",
+    "/application-quiz/assets/assets-for/tnp-helpers/shared/shared_folder_info.txt": "1fcf2fbf0859ee327e9eac837c82754336d5e5f6",
+    "/application-quiz/assets/assets-for/tnp-models/shared/shared_folder_info.txt": "16a4859c7f0f4bcd028ae4e1022e2fd1e13ab376",
+    "/application-quiz/assets/assets-for/tnp/shared/shared_folder_info.txt": "ae80c13bcd239abd32a83c6f202e4e4ff1a749cb",
+    "/application-quiz/assets/assets-for/typescript-class-helpers/shared/shared_folder_info.txt": "70c5ec61c0e77c5f9b9cdb3670ebe97c9a7df856",
+    "/application-quiz/assets/assets-for/vpn-split/shared/shared_folder_info.txt": "8952a2275019904998fdfd32bc34fcbe6d6b40e1",
+    "/application-quiz/assets/assets-list.json": "174c6e0b71fd7cb51c0a6029dbb4581e1430cdd7",
+    "/application-quiz/assets/sql-wasm.wasm": "fcc42ce03c2b5af20e90acc2b75263acc502d736",
+    "/application-quiz/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/application-quiz/index.html": "8f883c374282ee7c45616f4dcc0920fb80d624c0",
+    "/application-quiz/main.3e9dddfe87967b6d.js": "d0911ed6c358d501d2875c26184fd67082406d5a",
+    "/application-quiz/manifest.webmanifest": "da0780ccfb42ecd0ff569f2bc760452879c27d77",
+    "/application-quiz/polyfills.6504ecb8c31f33f5.js": "df6a0999d54a25509dce99028183303b4a4f0031",
+    "/application-quiz/primeicons.19e14e488f5edc90.svg": "a07ae39027c1a780b42fd82fad7575c2924d9d28",
+    "/application-quiz/primeicons.310a7310efb91ab1.ttf": "3b878ca7e88945a8ec25814810b95367d8977ae6",
+    "/application-quiz/primeicons.7f7722745590608a.woff": "361e3af71bb4e515feead2f787348a92a5527158",
+    "/application-quiz/primeicons.e1a53edb6ea00325.woff2": "837c1279b6af9d297f34fdb43e6fcc9206a79f32",
+    "/application-quiz/runtime.b9e5ce058cad1c37.js": "a26952b839068aa1be142ffc43e2f8d1587dbac2",
+    "/application-quiz/styles.17ad769e3347bc0c.css": "6c32a643912a4da40353628f2574f9787202c579"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
