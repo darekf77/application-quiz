@@ -12,6 +12,7 @@ import { Topic } from './topic';
 
 @Component({
   selector: 'topic',
+  standalone: false,
   templateUrl: './topic.component.html',
   styleUrls: ['./topic.component.scss'],
   providers: [TopicService],

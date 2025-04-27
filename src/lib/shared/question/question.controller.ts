@@ -1,4 +1,4 @@
-import { Taon } from 'firedev/src';
+import { Taon } from 'taon/src';
 import { Question } from './question';
 import { Answer } from '../answer';
 import { Topic } from '../topic';
@@ -30,7 +30,7 @@ export class QuestionController extends Taon.Base.CrudController<any> {
     //#region @websqlFunc
     const config = super.getAll();
     return async (req, res) => {
-      // @ts-ignore
+      //
       let arr = (await Taon.getResponseValue(config, {
         req,
         res,
@@ -43,7 +43,7 @@ export class QuestionController extends Taon.Base.CrudController<any> {
     //#endregion
   }
 
-  @Taon.Http.GET(`/question/:questionOid/topic/:topicTitleKebabCase`) // @ts-ignore
+  @Taon.Http.GET(`/question/:questionOid/topic/:topicTitleKebabCase`) //
   getQuestionWithAswers(
     @Taon.Http.Param.Path('questionOid') questionOid: number,
     @Taon.Http.Param.Path('topicTitleKebabCase') topicTitleKebabCase: string,
@@ -51,7 +51,7 @@ export class QuestionController extends Taon.Base.CrudController<any> {
     //#region @websqlFunc
     const config = super.getAll();
     return async (req, res) => {
-      // @ts-ignore
+      //
       const topic = await this.topicRepository.findOne({
         where: {
           topicTitleKebabCase,

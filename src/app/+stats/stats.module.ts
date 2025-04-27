@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { StatsContainer } from './stats.container';
 import { UserComponent } from 'application-quiz/src';
-import { TaonFullMaterialModule } from 'firedev-ui/src';
+import { TaonFullMaterialModule } from 'taon/src';
 import { StaticColumnsModule } from 'static-columns/src';
 
 const routes: Routes = [

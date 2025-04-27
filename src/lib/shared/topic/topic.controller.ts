@@ -1,4 +1,4 @@
-import { ClassHelpers, Taon } from 'firedev/src';
+import { ClassHelpers, Taon } from 'taon/src';
 import { _ } from 'tnp-core/src';
 import { Topic } from './topic';
 //#region @websql
@@ -31,7 +31,7 @@ export class TopicController extends Taon.Base.CrudController<any> {
     //#region @websqlFunc
     const config = super.getAll();
     return async (req, res) => {
-      // @ts-ignore
+      //
       let arr = (await Taon.getResponseValue(config, {
         req,
         res,
@@ -50,7 +50,7 @@ export class TopicController extends Taon.Base.CrudController<any> {
   ): Taon.Response<Topic> {
     //#region @websqlFunc
     return async (req, res) => {
-      // @ts-ignore
+      //
       const topic = await this.db.findOne({
         where: {
           topicTitleKebabCase,

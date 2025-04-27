@@ -5,6 +5,7 @@ import type { Question } from './question';
 
 @Component({
   selector: 'question',
+  standalone: false,
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss'],
   providers: [QuestionService],

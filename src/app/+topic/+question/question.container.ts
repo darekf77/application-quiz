@@ -12,6 +12,7 @@ import { MatSelectionListChange } from '@angular/material/list';
 
 @Component({
   selector: 'app-question',
+  standalone: false,
   templateUrl: './question.container.html',
   styleUrls: ['./question.container.scss'],
 })
