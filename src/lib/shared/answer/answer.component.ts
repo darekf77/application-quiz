@@ -1,4 +1,3 @@
-//#region @browser
 import {
   Component,
   Input,
@@ -6,9 +5,9 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { AnswerService } from './answer.service';
-import type { Answer } from './answer';
 
+import type { Answer } from './answer';
+import { AnswerService } from './answer.service';
 @Component({
   selector: 'answer',
   standalone: false,
@@ -16,11 +15,10 @@ import type { Answer } from './answer';
   styleUrls: ['./answer.component.scss'],
   providers: [AnswerService],
 })
-export class AnswerComponent implements OnInit {
-  @ViewChild('exposedTemplate') exposedTemplate: TemplateRef<any>;
-  @Input() answer: Answer;
+export class AnswerComponent {
+  @ViewChild('exposedTemplate')
+  exposedTemplate: TemplateRef<any>;
+  @Input()
+  answer: Answer;
   constructor(protected service: AnswerService) {}
-
-  ngOnInit() {}
 }
-//#endregion

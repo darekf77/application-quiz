@@ -1,32 +1,31 @@
 import { ClassHelpers, Taon } from 'taon/src';
 import { _ } from 'tnp-core/src';
-import { Topic } from './topic';
+
 //#region @websql
 import { backendQuizData } from '../../application-quiz.data';
 //#endregion
-import { Question } from '../question';
 import { Answer } from '../answer';
+import { Question } from '../question';
 
+import { Topic } from './topic';
 @Taon.Controller({
   className: 'TopicController',
 })
 export class TopicController extends Taon.Base.CrudController<any> {
   entityClassResolveFn = () => Topic;
-
   questionRepository = this.injectRepo(Question);
   topicRepository = this.injectRepo(Topic);
   answerRepository = this.injectRepo(Answer);
-
   @Taon.Http.GET()
   hello(): Taon.Response<string> {
     return async () => {
       return 'Hello world';
     };
   }
-
   @Taon.Http.GET()
   getAll(
-    @Taon.Http.Param.Query('limit') limit = Infinity,
+    @Taon.Http.Param.Query('limit')
+    limit = Infinity,
   ): Taon.Response<Topic[]> {
     //#region @websqlFunc
     const config = super.getAll();
@@ -43,10 +42,10 @@ export class TopicController extends Taon.Base.CrudController<any> {
     };
     //#endregion
   }
-
   @Taon.Http.GET(`/by/title/:topicTitleKebabCase`)
   getByTitleKebabCase(
-    @Taon.Http.Param.Path('topicTitleKebabCase') topicTitleKebabCase: string,
+    @Taon.Http.Param.Path('topicTitleKebabCase')
+    topicTitleKebabCase: string,
   ): Taon.Response<Topic> {
     //#region @websqlFunc
     return async (req, res) => {
@@ -60,7 +59,6 @@ export class TopicController extends Taon.Base.CrudController<any> {
     };
     //#endregion
   }
-
   //#region @websql
   async initExampleDbData() {
     const topics = [];
@@ -76,21 +74,17 @@ export class TopicController extends Taon.Base.CrudController<any> {
         question.topicId = topic.id;
         question.oid = index2 + 1;
         const anwsers = _.cloneDeep(question.answers);
-
         if (index2 === 0) {
           question.prevOid = null;
         } else {
           question.prevOid = question.oid - 1;
         }
-
         if (index2 === questions.length - 1) {
           question.nextOid = null;
         } else {
           question.nextOid = question.oid + 1;
         }
-
         question = await this.questionRepository.save(question);
-
         topic.question = Array.isArray(topic.question) ? topic.question : [];
         topic.question[index2] = question;
         for (let index3 = 0; index3 < anwsers.length; index3++) {
@@ -109,6 +103,5 @@ export class TopicController extends Taon.Base.CrudController<any> {
     //   'WHOLE DB': topics,
     // });
   }
-
   //#endregion
 }

@@ -1,24 +1,23 @@
 import { Taon } from 'taon/src';
-import { User } from './user';
-import { Answer } from '../answer/answer';
-import { Stats } from './user.models';
-import { Topic } from '../topic';
-import { Question } from '../question';
 import { _ } from 'tnp-core/src';
 
+import { Answer } from '../answer/answer';
+import { Question } from '../question';
+import { Topic } from '../topic';
+
+import { User } from './user';
+import { Stats } from './user.models';
 @Taon.Controller({
   className: 'UserController',
 })
 export class UserController extends Taon.Base.CrudController<User> {
-  entityClassResolveFn = () => User;
-
-  get userRepository() {
+  entityClassResolveFn = (): typeof User => User;
+  get userRepository(): Taon.Base.Repository<User> {
     return this.db;
   }
   questionRepository = this.injectRepo(Question);
   topicRepository = this.injectRepo(Topic);
   answerRepository = this.injectRepo(Answer);
-
   /**
    *
    * @param corectAnswersIds
@@ -27,36 +26,34 @@ export class UserController extends Taon.Base.CrudController<User> {
    */
   @Taon.Http.POST('/submit/user/:username') //
   submit(
-    @Taon.Http.Param.Body('answers') corectAnswersIds: Number[],
-    @Taon.Http.Param.Path('username') username: string,
-    @Taon.Http.Param.Query('onlyTopicId') onlyTopicId: Number,
+    @Taon.Http.Param.Body('answers')
+    corectAnswersIds: Number[],
+    @Taon.Http.Param.Path('username')
+    username: string,
+    @Taon.Http.Param.Query('onlyTopicId')
+    onlyTopicId: Number,
   ): Taon.Response<User> {
     //#region @websqlFunc
     return async (req, res) => {
       //
       username = decodeURIComponent(username);
-
       const userExists =
         (await this.userRepository.count({
           where: {
             username,
           },
         })) > 0;
-
       if (userExists) {
         throw new Error(`Username exists or not correct`);
       }
-
       let user = await this.userRepository.save(
         User.from({
           username,
         }),
       );
-
       const allTopics = (await this.topicRepository.find()) as Topic[];
       const allQuestions = (await this.questionRepository.find()) as Question[];
       const allAnswers = (await this.answerRepository.find()) as Answer[];
-
       for (let index = 0; index < allAnswers.length; index++) {
         const answer = allAnswers[index];
         answer.topic = allTopics.find(topic => {
@@ -64,33 +61,27 @@ export class UserController extends Taon.Base.CrudController<User> {
           return topic.id === question.topicId;
         });
       }
-
       let userAnswers = corectAnswersIds.map(id => {
         const answerFromDB = allAnswers.find(a => a.id == id);
-        const answer = answerFromDB.clone();
+        const answer = answerFromDB.clone({});
         answer.userAnswer = true;
         answer.topic = Topic.from(answer.topic);
         return answer;
       });
-
       const updateOnlyForTopicId =
         _.isNumber(onlyTopicId) && !_.isNaN(onlyTopicId);
-
       if (updateOnlyForTopicId) {
         userAnswers = userAnswers.filter(f => onlyTopicId === f.topic.id);
       }
-
       for (let index = 0; index < userAnswers.length; index++) {
         const userAnswer = userAnswers[index];
         userAnswer.answeredCorrectly =
           userAnswer.userAnswer ===
           allAnswers.find(a => a.id == userAnswer.id).isCorrect;
       }
-
       if (!Array.isArray(user.statistics)) {
         user.statistics = [];
       }
-
       for (let index = 0; index < allTopics.length; index++) {
         const topic = allTopics[index];
         const existedTopicIndex = (user.statistics || []).findIndex(
@@ -110,16 +101,15 @@ export class UserController extends Taon.Base.CrudController<User> {
           user.statistics.push(data);
         }
       }
-
       await this.userRepository.updateById(user.id, user);
       return user;
     };
     //#endregion
   }
-
   @Taon.Http.POST('/stats/for/user/:username') //
   getByUsername(
-    @Taon.Http.Param.Path('username') username: string,
+    @Taon.Http.Param.Path('username')
+    username: string,
   ): Taon.Response<User> {
     //#region @websqlFunc
     return async (req, res) => {
@@ -129,12 +119,10 @@ export class UserController extends Taon.Base.CrudController<User> {
           username: decodeURIComponent(username),
         },
       });
-
       return user;
     };
     //#endregion
   }
-
   //#region @websql
   async initExampleDbData() {}
   //#endregion

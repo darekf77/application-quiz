@@ -1,12 +1,12 @@
-//#region @browser
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UserService } from './user.service';
 import { CommonModule } from '@angular/common';
-import { TaonFullMaterialModule } from 'taon/src';
-import { StaticColumnsModule } from 'static-columns/src';
-import { User } from './user';
-import { TaonTableModule } from 'taon/src';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
+import { StaticColumnsModule } from 'static-columns/src';
+import { TaonFullMaterialModule } from 'taon/src';
+import { TaonTableModule } from 'taon/src';
+
+import { User } from './user';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'user',
@@ -19,12 +19,14 @@ import { MtxGridColumn } from '@ng-matero/extensions/grid';
     StaticColumnsModule,
     TaonTableModule,
   ],
+  standalone: true,
 })
 export class UserComponent implements OnInit {
   entity = User;
-  @Input() user: User;
-  @Output() userGoTo = new EventEmitter();
-
+  @Input()
+  user: User;
+  @Output()
+  userGoTo = new EventEmitter();
   statsColumns = [
     {
       header: 'Topic Name',
@@ -41,7 +43,6 @@ export class UserComponent implements OnInit {
       maxWidth: 100,
     },
   ] as MtxGridColumn[];
-
   usersColumns = [
     {
       header: 'ID',
@@ -71,9 +72,6 @@ export class UserComponent implements OnInit {
       ],
     },
   ];
-
   constructor(protected service: UserService) {}
-
   ngOnInit() {}
 }
-//#endregion

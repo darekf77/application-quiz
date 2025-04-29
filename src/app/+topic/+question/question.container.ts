@@ -1,15 +1,15 @@
-//#region @browser
 import { Component, Input, OnInit } from '@angular/core';
+import { MatSelectionListChange } from '@angular/material/list';
 import { Store } from '@ngrx/store';
-import { QuestionInitialState } from './question.models';
-import * as questionSelectors from './selectors/question.selectors';
-import * as questionAction from './actions/question.actions';
+import { Answer, ITopic, Question } from 'application-quiz/src';
 import { Observable, firstValueFrom, map, of, share, tap } from 'rxjs';
 import { _ } from 'tnp-core/src';
-import { Answer, ITopic, Question } from 'application-quiz/src';
-import { AppService, appActions, appSelectors } from '../../../app.store';
-import { MatSelectionListChange } from '@angular/material/list';
 
+import { AppService, appActions, appSelectors } from '../../../app.store';
+
+import * as questionAction from './actions/question.actions';
+import { QuestionInitialState } from './question.models';
+import * as questionSelectors from './selectors/question.selectors';
 @Component({
   selector: 'app-question',
   standalone: false,
@@ -17,17 +17,17 @@ import { MatSelectionListChange } from '@angular/material/list';
   styleUrls: ['./question.container.scss'],
 })
 export class QuestionContainer {
+  question$: Observable<Question>;
+  readonly selectedAnswersForQuestion$: Observable<number[]>;
   constructor(
     private store: Store<QuestionInitialState>,
     private appService: AppService,
-  ) {}
-
-  question$: Observable<Question>;
-
-  selectedAnswersForQuestion$ = this.store.select(
-    questionSelectors.currentQuestionSelectedIds,
-  );
-
+  ) {
+    this.selectedAnswersForQuestion$ = store.select(
+      questionSelectors.currentQuestionSelectedIds,
+    );
+  }
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('questionOid')
   set id(questionOid) {
     if (!_.isNil(questionOid)) {
@@ -42,26 +42,20 @@ export class QuestionContainer {
       this.question$ = of(void 0);
     }
   }
-
   onSelectionChange(e: MatSelectionListChange) {
     const answersIds = e.source._value as any as Number[];
     this.store.dispatch(questionAction.MARK_ANSWERS({ answersIds }));
   }
-
   async goNext(q: Question) {
     const topic = await firstValueFrom(
       this.store.select(appSelectors.selectedTopic),
     );
     this.appService.go(topic.topicTitleKebabCase, q.nextOid);
   }
-
   async goPrev(q: Question) {
     const topic = await firstValueFrom(
       this.store.select(appSelectors.selectedTopic),
     );
     this.appService.go(topic.topicTitleKebabCase, q.prevOid);
   }
-
-  ngOnInit(): void {}
 }
-//#endregion

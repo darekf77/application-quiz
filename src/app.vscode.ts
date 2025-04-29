@@ -1,9 +1,7 @@
 import { Utils } from 'tnp-core';
 import { CommandType, executeCommand } from 'tnp-helpers';
 import type { ExtensionContext } from 'vscode';
-
 const group = 'Application Quiz CLI essentials';
-
 export const commands: CommandType[] = (
   [
     {
@@ -22,7 +20,6 @@ export const commands: CommandType[] = (
   }
   return c;
 });
-
 export function activate(context: ExtensionContext) {
   for (let index = 0; index < commands.length; index++) {
     const {
@@ -45,10 +42,5 @@ export function activate(context: ExtensionContext) {
     }
   }
 }
-
 export function deactivate() {}
-
 export default { commands };
-
-
-        

@@ -1,31 +1,29 @@
 import { Taon } from 'taon/src';
-import { Question } from './question';
+
 import { Answer } from '../answer';
 import { Topic } from '../topic';
 
+import { Question } from './question';
 @Taon.Controller({
   className: 'QuestionController',
 })
 export class QuestionController extends Taon.Base.CrudController<any> {
   entityClassResolveFn = () => Question;
-
   get questionRepository() {
     return this.db;
   }
-
   topicRepository = this.injectRepo(Topic);
   anwserRepository = this.injectRepo(Answer);
-
   @Taon.Http.GET()
   hello(): Taon.Response<string> {
     return async () => {
       return 'Hello world';
     };
   }
-
   @Taon.Http.GET()
   getAll(
-    @Taon.Http.Param.Query('limit') limit = Infinity,
+    @Taon.Http.Param.Query('limit')
+    limit = Infinity,
   ): Taon.Response<Question[]> {
     //#region @websqlFunc
     const config = super.getAll();
@@ -42,11 +40,12 @@ export class QuestionController extends Taon.Base.CrudController<any> {
     };
     //#endregion
   }
-
   @Taon.Http.GET(`/question/:questionOid/topic/:topicTitleKebabCase`) //
   getQuestionWithAswers(
-    @Taon.Http.Param.Path('questionOid') questionOid: number,
-    @Taon.Http.Param.Path('topicTitleKebabCase') topicTitleKebabCase: string,
+    @Taon.Http.Param.Path('questionOid')
+    questionOid: number,
+    @Taon.Http.Param.Path('topicTitleKebabCase')
+    topicTitleKebabCase: string,
   ): Taon.Response<Question> {
     //#region @websqlFunc
     const config = super.getAll();
@@ -76,7 +75,6 @@ export class QuestionController extends Taon.Base.CrudController<any> {
     };
     //#endregion
   }
-
   //#region @websql
   async initExampleDbData() {
     // const repo = this.connection.getRepository(Question);

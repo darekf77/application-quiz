@@ -1,9 +1,9 @@
-//#region @browser
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import * as topicActions from '../actions/topic.actions';
-import * as topicSelectors from '../selectors/topic.selectors';
-import * as questionSelectors from '../+question/selectors/question.selectors';
+import { Store } from '@ngrx/store';
+import { Topic, User } from 'application-quiz/src';
+import { UserController } from 'application-quiz/src';
+import { TopicController } from 'application-quiz/src';
 import {
   switchMap,
   map,
@@ -16,33 +16,28 @@ import {
   withLatestFrom,
   concatMap,
 } from 'rxjs';
-import { TopicService } from '../services/topic.service';
-import { Store } from '@ngrx/store';
-import { TopicInitialState } from '../topic.models';
-import { Topic, User } from 'application-quiz/src';
-import { appSelectors } from '../../../app.store';
 import { Taon } from 'taon/src';
-import { UserController } from 'application-quiz/src';
-import { ApplicationQuizContext } from '../../../app.context';
-import { TopicController } from 'application-quiz/src';
 
+import * as questionSelectors from '../+question/selectors/question.selectors';
+import { ApplicationQuizContext } from '../../../app.context';
+import { appSelectors } from '../../../app.store';
+import * as topicActions from '../actions/topic.actions';
+import * as topicSelectors from '../selectors/topic.selectors';
+import { TopicService } from '../services/topic.service';
+import { TopicInitialState } from '../topic.models';
 @Injectable()
 export class TopicEffects {
-  // eslint-disable-next-line @typescript-eslint/typedef
   userController = Taon.inject(() =>
     ApplicationQuizContext.getClass(UserController),
   );
-
   topicController = Taon.inject(() =>
     ApplicationQuizContext.getClass(TopicController),
   );
-
   constructor(
     private actions$: Actions,
     private service: TopicService,
     private store: Store<TopicInitialState>,
   ) {}
-
   fetchTopic = createEffect(() =>
     this.actions$.pipe(
       ofType(topicActions.FETCH_TOPIC),
@@ -66,7 +61,6 @@ export class TopicEffects {
       ),
     ),
   );
-
   navigateToQuestion = createEffect(
     () =>
       this.actions$.pipe(
@@ -78,8 +72,6 @@ export class TopicEffects {
       ),
     { dispatch: false },
   );
-
-  // eslint-disable-next-line @typescript-eslint/typedef
   submit = createEffect(() =>
     this.actions$.pipe(
       ofType(topicActions.SUBMIT_SCORE),
@@ -106,7 +98,6 @@ export class TopicEffects {
       }),
     ),
   );
-
   navigateToUserStats = createEffect(
     () =>
       this.actions$.pipe(
@@ -118,4 +109,3 @@ export class TopicEffects {
     { dispatch: false },
   );
 }
-//#endregion

@@ -2,14 +2,15 @@
   "type": "isomorphic-lib",
   "version": "v19",
   "dependenciesNamesForNpmLib": [],
-  "resources": [],
   "autoReleaseConfigAllowedItems": [
     {
       "artifactName": "angular-node-app",
       "envName": "demo",
-      "releaseType": "static-pages"
+      "releaseType": "static-pages",
     },
   ],
+  "overrideNpmName": "@darekf77/application-quiz",
+  "resources": [],
   "packageJsonOverride": {
     "author": "Dariusz Filipiak",
   },

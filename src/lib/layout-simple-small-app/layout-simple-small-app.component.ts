@@ -1,15 +1,16 @@
-//#region @browser
 import {
   Component,
   EventEmitter,
   HostBinding,
+  inject,
   Input,
   OnInit,
   Output,
   ViewEncapsulation,
+  OnDestroy,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-
 @Component({
   selector: 'layout-simple-small-app',
   standalone: false,
@@ -17,18 +18,21 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./layout-simple-small-app.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class LayoutSimpleSmallAppComponent implements OnInit {
-  @HostBinding('style.minHeight.px') @Input() height: number = 100;
+export class LayoutSimpleSmallAppComponent implements OnDestroy {
+  @HostBinding('style.minHeight.px')
+  @Input()
+  height: number = 100;
   handlers: Subscription[] = [];
-  @Output() layoutSimpleSmallAppDataChanged = new EventEmitter();
-  @Input() layoutSimpleSmallAppData: any = {};
-
+  @Output()
+  layoutSimpleSmallAppDataChanged = new EventEmitter();
+  @Input()
+  layoutSimpleSmallAppData: any = {};
+  private router: Router = inject(Router);
   constructor() {}
-
-  ngOnInit() {}
-
+  onHeaderClick() {
+    this.router.navigate(['/']);
+  }
   ngOnDestroy(): void {
     this.handlers.forEach(h => h.unsubscribe());
   }
 }
-//#endregion

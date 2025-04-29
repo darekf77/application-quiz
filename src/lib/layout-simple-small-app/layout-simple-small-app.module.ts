@@ -1,11 +1,10 @@
-//#region @browser
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LayoutSimpleSmallAppComponent } from './layout-simple-small-app.component';
-import { TaonFullMaterialModule } from 'taon/src';
+import { NgModule } from '@angular/core';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { StaticColumnsModule } from 'static-columns/src';
+import { TaonFullMaterialModule } from 'taon/src';
 
+import { LayoutSimpleSmallAppComponent } from './layout-simple-small-app.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,4 +16,3 @@ import { StaticColumnsModule } from 'static-columns/src';
   exports: [LayoutSimpleSmallAppComponent],
 })
 export class LayoutSimpleSmallAppModule {}
-//#endregion

@@ -1,24 +1,22 @@
-import {
-  CLIENT_DEV_NORMAL_APP_PORT,
-  CLIENT_DEV_WEBSQL_APP_PORT,
-} from './app.hosts';
+import { app, BrowserWindow, screen } from 'electron';
 import {
   path,
   //#region @backend
   fse,
   //#endregion
 } from 'tnp-core/src';
-//#region @backend
-import { app, BrowserWindow, screen } from 'electron';
 
+import {
+  CLIENT_DEV_NORMAL_APP_PORT,
+  CLIENT_DEV_WEBSQL_APP_PORT,
+} from './app.hosts';
+//#region @backend
 let win: BrowserWindow | null = null;
 const args = process.argv.slice(1);
 const serve = args.some(val => val === '--serve');
 const websql = args.some(val => val === '--websql');
-
 function createWindow(): BrowserWindow {
   const size = screen.getPrimaryDisplay().workAreaSize;
-
   // Create the browser window.
   win = new BrowserWindow({
     x: 0,
@@ -32,11 +30,9 @@ function createWindow(): BrowserWindow {
       contextIsolation: false,
     },
   });
-
   if (serve) {
     const debug = require('electron-debug');
     debug();
-
     require('electron-reloader')(module);
     win.loadURL(
       'http://localhost:' +
@@ -45,16 +41,13 @@ function createWindow(): BrowserWindow {
   } else {
     // Path when running electron executable
     let pathIndex = './index.html';
-
     if (fse.existsSync(path.join(__dirname, '../dist/index.html'))) {
       // Path when running electron in local folder
       pathIndex = '../dist/index.html';
     }
-
     const url = new URL(path.join('file:', __dirname, pathIndex));
     win.loadURL(url.href);
   }
-
   // Emitted when the window is closed.
   win.on('closed', () => {
     // Dereference the window object, usually you would store window
@@ -62,10 +55,8 @@ function createWindow(): BrowserWindow {
     // when you should delete the corresponding element.
     win = null;
   });
-
   return win;
 }
-
 async function startElectron() {
   try {
     // This method will be called when Electron has finished
@@ -73,7 +64,6 @@ async function startElectron() {
     // Some APIs can only be used after this event occurs.
     // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
     app.on('ready', () => setTimeout(createWindow, 400));
-
     // Quit when all windows are closed.
     app.on('window-all-closed', () => {
       // On OS X it is common for applications and their menu bar
@@ -82,7 +72,6 @@ async function startElectron() {
         app.quit();
       }
     });
-
     app.on('activate', () => {
       // On OS X it's common to re-create a window in the app when the
       // dock icon is clicked and there are no other windows open.
@@ -95,7 +84,5 @@ async function startElectron() {
     // throw e;
   }
 }
-
 startElectron();
-
 //#endregion

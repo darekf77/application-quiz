@@ -1,29 +1,26 @@
-import { HOST_BACKEND_PORT } from './app.hosts';
-//#region imports
-import { Taon } from 'taon/src';
-import { _ } from 'tnp-core/src';
-import { Topic, TopicController } from 'application-quiz/src';
-import { ApplicationQuizContext } from './app.context';
-//#region @browser
-import { LayoutSimpleSmallAppModule } from 'application-quiz/src';
+import { CommonModule } from '@angular/common';
 import { NgModule, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { MatMenuTrigger } from '@angular/material/menu';
 import {
   PreloadAllModules,
   Router,
   RouterModule,
   Routes,
 } from '@angular/router';
-import { MaterialCssVarsModule } from 'angular-material-css-vars';
-import {
-  TaonFullMaterialModule,
-  TaonGithubForkMeCornerModule,
-} from 'taon/src';
-import { Store, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { MatMenuTrigger } from '@angular/material/menu';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { Store, StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { MaterialCssVarsModule } from 'angular-material-css-vars';
+import { Topic, TopicController } from 'application-quiz/src';
+import { LayoutSimpleSmallAppModule } from 'application-quiz/src'; // @browser
+import { Observable } from 'rxjs';
+import { Taon } from 'taon/src';
+import { TaonFullMaterialModule, TaonGithubForkMeCornerModule } from 'taon/src';
+import { _ } from 'tnp-core/src';
+
+import { ApplicationQuizContext } from './app.context';
 import {
   AppEffects,
   AppState,
@@ -33,14 +30,9 @@ import {
   metaReducers,
   reducers,
   AppService,
-} from './app.store';
-import { CommonModule } from '@angular/common';
-
-//#endregion
-//#endregion
+} from './app.store'; // @browser
 
 //#region @browser
-
 //#region routes
 const routes: Routes = [
   {
@@ -60,7 +52,6 @@ const routes: Routes = [
   },
 ];
 //#endregion
-
 //#region main component
 @Component({
   selector: 'app-application-quiz',
@@ -70,15 +61,21 @@ const routes: Routes = [
   templateUrl: './app.html',
 })
 export class ApplicationQuizComponent implements OnInit {
+  readonly topics$: Observable<Partial<Topic>[]>;
+  readonly selected$: Observable<Partial<Topic>>;
+  readonly showQuizSelect$: Observable<boolean>;
+
+  @ViewChild(MatMenuTrigger)
+  trigger: MatMenuTrigger;
+
   constructor(
     private store: Store<AppState>,
     private router: Router,
-  ) {}
-
-  topics$ = this.store.select(appSelectors.allTopics);
-  selected$ = this.store.select(appSelectors.selectedTopic);
-  showQuizSelect$ = this.store.select(appSelectors.showQuizSelect);
-  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+  ) {
+    this.topics$ = this.store.select(appSelectors.allTopics);
+    this.selected$ = this.store.select(appSelectors.selectedTopic);
+    this.showQuizSelect$ = this.store.select(appSelectors.showQuizSelect);
+  }
 
   changeTopic({ topicTitleKebabCase }: Topic) {
     this.store.dispatch(appActions.CHANGE_TOPIC({ topicTitleKebabCase }));
@@ -91,7 +88,6 @@ export class ApplicationQuizComponent implements OnInit {
   }
 }
 //#endregion
-
 //#region main module
 @NgModule({
   imports: [
@@ -128,17 +124,14 @@ export class ApplicationQuizComponent implements OnInit {
 })
 export class ApplicationQuizModule {}
 //#endregion
-
 //#endregion
 
 //#region taon start function
 async function start() {
   // Taon.enableProductionMode();
-
   //#region init context
   const context = await ApplicationQuizContext.initialize();
   //#endregion
-
   //#region @backend
   if (Taon.isNode) {
     // context.node.app.get('/hello', (req, res) => {
@@ -156,5 +149,4 @@ async function start() {
   }
 }
 //#endregion
-
 export default start;

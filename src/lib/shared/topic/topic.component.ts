@@ -1,4 +1,3 @@
-//#region @browser
 import {
   Component,
   Input,
@@ -7,9 +6,9 @@ import {
   EventEmitter,
   SimpleChanges,
 } from '@angular/core';
-import { TopicService } from './topic.service';
-import { Topic } from './topic';
 
+import { Topic } from './topic';
+import { TopicService } from './topic.service';
 @Component({
   selector: 'topic',
   standalone: false,
@@ -18,13 +17,14 @@ import { Topic } from './topic';
   providers: [TopicService],
 })
 export class TopicComponent {
-  @Output() questionOidChanged = new EventEmitter();
-  @Input() topic: Topic;
-  @Input() selectedQuestionOid: number;
+  @Output()
+  questionOidChanged = new EventEmitter();
+  @Input()
+  topic: Topic;
+  @Input()
+  selectedQuestionOid: number;
   constructor(protected service: TopicService) {}
-
   change(questionOid) {
     this.questionOidChanged.next(questionOid);
   }
 }
-//#endregion

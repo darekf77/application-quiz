@@ -1,7 +1,8 @@
-//#region @browser
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import * as questionActions from '../actions/question.actions';
+import { Store } from '@ngrx/store';
+import { Question, Topic } from 'application-quiz/src';
+import { QuestionController } from 'application-quiz/src';
 import {
   switchMap,
   map,
@@ -10,25 +11,20 @@ import {
   withLatestFrom,
   throttleTime,
 } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { Question, Topic } from 'application-quiz/src';
-import { AppState, appSelectors } from '../../../../app.store';
-import { ApplicationQuizContext } from '../../../../app.context';
-import { QuestionController } from 'application-quiz/src';
 import { Taon } from 'taon/src';
 
+import { ApplicationQuizContext } from '../../../../app.context';
+import { AppState, appSelectors } from '../../../../app.store';
+import * as questionActions from '../actions/question.actions';
 @Injectable()
 export class QuestionEffects {
   questionController = Taon.inject(() =>
     ApplicationQuizContext.getClass(QuestionController),
   );
-
   constructor(
     private actions$: Actions,
     private store: Store<AppState>,
   ) {}
-
-  // eslint-disable-next-line @typescript-eslint/typedef
   fetchQuestions = createEffect(() =>
     this.actions$.pipe(
       ofType(questionActions.FETCH_QUESTION),
@@ -51,4 +47,3 @@ export class QuestionEffects {
     ),
   );
 }
-//#endregion

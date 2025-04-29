@@ -1,8 +1,8 @@
-//#region @browser
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AnswerComponent } from './answer.component';
+import { NgModule } from '@angular/core';
 import { TaonFullMaterialModule } from 'taon/src';
+
+import { AnswerComponent } from './answer.component';
 
 @NgModule({
   imports: [CommonModule, TaonFullMaterialModule],
@@ -10,4 +10,3 @@ import { TaonFullMaterialModule } from 'taon/src';
   exports: [AnswerComponent],
 })
 export class AnswerModule {}
-//#endregion

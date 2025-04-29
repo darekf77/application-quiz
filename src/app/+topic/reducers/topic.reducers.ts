@@ -1,15 +1,13 @@
-//#region @browser
 import { createReducer, on } from '@ngrx/store';
-import * as _ from 'lodash';
+import { _ } from 'tnp-core/src';
+
 import * as topicActions from '../actions/topic.actions';
 import { TopicInitialState } from '../topic.models';
-
 const initialState: TopicInitialState = {
   currentTopic: void 0,
   showInputPopup: false,
   topicsToSubmit: void 0,
 };
-
 export const topicReducer = createReducer(
   initialState,
   on(topicActions.FETCH_TOPIC_SUCCESS, (state, { topic }) => {
@@ -25,4 +23,3 @@ export const topicReducer = createReducer(
     return { ...state, ...{ showInputPopup: false } };
   }),
 );
-//#endregion

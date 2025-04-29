@@ -1,20 +1,19 @@
-//#region @browser
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TopicContainer } from './topic.container';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { MtxAlertModule } from '@ng-matero/extensions/alert';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { TopicModule } from 'application-quiz/src';
+import { StaticColumnsModule } from 'static-columns/src';
+import { TaonFullMaterialModule } from 'taon/src';
+
 import { TopicEffects } from './effects/topic.effects';
-import { topicFeatureKey } from './topic.models';
 import { topicReducer } from './reducers/topic.reducers';
 import { TopicService } from './services/topic.service';
-import { RouterModule, Routes } from '@angular/router';
-import { TopicModule } from 'application-quiz/src';
-import { TaonFullMaterialModule } from 'taon/src';
-import { StaticColumnsModule } from 'static-columns/src';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { MtxAlertModule } from '@ng-matero/extensions/alert';
-
+import { TopicContainer } from './topic.container';
+import { topicFeatureKey } from './topic.models';
 const routes: Routes = [
   {
     path: '',
@@ -35,7 +34,6 @@ const routes: Routes = [
     ],
   },
 ];
-
 @NgModule({
   imports: [
     CommonModule,
@@ -52,4 +50,3 @@ const routes: Routes = [
   providers: [TopicService],
 })
 export class TopicContainerModule {}
-//#endregion

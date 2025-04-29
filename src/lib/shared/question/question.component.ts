@@ -1,8 +1,7 @@
-//#region @browser
 import { Component, Input, OnInit } from '@angular/core';
-import { QuestionService } from './question.service';
-import type { Question } from './question';
 
+import type { Question } from './question';
+import { QuestionService } from './question.service';
 @Component({
   selector: 'question',
   standalone: false,
@@ -11,9 +10,8 @@ import type { Question } from './question';
   providers: [QuestionService],
 })
 export class QuestionComponent implements OnInit {
-  @Input() question: Question;
+  @Input()
+  question: Question;
   constructor(protected service: QuestionService) {}
-
   ngOnInit() {}
 }
-//#endregion

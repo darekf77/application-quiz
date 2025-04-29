@@ -1,18 +1,16 @@
-//#region @browser
 import { createReducer, on } from '@ngrx/store';
 import * as _ from 'lodash';
-import * as questionActions from '../actions/question.actions';
-import { QuestionInitialState } from '../question.models';
 import { Helpers } from 'tnp-helpers/src';
+
 import { appActions } from '../../../../app.store';
 import * as topicActions from '../../actions/topic.actions';
-
+import * as questionActions from '../actions/question.actions';
+import { QuestionInitialState } from '../question.models';
 const initialState: QuestionInitialState = {
   currentQuestion: void 0,
   selectedAnswersIds: [],
   allAnswers: [],
 };
-
 export const questionReducer = createReducer(
   initialState,
   on(questionActions.INIT, state => {
@@ -45,4 +43,3 @@ export const questionReducer = createReducer(
     return { ...state, ...{ selectedAnswersIds } };
   }),
 );
-//#endregion

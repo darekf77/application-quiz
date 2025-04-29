@@ -1,13 +1,13 @@
-Hello from application quiz
-<!-- <mtx-alert [type]="'info'"
-             [elevation]="10"
-             [dismissible]="false">
-    <strong>Heads up!</strong> Please select quiz topic
-  </mtx-alert> -->
-<!--
+<!-- Heads up! Please select quiz topic -->
+<!-- <mtx-alert
+  [type]="'info'"
+  [elevation]="10"
+  [dismissible]="false">
+  <strong>Heads up!</strong> Please select quiz topic
+</mtx-alert> -->
+
 <ng-template #startInfo>
   <br />
-
 
   <h2 style="text-align: right">
     Please select quiz topic &nbsp;
@@ -75,4 +75,4 @@ Hello from application quiz
   [focusCancel]="false"
   (dismiss)="handleDismiss()"
   (confirm)="emailEntered($event)">
-</swal> -->
+</swal>

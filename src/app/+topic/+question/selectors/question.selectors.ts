@@ -1,19 +1,16 @@
-//#region @browser
-import { _ } from 'tnp-core/src';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { questionFeatureKey, QuestionInitialState } from '../question.models';
 import { IAnswer } from 'application-quiz/src';
+import { _ } from 'tnp-core/src';
 
+import { questionFeatureKey, QuestionInitialState } from '../question.models';
 const questionFeatureSelector =
   createFeatureSelector<QuestionInitialState>(questionFeatureKey);
-
 export const getCurrentQuestion = createSelector(
   questionFeatureSelector,
   state => {
     return state?.currentQuestion;
   },
 );
-
 export const currentQuestionSelectedIds = createSelector(
   questionFeatureSelector,
   state => {
@@ -26,5 +23,3 @@ export const currentQuestionSelectedIds = createSelector(
       });
   },
 );
-
-//#endregion

@@ -1,12 +1,11 @@
-//#region @browser
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StatsContainer } from './stats.container';
 import { UserComponent } from 'application-quiz/src';
-import { TaonFullMaterialModule } from 'taon/src';
 import { StaticColumnsModule } from 'static-columns/src';
+import { TaonFullMaterialModule } from 'taon/src';
 
+import { StatsContainer } from './stats.container';
 const routes: Routes = [
   {
     path: '',
@@ -18,7 +17,6 @@ const routes: Routes = [
     component: StatsContainer,
   },
 ];
-
 @NgModule({
   imports: [
     CommonModule,
@@ -30,4 +28,3 @@ const routes: Routes = [
   declarations: [StatsContainer],
 })
 export class StatsModule {}
-//#endregion

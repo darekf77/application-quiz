@@ -1,22 +1,21 @@
 import { Taon } from 'taon/src';
-import { Answer } from './answer';
 
+import { Answer } from './answer';
 @Taon.Controller({
   className: 'AnswerController',
 })
 export class AnswerController extends Taon.Base.CrudController<any> {
   entityClassResolveFn = () => Answer;
-
   @Taon.Http.GET()
   hello(): Taon.Response<string> {
     return async () => {
       return 'Hello world';
     };
   }
-
   @Taon.Http.GET() //
   getAll(
-    @Taon.Http.Param.Query('limit') limit = Infinity,
+    @Taon.Http.Param.Query('limit')
+    limit = Infinity,
   ): Taon.Response<Answer[]> {
     //#region @websqlFunc
     const config = this.db;
@@ -33,7 +32,6 @@ export class AnswerController extends Taon.Base.CrudController<any> {
     };
     //#endregion
   }
-
   //#region @websql
   async initExampleDbData() {
     // const repo = this.connection.getRepository(Answer);

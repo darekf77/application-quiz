@@ -1,18 +1,17 @@
-//#region @browser
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { QuestionContainer } from './question.container';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { AnswerModule, QuestionModule } from 'application-quiz/src';
+import { StaticColumnsModule } from 'static-columns/src';
+import { TaonFullMaterialModule } from 'taon/src';
+
 import { QuestionEffects } from './effects/question.effects';
+import { QuestionContainer } from './question.container';
 import { questionFeatureKey } from './question.models';
 import { questionReducer } from './reducers/question.reducers';
 import { QuestionService } from './services/question.service';
-import { RouterModule, Routes } from '@angular/router';
-import { AnswerModule, QuestionModule } from 'application-quiz/src';
-import { TaonFullMaterialModule } from 'taon/src';
-import { StaticColumnsModule } from 'static-columns/src';
-
 const routes: Routes = [
   {
     path: '',
@@ -24,7 +23,6 @@ const routes: Routes = [
     component: QuestionContainer,
   },
 ];
-
 @NgModule({
   imports: [
     CommonModule,
@@ -40,4 +38,3 @@ const routes: Routes = [
   providers: [QuestionService],
 })
 export class QuestionContainerModule {}
-//#endregion
