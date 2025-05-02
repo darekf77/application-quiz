@@ -4,9 +4,9 @@
 <p style="text-align: center;"><img src="./__images/app.png" ></p>
 
 # Technolgies
-- Taon v16 (taon.io)
-- Angular v16
-- NgRx v16
+- Taon v19 (taon.dev)
+- Angular v19
+- NgRx v19
 - TypeORM (SQL.js in browser/ SQLite in Nodejs server)
 
 
@@ -24,13 +24,13 @@ npm i -g taon
 
 3. Start application with TypeORM/SQL.js db inside BROWSER - simplest way to develop.
 ```
-taon start --websql    # and go to http://localhost:4201
+taon start --websql
 ```
 
 or start normal NodeJS server from vscode
 
 ```
-taon start  # and go to http://localhost:4200 
+taon start
 ```
       
 <p style="text-align: center;"><img src="./__images/sqlite-server-start.png" ></p>

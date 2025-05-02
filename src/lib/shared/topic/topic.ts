@@ -58,9 +58,4 @@ export class Topic extends Taon.Base.Entity<any> implements RawTopic {
   //#endregion
   declare description?: string;
   //#endregion
-  //#region methods
-  clone(options?: { propsToOmit: keyof Topic[] }): Topic {
-    const { propsToOmit } = options || { propsToOmit: ['id', 'ctrl'] };
-    return _.merge(new Topic(), _.omit(this, propsToOmit));
-  }
 }

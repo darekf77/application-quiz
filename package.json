@@ -1,6 +1,6 @@
 {
-  "name": "application-quiz",
-  "version": "0.0.7",
+  "name": "@darekf77/application-quiz",
+  "version": "0.0.10",
   "author": "Dariusz Filipiak",
   "dependencies": {
     "@angular-builders/custom-webpack": "~19.0.1",

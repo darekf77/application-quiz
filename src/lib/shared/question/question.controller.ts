@@ -77,11 +77,5 @@ export class QuestionController extends Taon.Base.CrudController<any> {
     };
     //#endregion
   }
-  //#region @websql
-  async initExampleDbData() {
-    // const repo = this.connection.getRepository(Question);
-    // await repo.save(new Question())
-    // const all = await repo.find()
-  }
-  //#endregion
+  
 }

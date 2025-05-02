@@ -60,9 +60,9 @@ header {
 }
 
 footer {
-  position: absolute;
+  position: relative;
   z-index: 10;
-  bottom: 5px;
+  padding: 5px;
   width: 100%;
   text-align: center;
   color: gray;

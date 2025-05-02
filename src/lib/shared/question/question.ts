@@ -5,7 +5,6 @@ import { _ } from 'tnp-core/src';
 import { RawAnswer, RawQuestion } from '../../models';
 import { Answer } from '../answer';
 
-import type { QuestionController } from './question.controller';
 import { defaultModelValuesQuestion as defaultModelValues } from './question.models';
 //#endregion
 @Taon.Entity({
@@ -74,9 +73,4 @@ export class Question extends Taon.Base.Entity<any> implements RawQuestion {
   //#endregion
   declare description?: string;
   //#endregion
-  //#region methods
-  clone(options?: { propsToOmit: keyof Question[] }): Question {
-    const { propsToOmit } = options || { propsToOmit: ['id', 'ctrl'] };
-    return _.merge(new Question(), _.omit(this, propsToOmit));
-  }
 }

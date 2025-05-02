@@ -15,7 +15,8 @@ import { AppService } from '../../app.store';
   templateUrl: './stats.container.html',
   styleUrls: ['./stats.container.scss'],
 })
-export class StatsContainer {
+export class StatsContainer implements OnInit {
+  context: typeof ApplicationQuizContext;
   user$: Observable<User>;
   userController = Taon.inject(() =>
     ApplicationQuizContext.getClass(UserController),
@@ -36,8 +37,13 @@ export class StatsContainer {
       this.user$ = of(void 0);
     }
   }
-  constructor(private appService: AppService) {}
+  constructor(private appService: AppService) {
+    this.context = ApplicationQuizContext;
+  }
   onUserGoTo(username: string) {
     this.appService.goToStats(username);
+  }
+  ngOnInit(): void {
+    // console.log('ngOnInit', this.context);
   }
 }

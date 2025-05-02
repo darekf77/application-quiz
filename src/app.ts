@@ -133,6 +133,7 @@ async function start() {
   // Taon.enableProductionMode();
   //#region init context
   const context = await ApplicationQuizContext.initialize();
+  
   //#endregion
   //#region @backend
   if (Taon.isNode) {
@@ -142,11 +143,10 @@ async function start() {
   }
   //#endregion
   if (Taon.isBrowser) {
-    const ref = await ApplicationQuizContext.__refSync;
-    const users = (await ref.getInstanceBy(TopicController).getAll().received)
+    const users = (await context.getInstanceBy(TopicController).getAll().received)
       .body?.json;
     console.log({
-      'users from backend': users,
+      'topics from backend': users,
     });
   }
 }

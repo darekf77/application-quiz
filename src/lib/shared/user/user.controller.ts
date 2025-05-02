@@ -125,7 +125,5 @@ export class UserController extends Taon.Base.CrudController<User> {
     };
     //#endregion
   }
-  //#region @websql
-  async initExampleDbData() {}
-  //#endregion
+
 }

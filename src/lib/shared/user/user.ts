@@ -54,10 +54,6 @@ export class User extends Taon.Base.Entity {
   description?: string;
   //#endregion
   //#region methods
-  clone(options?: { propsToOmit: keyof User[] }): User {
-    const { propsToOmit } = options || { propsToOmit: ['id', 'ctrl'] };
-    return _.merge(new User(), _.omit(this, propsToOmit));
-  }
   getScored() {
     return (this.statistics || []).reduce((a, b) => {
       return a + b.scored;
