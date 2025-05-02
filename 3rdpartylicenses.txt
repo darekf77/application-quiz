@@ -606,7 +606,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
 
-incremental-compiler/websql
+incremental-compiler
 
 jquery
 MIT
@@ -632,7 +632,7 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-json10/websql
+json10
 
 json5
 MIT
@@ -917,7 +917,7 @@ licenses; we recommend you read them, as their terms may differ from the
 terms above.
 
 
-lodash-walk-object/websql
+lodash-walk-object
 
 moment
 MIT
@@ -970,9 +970,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-ng2-logger/websql
+ng2-logger
 
-ng2-rest/websql
+ng2-rest
 
 ngx-scrollbar
 MIT
@@ -1361,7 +1361,7 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-static-columns/websql
+static-columns
 
 sweetalert2
 MIT
@@ -1389,13 +1389,15 @@ SOFTWARE.
 
 
 
-taon-storage/websql
+taon
 
-taon-type-sql/websql
+taon-storage
 
-taon-typeorm/websql
+taon-type-sql
 
-taon/websql
+taon-typeorm
+
+tnp-config
 
 tnp-core
 
@@ -1475,7 +1477,7 @@ If the Work includes a "NOTICE" text file as part of its distribution, then any 
 END OF TERMS AND CONDITIONS
 
 
-typescript-class-helpers/websql
+typescript-class-helpers
 
 uuid
 MIT
