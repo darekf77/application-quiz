@@ -1,5 +1,7 @@
+//#region imports
+import { Answer, IAnswer, IQuestion } from '@darekf77/application-quiz/src';
 import { createAction, props } from '@ngrx/store';
-import { Answer, IAnswer, IQuestion } from 'application-quiz/src';
+//#endregion
 export const INIT = createAction('[question] INIT');
 export const FETCH_QUESTION = createAction(
   '[question] FETCH_QUESTION',

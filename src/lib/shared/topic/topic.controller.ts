@@ -1,3 +1,4 @@
+//#region imports
 import { ClassHelpers, Taon } from 'taon/src';
 import { _ } from 'tnp-core/src';
 
@@ -8,6 +9,7 @@ import { Answer } from '../answer';
 import { Question } from '../question';
 
 import { Topic } from './topic';
+//#endregion
 @Taon.Controller({
   className: 'TopicController',
 })

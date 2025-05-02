@@ -1,11 +1,12 @@
+//#region imports
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TopicModule } from '@darekf77/application-quiz/src';
 import { MtxAlertModule } from '@ng-matero/extensions/alert';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { TopicModule } from 'application-quiz/src';
 import { StaticColumnsModule } from 'static-columns/src';
 import { TaonFullMaterialModule } from 'taon/src';
 
@@ -14,6 +15,7 @@ import { topicReducer } from './reducers/topic.reducers';
 import { TopicService } from './services/topic.service';
 import { TopicContainer } from './topic.container';
 import { topicFeatureKey } from './topic.models';
+//#endregion
 const routes: Routes = [
   {
     path: '',

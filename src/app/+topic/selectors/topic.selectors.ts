@@ -1,7 +1,9 @@
+//#region imports
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { appSelectors } from '../../../app.store';
 import { topicFeatureKey, TopicInitialState } from '../topic.models';
+//#endregion
 const topicFeatureSelector =
   createFeatureSelector<TopicInitialState>(topicFeatureKey);
 export const getCurrentTopic = createSelector(topicFeatureSelector, state => {

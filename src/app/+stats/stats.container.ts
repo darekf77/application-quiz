@@ -1,11 +1,13 @@
+//#region imports
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from 'application-quiz/src';
-import { UserController } from 'application-quiz/src';
+import { User } from '@darekf77/application-quiz/src';
+import { UserController } from '@darekf77/application-quiz/src';
 import { Observable, Subscription, map, of } from 'rxjs';
 import { Taon } from 'taon/src';
 
 import { ApplicationQuizContext } from '../../app.context';
 import { AppService } from '../../app.store';
+//#endregion
 
 @Component({
   selector: 'app-stats',

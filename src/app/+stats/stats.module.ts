@@ -1,11 +1,13 @@
+//#region imports
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserComponent } from 'application-quiz/src';
+import { UserComponent } from '@darekf77/application-quiz/src';
 import { StaticColumnsModule } from 'static-columns/src';
 import { TaonFullMaterialModule } from 'taon/src';
 
 import { StatsContainer } from './stats.container';
+//#endregion
 const routes: Routes = [
   {
     path: '',

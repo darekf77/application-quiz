@@ -1,3 +1,4 @@
+//#region imports
 import { app, BrowserWindow, screen } from 'electron';
 import {
   path,
@@ -10,6 +11,7 @@ import {
   CLIENT_DEV_NORMAL_APP_PORT,
   CLIENT_DEV_WEBSQL_APP_PORT,
 } from './app.hosts';
+//#endregion
 //#region @backend
 let win: BrowserWindow | null = null;
 const args = process.argv.slice(1);

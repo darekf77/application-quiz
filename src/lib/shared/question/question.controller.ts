@@ -1,9 +1,11 @@
+//#region imports
 import { Taon } from 'taon/src';
 
 import { Answer } from '../answer';
 import { Topic } from '../topic';
 
 import { Question } from './question';
+//#endregion
 @Taon.Controller({
   className: 'QuestionController',
 })

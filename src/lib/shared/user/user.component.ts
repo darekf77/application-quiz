@@ -1,3 +1,4 @@
+//#region imports
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
@@ -7,6 +8,7 @@ import { TaonTableModule } from 'taon/src';
 
 import { User } from './user';
 import { UserService } from './user.service';
+//#endregion
 
 @Component({
   selector: 'user',

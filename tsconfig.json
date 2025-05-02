@@ -4,10 +4,16 @@
     "strictNullChecks": false,
     "rootDir": "./",
     "paths": {
-      "application-quiz": [
+      "@lib": [
         "./src/lib"
       ],
-      "application-quiz/*": [
+      "@lib/*": [
+        "./src/lib/*"
+      ],
+      "@darekf77/application-quiz/src": [
+        "./src/lib"
+      ],
+      "@darekf77/application-quiz/src/*": [
         "./src/lib/*"
       ]
     },

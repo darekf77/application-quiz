@@ -1,3 +1,4 @@
+//#region imports
 import { Taon } from 'taon/src';
 import { _ } from 'tnp-core/src';
 
@@ -6,6 +7,7 @@ import { Answer } from '../answer';
 
 import type { QuestionController } from './question.controller';
 import { defaultModelValuesQuestion as defaultModelValues } from './question.models';
+//#endregion
 @Taon.Entity({
   className: 'Question',
   defaultModelValues,

@@ -1,9 +1,10 @@
+//#region imports
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AnswerModule, QuestionModule } from '@darekf77/application-quiz/src';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { AnswerModule, QuestionModule } from 'application-quiz/src';
 import { StaticColumnsModule } from 'static-columns/src';
 import { TaonFullMaterialModule } from 'taon/src';
 
@@ -12,6 +13,7 @@ import { QuestionContainer } from './question.container';
 import { questionFeatureKey } from './question.models';
 import { questionReducer } from './reducers/question.reducers';
 import { QuestionService } from './services/question.service';
+//#endregion
 const routes: Routes = [
   {
     path: '',

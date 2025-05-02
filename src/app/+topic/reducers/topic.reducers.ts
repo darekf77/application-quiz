@@ -1,8 +1,10 @@
+//#region imports
 import { createReducer, on } from '@ngrx/store';
 import { _ } from 'tnp-core/src';
 
 import * as topicActions from '../actions/topic.actions';
 import { TopicInitialState } from '../topic.models';
+//#endregion
 const initialState: TopicInitialState = {
   currentTopic: void 0,
   showInputPopup: false,

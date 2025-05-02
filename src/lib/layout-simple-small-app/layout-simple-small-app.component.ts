@@ -1,3 +1,4 @@
+//#region imports
 import {
   Component,
   EventEmitter,
@@ -11,6 +12,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+//#endregion
 @Component({
   selector: 'layout-simple-small-app',
   standalone: false,

@@ -1,7 +1,8 @@
+//#region imports
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSelectionListChange } from '@angular/material/list';
+import { Answer, ITopic, Question } from '@darekf77/application-quiz/src';
 import { Store } from '@ngrx/store';
-import { Answer, ITopic, Question } from 'application-quiz/src';
 import { Observable, firstValueFrom, map, of, share, tap } from 'rxjs';
 import { _ } from 'tnp-core/src';
 
@@ -10,6 +11,7 @@ import { AppService, appActions, appSelectors } from '../../../app.store';
 import * as questionAction from './actions/question.actions';
 import { QuestionInitialState } from './question.models';
 import * as questionSelectors from './selectors/question.selectors';
+//#endregion
 @Component({
   selector: 'app-question',
   standalone: false,

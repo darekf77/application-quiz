@@ -1,8 +1,9 @@
+//#region imports
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Question, Topic } from '@darekf77/application-quiz/src';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { Question, Topic } from 'application-quiz/src';
 import { Observable, firstValueFrom, map, of, takeUntil, tap } from 'rxjs';
 import { _ } from 'tnp-core/src';
 
@@ -14,6 +15,7 @@ import * as topicAction from './actions/topic.actions';
 import * as topicSelectors from './selectors/topic.selectors';
 import { TopicService } from './services/topic.service';
 import { TopicInitialState } from './topic.models';
+//#endregion
 @Component({
   selector: 'app-topic',
   standalone: false,

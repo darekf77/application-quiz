@@ -1,9 +1,10 @@
+//#region imports
 import { Injectable } from '@angular/core';
+import { Topic, User } from '@darekf77/application-quiz/src';
+import { UserController } from '@darekf77/application-quiz/src';
+import { TopicController } from '@darekf77/application-quiz/src';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { Topic, User } from 'application-quiz/src';
-import { UserController } from 'application-quiz/src';
-import { TopicController } from 'application-quiz/src';
 import {
   switchMap,
   map,
@@ -25,6 +26,7 @@ import * as topicActions from '../actions/topic.actions';
 import * as topicSelectors from '../selectors/topic.selectors';
 import { TopicService } from '../services/topic.service';
 import { TopicInitialState } from '../topic.models';
+//#endregion
 @Injectable()
 export class TopicEffects {
   userController = Taon.inject(() =>

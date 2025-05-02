@@ -1,6 +1,8 @@
-import { Utils } from 'tnp-core';
-import { CommandType, executeCommand } from 'tnp-helpers';
+//#region imports
+import { Utils } from 'tnp-core/src';
+import { CommandType, executeCommand } from 'tnp-helpers/src';
 import type { ExtensionContext } from 'vscode';
+//#endregion
 const group = 'Application Quiz CLI essentials';
 export const commands: CommandType[] = (
   [

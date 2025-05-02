@@ -1,3 +1,4 @@
+//#region imports
 import { createReducer, on } from '@ngrx/store';
 import * as _ from 'lodash';
 import { Helpers } from 'tnp-helpers/src';
@@ -6,6 +7,7 @@ import { appActions } from '../../../../app.store';
 import * as topicActions from '../../actions/topic.actions';
 import * as questionActions from '../actions/question.actions';
 import { QuestionInitialState } from '../question.models';
+//#endregion
 const initialState: QuestionInitialState = {
   currentQuestion: void 0,
   selectedAnswersIds: [],

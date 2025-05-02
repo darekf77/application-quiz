@@ -1,3 +1,4 @@
+//#region imports
 import {
   Component,
   Input,
@@ -8,6 +9,7 @@ import {
 
 import type { Answer } from './answer';
 import { AnswerService } from './answer.service';
+//#endregion
 @Component({
   selector: 'answer',
   standalone: false,

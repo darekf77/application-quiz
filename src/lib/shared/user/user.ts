@@ -1,3 +1,4 @@
+//#region imports
 import { Taon } from 'taon/src';
 import { _ } from 'tnp-core/src';
 
@@ -6,6 +7,7 @@ import {
   Stats,
   defaultModelValuesUser as defaultModelValues,
 } from './user.models';
+//#endregion
 @Taon.Entity({
   className: 'User',
   defaultModelValues,

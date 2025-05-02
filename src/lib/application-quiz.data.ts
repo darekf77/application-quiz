@@ -1,5 +1,7 @@
+//#region imports
 //#region @websql
 import { RawQuizApp } from './models';
+//#endregion
 export const backendQuizData: RawQuizApp = {
   title: 'Quiz Application UI',
   topics: [

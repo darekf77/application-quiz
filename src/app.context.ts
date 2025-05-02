@@ -1,4 +1,5 @@
-import { SharedContext } from 'application-quiz/src';
+//#region imports
+import { SharedContext } from '@darekf77/application-quiz/src';
 import { Taon } from 'taon/src';
 import { UtilsOs } from 'tnp-core/src';
 
@@ -7,6 +8,7 @@ import {
   CLIENT_DEV_WEBSQL_APP_PORT,
   HOST_BACKEND_PORT,
 } from './app.hosts';
+//#endregion
 const host = 'http://localhost:' + HOST_BACKEND_PORT;
 const frontendHost =
   'http://localhost:' +

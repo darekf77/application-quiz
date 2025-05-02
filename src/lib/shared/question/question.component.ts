@@ -1,7 +1,9 @@
+//#region imports
 import { Component, Input, OnInit } from '@angular/core';
 
 import type { Question } from './question';
 import { QuestionService } from './question.service';
+//#endregion
 @Component({
   selector: 'question',
   standalone: false,

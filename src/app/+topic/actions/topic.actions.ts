@@ -1,5 +1,7 @@
+//#region imports
+import { ITopic, IUser, Topic } from '@darekf77/application-quiz/src';
 import { createAction, props } from '@ngrx/store';
-import { ITopic, IUser, Topic } from 'application-quiz/src';
+//#endregion
 export const FETCH_TOPIC = createAction('[topic] FETCH_TOPIC');
 export const FETCH_TOPIC_SUCCESS = createAction(
   '[topic] FETCH_TOPIC_SUCCESS',

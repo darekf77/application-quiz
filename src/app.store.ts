@@ -8,6 +8,8 @@ const initialState: InitialAppState = {
 //#region imports
 import { Injectable } from '@angular/core';
 import { Params, Router, RouterStateSnapshot } from '@angular/router';
+import { ITopic, Topic } from '@darekf77/application-quiz/src';
+import { TopicController } from '@darekf77/application-quiz/src';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import {
   RouterReducerState,
@@ -29,8 +31,6 @@ import {
   props,
   select,
 } from '@ngrx/store';
-import { ITopic, Topic } from 'application-quiz/src';
-import { TopicController } from 'application-quiz/src';
 import {
   switchMap,
   map,

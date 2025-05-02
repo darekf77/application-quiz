@@ -1,3 +1,4 @@
+//#region imports
 import {
   Component,
   Input,
@@ -9,6 +10,7 @@ import {
 
 import { Topic } from './topic';
 import { TopicService } from './topic.service';
+//#endregion
 @Component({
   selector: 'topic',
   standalone: false,

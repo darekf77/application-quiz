@@ -1,3 +1,4 @@
+//#region imports
 import { Taon } from 'taon/src';
 import { _ } from 'tnp-core/src';
 
@@ -7,6 +8,7 @@ import { Topic } from '../topic';
 
 import { User } from './user';
 import { Stats } from './user.models';
+//#endregion
 @Taon.Controller({
   className: 'UserController',
 })

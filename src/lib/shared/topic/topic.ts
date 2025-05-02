@@ -1,3 +1,4 @@
+//#region imports
 import { ClassHelpers, Taon } from 'taon/src';
 import { _ } from 'tnp-core/src';
 
@@ -5,6 +6,7 @@ import { RawQuestion, RawTopic } from '../../models';
 
 import type { TopicController } from './topic.controller';
 import { defaultModelValuesTopic as defaultModelValues } from './topic.models';
+//#endregion
 @Taon.Entity({
   className: 'Topic',
   defaultModelValues,

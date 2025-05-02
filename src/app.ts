@@ -1,3 +1,4 @@
+//#region imports
 import { CommonModule } from '@angular/common';
 import { NgModule, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
@@ -8,16 +9,16 @@ import {
   RouterModule,
   Routes,
 } from '@angular/router';
+import { Topic, TopicController } from '@darekf77/application-quiz/src';
+import { LayoutSimpleSmallAppModule } from '@darekf77/application-quiz/src'; // @browser
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { Store, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MaterialCssVarsModule } from 'angular-material-css-vars';
-import { Topic, TopicController } from 'application-quiz/src';
-import { LayoutSimpleSmallAppModule } from 'application-quiz/src'; // @browser
 import { Observable } from 'rxjs';
 import { Taon } from 'taon/src';
-import { TaonFullMaterialModule, TaonGithubForkMeCornerModule } from 'taon/src';
+import { TaonFullMaterialModule, TaonGithubForkMeCornerModule } from 'taon/src'; // @browser
 import { _ } from 'tnp-core/src';
 
 import { ApplicationQuizContext } from './app.context';
@@ -31,6 +32,7 @@ import {
   reducers,
   AppService,
 } from './app.store'; // @browser
+//#endregion
 
 //#region @browser
 //#region routes
