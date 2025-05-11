@@ -9,15 +9,6 @@ export const defaultModelValuesUser: Omit<
   | TaonEntityKeysToOmit
   | 'getScored'
   | 'getTotal'
-  | 'inject'
-  | 'injectRepo'
-  | 'injectCustomRepository'
-  | 'injectCustomRepo'
-  | 'injectController'
-  | 'injectCtrl'
-  | 'injectGlobalProvider'
-  | 'injectLocalProvider'
-  | 'injectContextProvider'
 > = {
   description: '',
 };
