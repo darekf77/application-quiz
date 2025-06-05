@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from '@darekf77/application-quiz/src';
 import { StaticColumnsModule } from 'static-columns/src';
-import { TaonFullMaterialModule } from 'taon/src';
+import { TaonFullMaterialModule } from 'taon-ui/src';
 
 import { StatsContainer } from './stats.container';
 //#endregion

@@ -63,7 +63,9 @@
   },
   "workbench.colorCustomizations": {
     "activityBar.background": "#0084ff",
-    "activityBar.foreground": "#000000"
+    "activityBar.foreground": "#000000",
+    "statusBar.background": "#4e53c1",
+    "statusBar.debuggingBackground": "#15d8ff"
   },
   "editor.rulers": [
     80,
@@ -84,6 +86,8 @@
     "browser": true,
     "dist": true,
     "package-lock.json": true,
+    "tmp-*": true,
+    "src/lib/env/**/*.*": true,
     ".firedev": true,
     ".taon": true,
     ".tnp": true,
@@ -95,6 +99,8 @@
     "**/browser": true,
     "**/dist": true,
     "**/package-lock.json": true,
+    "**/tmp-*": true,
+    "**/src/lib/env/**/*.*": true,
     "**/.firedev": true,
     "**/.taon": true,
     "**/.tnp": true,
@@ -151,5 +157,8 @@
       ],
       "url": "./taon-config-standalone.schema.json"
     }
-  ]
+  ],
+  "files.watcherExclude": {
+    "local_release/**": true
+  }
 }

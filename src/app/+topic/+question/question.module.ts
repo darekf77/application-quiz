@@ -6,7 +6,7 @@ import { AnswerModule, QuestionModule } from '@darekf77/application-quiz/src';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StaticColumnsModule } from 'static-columns/src';
-import { TaonFullMaterialModule } from 'taon/src';
+import { TaonFullMaterialModule } from 'taon-ui/src';
 
 import { QuestionEffects } from './effects/question.effects';
 import { QuestionContainer } from './question.container';

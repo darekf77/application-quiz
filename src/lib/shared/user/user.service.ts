@@ -9,13 +9,12 @@ import { UserController } from './user.controller';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserService extends Taon.Base.AngularService {
   entityCrudController: UserController;
-  constructor() {}
-
-  init(context: typeof SharedContext = SharedContext) {
+  constructor() {
+    super();
     this.entityCrudController = Taon.inject(() =>
-      context.getClass(UserController),
+      this.currentContext.getClass(UserController),
     );
   }
 }

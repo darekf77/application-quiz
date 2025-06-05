@@ -17,8 +17,8 @@ import { Store, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MaterialCssVarsModule } from 'angular-material-css-vars';
 import { Observable } from 'rxjs';
-import { Taon } from 'taon/src';
-import { TaonFullMaterialModule, TaonGithubForkMeCornerModule } from 'taon/src'; // @browser
+import { Taon, TAON_CONTEXT } from 'taon/src';
+import { TaonFullMaterialModule, TaonGithubForkMeCornerModule } from 'taon-ui/src'; // @browser
 import { _ } from 'tnp-core/src';
 
 import { ApplicationQuizContext } from './app.context';
@@ -92,6 +92,13 @@ export class ApplicationQuizComponent implements OnInit {
 //#endregion
 //#region main module
 @NgModule({
+  providers: [
+    AppService,
+    {
+      provide: TAON_CONTEXT,
+      useValue: ApplicationQuizContext,
+    },
+  ],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes, {
@@ -122,7 +129,6 @@ export class ApplicationQuizComponent implements OnInit {
   ],
   exports: [ApplicationQuizComponent],
   declarations: [ApplicationQuizComponent],
-  providers: [AppService],
 })
 export class ApplicationQuizModule {}
 //#endregion
@@ -133,7 +139,7 @@ async function start() {
   // Taon.enableProductionMode();
   //#region init context
   const context = await ApplicationQuizContext.initialize();
-  
+
   //#endregion
   //#region @backend
   if (Taon.isNode) {
@@ -143,8 +149,9 @@ async function start() {
   }
   //#endregion
   if (Taon.isBrowser) {
-    const users = (await context.getInstanceBy(TopicController).getAll().received)
-      .body?.json;
+    const users = (
+      await context.getInstanceBy(TopicController).getAll().received
+    ).body?.json;
     console.log({
       'topics from backend': users,
     });

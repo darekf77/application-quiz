@@ -13,5 +13,6 @@
   "resources": [],
   "packageJsonOverride": {
     "author": "Dariusz Filipiak",
+    "scripts": {}
   },
 }

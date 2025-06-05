@@ -8,7 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { StaticColumnsModule } from 'static-columns/src';
-import { TaonFullMaterialModule } from 'taon/src';
+import { TaonFullMaterialModule } from 'taon-ui/src';
 
 import { TopicEffects } from './effects/topic.effects';
 import { topicReducer } from './reducers/topic.reducers';

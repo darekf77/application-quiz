@@ -1,10 +1,17 @@
 //#region imports
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { StaticColumnsModule } from 'static-columns/src';
-import { Taon, TaonFullMaterialModule } from 'taon/src';
-import { TaonTableModule } from 'taon/src';
+import { TaonFullMaterialModule } from 'taon-ui/src';
+import { TaonTableModule } from 'taon-ui/src';
 
 import { SharedContext } from '../shared.context';
 
@@ -26,8 +33,9 @@ import { UserService } from './user.service';
   ],
   standalone: true,
 })
-export class UserComponent implements OnInit {
-  entityCrudController: UserController;
+export class UserComponent {
+  private userService = inject(UserService);
+  public entityCrudController: UserController;
   @Input() context: typeof SharedContext;
   @Input() user: User;
   @Output() userGoTo = new EventEmitter();
@@ -76,9 +84,7 @@ export class UserComponent implements OnInit {
       ],
     },
   ];
-  constructor(protected service: UserService) {}
-  ngOnInit(): void {
-    this.service.init(this.context);
-    this.entityCrudController = this.service.entityCrudController;
+  constructor() {
+    this.entityCrudController = this.userService.entityCrudController;
   }
 }

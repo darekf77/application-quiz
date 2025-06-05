@@ -13,6 +13,7 @@ yarn-error.log
 testem.log
 /typings
 app.hosts.ts
+/src/vars.scss
 /.firedev
 /.taon
 /.tnp
@@ -20,6 +21,7 @@ app.hosts.ts
 /**/BUILD-INFO.md
 /tests-environments
 /src/lib/lib-info.md
+/src/lib/env/**/*.*
 /src/migrations/migrations-info.md
 /src/tests/mocha-tests-info.md
 /src/assets/shared/shared_folder_info.txt

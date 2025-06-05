@@ -45,6 +45,7 @@ import { Taon } from 'taon/src';
 import { _ } from 'tnp-core/src';
 
 import { ApplicationQuizContext } from './app.context';
+import { ENV_ANGULAR_NODE_APP_BUILD_ANGULAR_PROD } from './lib/env';
 
 //#endregion
 //#region models
@@ -241,8 +242,8 @@ const logoutMeta = (reducer: ActionReducer<any>): ActionReducer<any> => {
     return reducer(state, action);
   };
 };
-export const metaReducers: MetaReducer<AppState>[] = (window['ENV'] as any)
-  .angularProd
-  ? [logoutMeta]
-  : [debugMeta, logoutMeta];
+export const metaReducers: MetaReducer<AppState>[] =
+  ENV_ANGULAR_NODE_APP_BUILD_ANGULAR_PROD
+    ? [logoutMeta]
+    : [debugMeta, logoutMeta];
 //#endregion
