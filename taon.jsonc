@@ -2,6 +2,8 @@
   "type": "isomorphic-lib",
   "version": "v19",
   "dependenciesNamesForNpmLib": [],
+  "appId": "com.domain.example.darekf77.application-quiz",
+
   "autoReleaseConfigAllowedItems": [
     {
       "artifactName": "angular-node-app",
@@ -9,10 +11,13 @@
       "releaseType": "static-pages",
     },
   ],
+
   "overrideNpmName": "@darekf77/application-quiz",
   "resources": [],
+
   "packageJsonOverride": {
     "author": "Dariusz Filipiak",
-    "scripts": {}
-  },
+    "scripts": {},
+    "description": "Description for application-quiz. Hello world!"
+  }
 }
