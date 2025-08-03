@@ -7,20 +7,14 @@ import {
   CLIENT_DEV_NORMAL_APP_PORT,
   CLIENT_DEV_WEBSQL_APP_PORT,
   HOST_BACKEND_PORT,
+  HOST_CONFIG,
 } from './app.hosts';
 import { MIGRATIONS_CLASSES_FOR_ApplicationQuizContext } from './migrations';
 //#endregion
-const host = 'http://localhost:' + HOST_BACKEND_PORT;
-const frontendHost =
-  'http://localhost:' +
-  (UtilsOs.isRunningInWebSQL()
-    ? CLIENT_DEV_WEBSQL_APP_PORT
-    : CLIENT_DEV_NORMAL_APP_PORT);
+
 export const ApplicationQuizContext = Taon.createContext(() => ({
   contextName: 'ApplicationQuizContext',
-  host,
-
-  frontendHost,
+  ...HOST_CONFIG['app.context.ts']['ApplicationQuizContext'],
   contexts: { SharedContext },
   database: {
     recreateMode: 'DROP_DB+MIGRATIONS',

@@ -30,7 +30,8 @@ export class StatsContainer implements OnInit {
         .getByUsername(encodeURIComponent(username))
         .received.observable.pipe(
           map(data => {
-            return data.body.json;
+            console.log('user data', data); // @LAST is ipc mode entity mapping does not work !
+            return User.from(data.body.json);
           }),
         );
     } else {
