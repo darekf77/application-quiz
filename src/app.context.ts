@@ -13,16 +13,10 @@ import { MIGRATIONS_CLASSES_FOR_ApplicationQuizContext } from './migrations';
 //#endregion
 
 export const ApplicationQuizContext = Taon.createContext(() => ({
-  contextName: 'ApplicationQuizContext',
-  ...HOST_CONFIG['app.context.ts']['ApplicationQuizContext'],
+  ...HOST_CONFIG['ApplicationQuizContext'],
   contexts: { SharedContext },
-  database: {
-    recreateMode: 'DROP_DB+MIGRATIONS',
-    // recreateMode: 'PRESERVE_DATA+MIGRATIONS'
-  },
-  migrations: {
-    ...MIGRATIONS_CLASSES_FOR_ApplicationQuizContext,
-  },
+  database: true,
+  migrations: MIGRATIONS_CLASSES_FOR_ApplicationQuizContext,
   logs: {
     db: false,
     framework: true,
