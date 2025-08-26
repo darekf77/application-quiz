@@ -18,7 +18,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MaterialCssVarsModule } from 'angular-material-css-vars';
 import { Observable } from 'rxjs';
 import { Taon, TAON_CONTEXT } from 'taon/src';
-import { TaonFullMaterialModule, TaonGithubForkMeCornerModule } from 'taon-ui/src'; // @browser
+import {
+  TaonFullMaterialModule,
+  TaonGithubForkMeCornerModule,
+} from 'taon-ui/src'; // @browser
 import { _ } from 'tnp-core/src';
 
 import { ApplicationQuizContext } from './app.context';
