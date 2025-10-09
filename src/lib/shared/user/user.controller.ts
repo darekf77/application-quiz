@@ -79,7 +79,7 @@ export class UserController extends Taon.Base.CrudController<User> {
         const userAnswer = userAnswers[index];
         userAnswer.answeredCorrectly =
           userAnswer.userAnswer ===
-          allAnswers.find(a => a.id == userAnswer.id).isCorrect;
+          allAnswers.find(a => a.id == userAnswer.id)?.isCorrect;
       }
       if (!Array.isArray(user.statistics)) {
         user.statistics = [];
@@ -108,9 +108,9 @@ export class UserController extends Taon.Base.CrudController<User> {
     };
     //#endregion
   }
-  @Taon.Http.POST('/stats/for/user/:username') //
+  @Taon.Http.POST()
   getByUsername(
-    @Taon.Http.Param.Path('username')
+    @Taon.Http.Param.Query('username')
     username: string,
   ): Taon.Response<User> {
     //#region @websqlFunc
@@ -125,5 +125,4 @@ export class UserController extends Taon.Base.CrudController<User> {
     };
     //#endregion
   }
-
 }
