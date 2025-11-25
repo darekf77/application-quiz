@@ -38,6 +38,7 @@ import {
 //#endregion
 
 //#region @browser
+
 //#region routes
 const routes: Routes = [
   {
@@ -57,6 +58,7 @@ const routes: Routes = [
   },
 ];
 //#endregion
+
 //#region main component
 @Component({
   selector: 'app-application-quiz',
@@ -67,7 +69,9 @@ const routes: Routes = [
 })
 export class ApplicationQuizComponent implements OnInit {
   readonly topics$: Observable<Partial<Topic>[]>;
+
   readonly selected$: Observable<Partial<Topic>>;
+
   readonly showQuizSelect$: Observable<boolean>;
 
   @ViewChild(MatMenuTrigger)
@@ -85,14 +89,17 @@ export class ApplicationQuizComponent implements OnInit {
   changeTopic({ topicTitleKebabCase }: Topic) {
     this.store.dispatch(appActions.CHANGE_TOPIC({ topicTitleKebabCase }));
   }
+
   someMethod() {
     this.trigger.openMenu();
   }
+
   async ngOnInit() {
     this.store.dispatch(appActions.INIT());
   }
 }
 //#endregion
+
 //#region main module
 @NgModule({
   providers: [
@@ -135,15 +142,18 @@ export class ApplicationQuizComponent implements OnInit {
 })
 export class ApplicationQuizModule {}
 //#endregion
+
 //#endregion
 
 //#region taon start function
 async function start() {
   // Taon.enableProductionMode();
+
   //#region init context
   const context = await ApplicationQuizContext.initialize();
 
   //#endregion
+
   //#region @backend
   if (Taon.isNode) {
     // context.node.app.get('/hello', (req, res) => {
@@ -151,6 +161,7 @@ async function start() {
     // });
   }
   //#endregion
+
   if (Taon.isBrowser) {
     const users = (
       await context.getInstanceBy(TopicController).getAll().received
@@ -161,4 +172,5 @@ async function start() {
   }
 }
 //#endregion
+
 export default start;

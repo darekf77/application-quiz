@@ -16,6 +16,7 @@ import * as topicSelectors from './selectors/topic.selectors';
 import { TopicService } from './services/topic.service';
 import { TopicInitialState } from './topic.models';
 //#endregion
+
 @Component({
   selector: 'app-topic',
   standalone: false,
@@ -25,9 +26,13 @@ import { TopicInitialState } from './topic.models';
 export class TopicContainer implements OnInit {
   @ViewChild('usernamePopup')
   usernamePopup: any;
+
   readonly currentTopic$: Observable<Topic>;
+
   readonly currentQuestion$: Observable<Question>;
+
   readonly selectedQuestionOid$: Observable<number>;
+
   constructor(
     private store: Store<TopicInitialState>,
     private service: TopicService,
@@ -55,6 +60,7 @@ export class TopicContainer implements OnInit {
       topicSelectors.getSelectedQuestionOid,
     );
   }
+
   async onQuestionOidChanged(navigateToQuestionOid) {
     const topic = await firstValueFrom(this.currentTopic$);
     this.service.appService.go(
@@ -62,18 +68,23 @@ export class TopicContainer implements OnInit {
       navigateToQuestionOid,
     );
   }
+
   start() {
     this.store.dispatch(topicAction.FETCH_TOPIC());
   }
+
   submit(topic: Topic) {
     this.store.dispatch(topicAction.SHOW_ENTER_USERNAME({ topic }));
   }
+
   handleDismiss() {
     this.store.dispatch(topicAction.DISMISS_ENTER_USERNAME());
   }
+
   emailEntered(username) {
     this.store.dispatch(topicAction.SUBMIT_SCORE({ username }));
   }
+
   ngOnInit(): void {
     this.store.dispatch(questionAction.INIT());
   }

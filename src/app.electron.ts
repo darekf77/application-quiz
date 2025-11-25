@@ -1,10 +1,17 @@
 //#region @notForNpm
+
+//#region imports
+
+//#region imports
 import { app, BrowserWindow, screen } from 'electron';
 import { path, fse } from 'tnp-core/src';
 
 import start from './app';
 import { FRONTEND_HOST_URL_ELECTRON } from './app.hosts';
 import { ENV_ELECTRON_APP_BUILD_ANGULAR_PROD } from './lib/env';
+//#endregion
+
+//#endregion
 
 let win: BrowserWindow | null = null;
 const args = process.argv.slice(1);

@@ -35,10 +35,15 @@ import { UserService } from './user.service';
 })
 export class UserComponent {
   private userService = inject(UserService);
+
   public entityCrudController: UserController;
+
   @Input() context: typeof SharedContext;
+
   @Input() user: User;
+
   @Output() userGoTo = new EventEmitter();
+
   statsColumns = [
     {
       header: 'Topic Name',
@@ -55,6 +60,7 @@ export class UserComponent {
       maxWidth: 100,
     },
   ] as MtxGridColumn[];
+
   usersColumns = [
     {
       header: 'ID',
@@ -84,6 +90,7 @@ export class UserComponent {
       ],
     },
   ];
+
   constructor() {
     this.entityCrudController = this.userService.entityCrudController;
   }

@@ -10,6 +10,7 @@ import {
 import type { Answer } from './answer';
 import { AnswerService } from './answer.service';
 //#endregion
+
 @Component({
   selector: 'answer',
   standalone: false,
@@ -20,7 +21,9 @@ import { AnswerService } from './answer.service';
 export class AnswerComponent {
   @ViewChild('exposedTemplate')
   exposedTemplate: TemplateRef<any>;
+
   @Input()
   answer: Answer;
+
   constructor(protected service: AnswerService) {}
 }

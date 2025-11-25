@@ -11,6 +11,7 @@ import {
 import { Topic } from './topic';
 import { TopicService } from './topic.service';
 //#endregion
+
 @Component({
   selector: 'topic',
   standalone: false,
@@ -21,11 +22,15 @@ import { TopicService } from './topic.service';
 export class TopicComponent {
   @Output()
   questionOidChanged = new EventEmitter();
+
   @Input()
   topic: Topic;
+
   @Input()
   selectedQuestionOid: number;
+
   constructor(protected service: TopicService) {}
+
   change(questionOid) {
     this.questionOidChanged.next(questionOid);
   }

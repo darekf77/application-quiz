@@ -8,6 +8,7 @@ import * as topicActions from '../../actions/topic.actions';
 import * as questionActions from '../actions/question.actions';
 import { QuestionInitialState } from '../question.models';
 //#endregion
+
 const initialState: QuestionInitialState = {
   currentQuestion: void 0,
   selectedAnswersIds: [],

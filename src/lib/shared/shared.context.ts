@@ -1,5 +1,5 @@
 //#region imports
-import { Taon, BaseContext } from 'taon/src';
+import { Taon, TaonTaonBaseContext } from 'taon/src';
 
 import { Answer } from './answer';
 import { AnswerController } from './answer/answer.controller';
@@ -10,10 +10,11 @@ import { TopicController } from './topic/topic.controller';
 import { User } from './user';
 import { UserController } from './user/user.controller';
 //#endregion
+
 export const SharedContext = Taon.createContext(() => ({
   contextName: 'SharedContext',
   abstract: true,
-  contexts: { BaseContext },
+  contexts: { TaonTaonBaseContext },
   controllers: {
     TopicController,
     QuestionController,

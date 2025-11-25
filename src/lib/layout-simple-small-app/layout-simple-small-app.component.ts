@@ -13,6 +13,7 @@ import {
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 //#endregion
+
 @Component({
   selector: 'layout-simple-small-app',
   standalone: false,
@@ -24,16 +25,23 @@ export class LayoutSimpleSmallAppComponent implements OnDestroy {
   @HostBinding('style.minHeight.px')
   @Input()
   height: number = 100;
+
   handlers: Subscription[] = [];
+
   @Output()
   layoutSimpleSmallAppDataChanged = new EventEmitter();
+
   @Input()
   layoutSimpleSmallAppData: any = {};
+
   private router: Router = inject(Router);
+
   constructor() {}
+
   onHeaderClick() {
     this.router.navigate(['/']);
   }
+
   ngOnDestroy(): void {
     this.handlers.forEach(h => h.unsubscribe());
   }

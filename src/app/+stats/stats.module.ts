@@ -8,6 +8,7 @@ import { TaonFullMaterialModule } from 'taon-ui/src';
 
 import { StatsContainer } from './stats.container';
 //#endregion
+
 const routes: Routes = [
   {
     path: '',

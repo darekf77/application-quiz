@@ -18,6 +18,6 @@
   "packageJsonOverride": {
     "author": "Dariusz Filipiak",
     "description": "Description for application-quiz. Hello world!",
-    "scripts": {}
-  }
+    "scripts": {},
+  },
 }

@@ -17,10 +17,13 @@ import { AppService } from '../../app.store';
 })
 export class StatsContainer implements OnInit {
   context: typeof ApplicationQuizContext;
+
   user$: Observable<User>;
+
   userController = Taon.inject(() =>
     ApplicationQuizContext.getClass(UserController),
   );
+
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('username')
   set id(username: string) {
@@ -38,12 +41,15 @@ export class StatsContainer implements OnInit {
       this.user$ = of(void 0);
     }
   }
+
   constructor(private appService: AppService) {
     this.context = ApplicationQuizContext;
   }
+
   onUserGoTo(username: string) {
     this.appService.goToStats(username);
   }
+
   ngOnInit(): void {
     // console.log('ngOnInit', this.context);
   }

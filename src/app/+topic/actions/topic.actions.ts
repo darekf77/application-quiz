@@ -2,6 +2,7 @@
 import { ITopic, IUser, Topic } from '@darekf77/application-quiz/src';
 import { createAction, props } from '@ngrx/store';
 //#endregion
+
 export const FETCH_TOPIC = createAction('[topic] FETCH_TOPIC');
 export const FETCH_TOPIC_SUCCESS = createAction(
   '[topic] FETCH_TOPIC_SUCCESS',

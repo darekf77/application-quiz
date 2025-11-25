@@ -5,6 +5,7 @@ import { _ } from 'tnp-core/src';
 
 import { questionFeatureKey, QuestionInitialState } from '../question.models';
 //#endregion
+
 const questionFeatureSelector =
   createFeatureSelector<QuestionInitialState>(questionFeatureKey);
 export const getCurrentQuestion = createSelector(

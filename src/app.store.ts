@@ -5,6 +5,7 @@ const initialState: InitialAppState = {
   topics: [],
 };
 //#endregion
+
 //#region imports
 import { Injectable } from '@angular/core';
 import { Params, Router, RouterStateSnapshot } from '@angular/router';
@@ -48,6 +49,7 @@ import { ApplicationQuizContext } from './app.context';
 import { ENV_ANGULAR_NODE_APP_BUILD_ANGULAR_PROD } from './lib/env';
 
 //#endregion
+
 //#region models
 export interface InitialAppState {
   topics: ITopic[];
@@ -62,6 +64,7 @@ export interface AppState {
   router: RouterReducerState<RouterState>;
 }
 //#endregion
+
 //#region router serializer
 export class RouterSerializer implements RouterStateSerializer<RouterState> {
   serialize(routerState: RouterStateSnapshot): RouterState {
@@ -86,6 +89,7 @@ export class RouterSerializer implements RouterStateSerializer<RouterState> {
   }
 }
 //#endregion
+
 //#region app actions
 export namespace appActions {
   export const LOGOUT = createAction('[app] LOGOUT');
@@ -96,6 +100,7 @@ export namespace appActions {
       topicTitleKebabCase: string;
     }>(),
   );
+
   //#region app actions / FETCH_TOPICS
   export const FETCH_TOPICS = createAction('[app] FETCH_TOPICS');
   export const FETCH_TOPICS_SUCCESS = createAction(
@@ -113,31 +118,37 @@ export namespace appActions {
   //#endregion
 }
 //#endregion
+
 //#region app service
 @Injectable({
   providedIn: 'root',
 })
 export class AppService {
   constructor(private router: Router) {}
+
   go(topicTitleKebabCase: string, questionOid?: number) {
     const urlToNavigate = `/quiz/topic/${topicTitleKebabCase}${questionOid ? `/question/num/${questionOid}` : ''}`;
     console.log('Navigating to:', urlToNavigate);
     this.router.navigateByUrl(urlToNavigate);
   }
+
   goToStats(username: string) {
     const urlToNavigate = `/stats/${encodeURIComponent(username)}`;
     this.router.navigateByUrl(urlToNavigate);
   }
+
   navigateToFirstQuestion(topic: Topic) {
     setTimeout(() => {
       this.go(topic.topicTitleKebabCase, 1);
     });
   }
+
   goTo(topicTitleKebabCase: string) {
     this.go(topicTitleKebabCase);
   }
 }
 //#endregion
+
 //#region app reducers
 export const appReducer = createReducer(
   initialState,
@@ -146,6 +157,7 @@ export const appReducer = createReducer(
   }),
 );
 //#endregion
+
 //#region app effects
 @Injectable()
 export class AppEffects {
@@ -154,6 +166,7 @@ export class AppEffects {
     private store: Store<any>,
     private service: AppService,
   ) {}
+
   init = createEffect(() =>
     this.actions$.pipe(
       ofType(appActions.INIT),
@@ -182,6 +195,7 @@ export class AppEffects {
       }),
     ),
   );
+
   naivigateToTopic = createEffect(
     () =>
       this.actions$.pipe(
@@ -194,6 +208,7 @@ export class AppEffects {
   );
 }
 //#endregion
+
 //#region app selectors
 export namespace appSelectors {
   export const appSelector =
@@ -223,6 +238,7 @@ export namespace appSelectors {
   });
 }
 //#endregion
+
 //#region meta reducers
 export const reducers: ActionReducerMap<AppState> = {
   [appStateKey]: appReducer,
@@ -246,4 +262,3 @@ export const metaReducers: MetaReducer<AppState>[] =
   ENV_ANGULAR_NODE_APP_BUILD_ANGULAR_PROD
     ? [logoutMeta]
     : [debugMeta, logoutMeta];
-//#endregion

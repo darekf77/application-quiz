@@ -12,6 +12,7 @@ import * as questionAction from './actions/question.actions';
 import { QuestionInitialState } from './question.models';
 import * as questionSelectors from './selectors/question.selectors';
 //#endregion
+
 @Component({
   selector: 'app-question',
   standalone: false,
@@ -20,7 +21,9 @@ import * as questionSelectors from './selectors/question.selectors';
 })
 export class QuestionContainer {
   question$: Observable<Question>;
+
   readonly selectedAnswersForQuestion$: Observable<number[]>;
+
   constructor(
     private store: Store<QuestionInitialState>,
     private appService: AppService,
@@ -29,6 +32,7 @@ export class QuestionContainer {
       questionSelectors.currentQuestionSelectedIds,
     );
   }
+
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('questionOid')
   set id(questionOid) {
@@ -44,16 +48,19 @@ export class QuestionContainer {
       this.question$ = of(void 0);
     }
   }
+
   onSelectionChange(e: MatSelectionListChange) {
     const answersIds = e.source._value as any as Number[];
     this.store.dispatch(questionAction.MARK_ANSWERS({ answersIds }));
   }
+
   async goNext(q: Question) {
     const topic = await firstValueFrom(
       this.store.select(appSelectors.selectedTopic),
     );
     this.appService.go(topic.topicTitleKebabCase, q.nextOid);
   }
+
   async goPrev(q: Question) {
     const topic = await firstValueFrom(
       this.store.select(appSelectors.selectedTopic),

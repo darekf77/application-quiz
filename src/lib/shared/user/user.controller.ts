@@ -9,17 +9,23 @@ import { Topic } from '../topic';
 import { User } from './user';
 import { Stats } from './user.models';
 //#endregion
+
 @Taon.Controller({
   className: 'UserController',
 })
 export class UserController extends Taon.Base.CrudController<User> {
   entityClassResolveFn = (): typeof User => User;
+
   get userRepository(): Taon.Base.Repository<User> {
     return this.db;
   }
+
   questionRepository = this.injectRepo(Question);
+
   topicRepository = this.injectRepo(Topic);
+
   answerRepository = this.injectRepo(Answer);
+
   /**
    *
    * @param corectAnswersIds
@@ -108,6 +114,7 @@ export class UserController extends Taon.Base.CrudController<User> {
     };
     //#endregion
   }
+
   @Taon.Http.POST()
   getByUsername(
     @Taon.Http.Param.Query('username')

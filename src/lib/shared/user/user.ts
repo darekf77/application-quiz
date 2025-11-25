@@ -8,6 +8,7 @@ import {
   defaultModelValuesUser as defaultModelValues,
 } from './user.models';
 //#endregion
+
 @Taon.Entity({
   className: 'User',
   defaultModelValues,
@@ -20,15 +21,20 @@ export class User extends Taon.Base.Entity {
   static from(obj: Omit<Partial<User>, 'ctrl'>) {
     return _.merge(new User(), obj) as User;
   }
+
   static empty() {
     return User.from(defaultModelValues);
   }
+
   //#endregion
+
   //#region fields & getters
+
   //#region @websql
   @Taon.Orm.Column.Generated()
   //#endregion
   id: string;
+
   //#region @websql
   @Taon.Orm.Column.Custom({
     type: 'varchar',
@@ -38,11 +44,14 @@ export class User extends Taon.Base.Entity {
   })
   //#endregion
   username: string;
+
   //#region @websql
   @Taon.Orm.Column.SimpleJson()
   //#endregion
   statistics?: Stats[];
+
   //#endregion
+
   //#region @websql
   @Taon.Orm.Column.Custom({
     type: 'varchar',
@@ -52,13 +61,16 @@ export class User extends Taon.Base.Entity {
   })
   //#endregion
   description?: string;
+
   //#endregion
+
   //#region methods
   getScored() {
     return (this.statistics || []).reduce((a, b) => {
       return a + b.scored;
     }, 0);
   }
+
   getTotal() {
     return (this.statistics || []).reduce((a, b) => {
       return a + b.total;

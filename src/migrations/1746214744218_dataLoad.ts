@@ -1,3 +1,4 @@
+//#region imports
 // @ts-nocheck
 import {
   Answer,
@@ -8,6 +9,7 @@ import {
 import { Taon } from 'taon/src';
 import { QueryRunner } from 'taon-typeorm/src';
 import { _ } from 'tnp-core/src';
+//#endregion
 
 export const backendQuizData: RawQuizApp = {
   title: 'Quiz Application UI',
@@ -277,7 +279,9 @@ export const backendQuizData: RawQuizApp = {
 export class ApplicationQuizContext_1746214744218_dataLoad extends Taon.Base
   .Migration {
   questionRepository = this.injectRepo(Question);
+
   topicRepository = this.injectRepo(Topic);
+
   answerRepository = this.injectRepo(Answer);
 
   async up(queryRunner: QueryRunner): Promise<any> {

@@ -6,6 +6,7 @@ import { TaonFullMaterialModule } from 'taon-ui/src';
 
 import { TopicComponent } from './topic.component';
 //#endregion
+
 @NgModule({
   imports: [CommonModule, TaonFullMaterialModule, StaticColumnsModule],
   declarations: [TopicComponent],

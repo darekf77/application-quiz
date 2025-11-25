@@ -7,6 +7,7 @@ import { Answer } from '../answer';
 
 import { defaultModelValuesQuestion as defaultModelValues } from './question.models';
 //#endregion
+
 @Taon.Entity({
   className: 'Question',
   defaultModelValues,
@@ -18,11 +19,15 @@ export class Question extends Taon.Base.Entity<any> implements RawQuestion {
     res.answers = (res.answers || []).map(a => Answer.from(a));
     return res;
   }
+
   static empty() {
     return Question.from(defaultModelValues);
   }
+
   //#endregion
+
   //#region fields & getters
+
   //#region @websql
   @Taon.Orm.Column.Custom({
     type: 'varchar',
@@ -32,17 +37,21 @@ export class Question extends Taon.Base.Entity<any> implements RawQuestion {
   })
   //#endregion
   declare title: string;
+
   declare answers: RawAnswer[];
+
   //#region @websql
   @Taon.Orm.Column.Generated()
   //#endregion
   declare id: number;
+
   //#region @websql
   @Taon.Orm.Column.Custom({
     type: 'int',
   })
   //#endregion
   declare topicId?: number;
+
   //#region @websql
   @Taon.Orm.Column.Custom({
     type: 'int',
@@ -50,6 +59,7 @@ export class Question extends Taon.Base.Entity<any> implements RawQuestion {
   })
   //#endregion
   declare nextOid?: number;
+
   //#region @websql
   @Taon.Orm.Column.Custom({
     type: 'int',
@@ -57,12 +67,14 @@ export class Question extends Taon.Base.Entity<any> implements RawQuestion {
   })
   //#endregion
   declare prevOid?: number;
+
   //#region @websql
   @Taon.Orm.Column.Custom({
     type: 'int',
   })
   //#endregion
   declare oid?: number;
+
   //#region @websql
   @Taon.Orm.Column.Custom({
     type: 'varchar',

@@ -27,19 +27,23 @@ import * as topicSelectors from '../selectors/topic.selectors';
 import { TopicService } from '../services/topic.service';
 import { TopicInitialState } from '../topic.models';
 //#endregion
+
 @Injectable()
 export class TopicEffects {
   userController = Taon.inject(() =>
     ApplicationQuizContext.getClass(UserController),
   );
+
   topicController = Taon.inject(() =>
     ApplicationQuizContext.getClass(TopicController),
   );
+
   constructor(
     private actions$: Actions,
     private service: TopicService,
     private store: Store<TopicInitialState>,
   ) {}
+
   fetchTopic = createEffect(() =>
     this.actions$.pipe(
       ofType(topicActions.FETCH_TOPIC),
@@ -63,6 +67,7 @@ export class TopicEffects {
       ),
     ),
   );
+
   navigateToQuestion = createEffect(
     () =>
       this.actions$.pipe(
@@ -74,6 +79,7 @@ export class TopicEffects {
       ),
     { dispatch: false },
   );
+
   submit = createEffect(() =>
     this.actions$.pipe(
       ofType(topicActions.SUBMIT_SCORE),
@@ -100,6 +106,7 @@ export class TopicEffects {
       }),
     ),
   );
+
   navigateToUserStats = createEffect(
     () =>
       this.actions$.pipe(

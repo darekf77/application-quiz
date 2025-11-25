@@ -6,22 +6,28 @@ import { Topic } from '../topic';
 
 import { Question } from './question';
 //#endregion
+
 @Taon.Controller({
   className: 'QuestionController',
 })
 export class QuestionController extends Taon.Base.CrudController<any> {
   entityClassResolveFn = () => Question;
+
   get questionRepository() {
     return this.db;
   }
+
   topicRepository = this.injectRepo(Topic);
+
   anwserRepository = this.injectRepo(Answer);
+
   @Taon.Http.GET()
   hello(): Taon.Response<string> {
     return async () => {
       return 'Hello world';
     };
   }
+
   @Taon.Http.GET()
   getAll(
     @Taon.Http.Param.Query('limit')
@@ -42,6 +48,7 @@ export class QuestionController extends Taon.Base.CrudController<any> {
     };
     //#endregion
   }
+
   @Taon.Http.GET(`/question/:questionOid/topic/:topicTitleKebabCase`) //
   getQuestionWithAswers(
     @Taon.Http.Param.Path('questionOid')
@@ -77,5 +84,4 @@ export class QuestionController extends Taon.Base.CrudController<any> {
     };
     //#endregion
   }
-  
 }

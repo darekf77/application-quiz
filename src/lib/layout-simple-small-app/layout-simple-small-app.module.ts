@@ -7,6 +7,7 @@ import { TaonFullMaterialModule } from 'taon-ui/src';
 
 import { LayoutSimpleSmallAppComponent } from './layout-simple-small-app.component';
 //#endregion
+
 @NgModule({
   imports: [
     CommonModule,

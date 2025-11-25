@@ -5,6 +5,7 @@ import { _ } from 'tnp-core/src';
 
 import { AppService } from '../../../app.store';
 //#endregion
+
 @Injectable()
 export class TopicService {
   constructor(public appService: AppService) {}

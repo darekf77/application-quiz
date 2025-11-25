@@ -18,15 +18,18 @@ import { ApplicationQuizContext } from '../../../../app.context';
 import { AppState, appSelectors } from '../../../../app.store';
 import * as questionActions from '../actions/question.actions';
 //#endregion
+
 @Injectable()
 export class QuestionEffects {
   questionController = Taon.inject(() =>
     ApplicationQuizContext.getClass(QuestionController),
   );
+
   constructor(
     private actions$: Actions,
     private store: Store<AppState>,
   ) {}
+
   fetchQuestions = createEffect(() =>
     this.actions$.pipe(
       ofType(questionActions.FETCH_QUESTION),

@@ -7,6 +7,7 @@ import { Question } from '../question';
 
 import { Topic } from './topic';
 //#endregion
+
 @Taon.Controller({
   className: 'TopicController',
 })
@@ -19,6 +20,7 @@ export class TopicController extends Taon.Base.CrudController<any> {
       return 'Hello world';
     };
   }
+
   @Taon.Http.GET()
   getAll(
     @Taon.Http.Param.Query('limit')
@@ -39,6 +41,7 @@ export class TopicController extends Taon.Base.CrudController<any> {
     };
     //#endregion
   }
+
   @Taon.Http.GET(`/by/title/:topicTitleKebabCase`)
   getByTitleKebabCase(
     @Taon.Http.Param.Path('topicTitleKebabCase')
