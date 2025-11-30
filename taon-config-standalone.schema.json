@@ -6397,6 +6397,9 @@
         "releaseType": {
           "$ref": "#/definitions/ReleaseType",
           "description": "select release type for automatic release"
+        },
+        "taonInstanceIp": {
+          "type": "string"
         }
       },
       "required": [
