@@ -6400,10 +6400,14 @@
         },
         "taonInstanceIp": {
           "type": "string"
+        },
+        "itemFriendlyName": {
+          "type": "string"
         }
       },
       "required": [
-        "artifactName"
+        "artifactName",
+        "itemFriendlyName"
       ],
       "additionalProperties": false
     },

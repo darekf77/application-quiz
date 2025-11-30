@@ -5,14 +5,16 @@
   "appId": "com.domain.example.darekf77.application-quiz",
 
   "autoReleaseConfigAllowedItems": [
-    // {
-    //   "artifactName": "angular-node-app",
-    //   "envName": "demo",
-    //   "releaseType": "static-pages",
-    // },
+    {
+      "artifactName": "angular-node-app",
+      "envName": "demo",
+      "itemFriendlyName": "demo-static-pages-A",
+      "releaseType": "static-pages",
+    },
     {
       "artifactName": "angular-node-app",
       "envName": "dev",
+      "itemFriendlyName": "localhost-manual-release",
       "releaseType": "manual",
       "taonInstanceIp": "127.0.0.1",
     }
