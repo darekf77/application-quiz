@@ -1,25 +1,27 @@
 //#region imports
 import { Taon } from 'taon/src';
+import { GET, Query, TaonBaseCrudController, TaonController } from 'taon/src';
 
 import { Answer } from './answer';
+
 //#endregion
 
-@Taon.Controller({
+@TaonController({
   className: 'AnswerController',
 })
-export class AnswerController extends Taon.Base.CrudController<any> {
+export class AnswerController extends TaonBaseCrudController<any> {
   entityClassResolveFn = () => Answer;
 
-  @Taon.Http.GET()
+  @GET()
   hello(): Taon.Response<string> {
     return async () => {
       return 'Hello world';
     };
   }
 
-  @Taon.Http.GET() //
+  @GET() //
   getAll(
-    @Taon.Http.Param.Query('limit')
+    @Query('limit')
     limit = Infinity,
   ): Taon.Response<Answer[]> {
     //#region @websqlFunc
@@ -27,13 +29,13 @@ export class AnswerController extends Taon.Base.CrudController<any> {
     return async (req, res) => {
       const config = await super.getAll();
       let arr = (await Taon.getResponseValue(config, {
-        req,
-        res,
+        req: req as any,
+        res: res as any,
       })) as Answer[];
       if (arr.length > limit) {
         arr = arr.slice(0, limit - 1);
       }
-      return arr as any;
+      return arr;
     };
     //#endregion
   }

@@ -1,5 +1,14 @@
 //#region imports
 import { Taon } from 'taon/src';
+import {
+  POST,
+  Query,
+  Path,
+  Body,
+  TaonBaseCrudController,
+  TaonBaseRepository,
+  TaonController,
+} from 'taon/src';
 import { _ } from 'tnp-core/src';
 
 import { Answer } from '../answer/answer';
@@ -8,15 +17,16 @@ import { Topic } from '../topic';
 
 import { User } from './user';
 import { Stats } from './user.models';
+
 //#endregion
 
-@Taon.Controller({
+@TaonController({
   className: 'UserController',
 })
-export class UserController extends Taon.Base.CrudController<User> {
+export class UserController extends TaonBaseCrudController<User> {
   entityClassResolveFn = (): typeof User => User;
 
-  get userRepository(): Taon.Base.Repository<User> {
+  get userRepository(): TaonBaseRepository<User> {
     return this.db;
   }
 
@@ -32,13 +42,13 @@ export class UserController extends Taon.Base.CrudController<User> {
    * @param username should be encoded encodeURIComponent
    * @returns
    */
-  @Taon.Http.POST('/submit/user/:username') //
+  @POST('/submit/user/:username') //
   submit(
-    @Taon.Http.Param.Body('answers')
+    @Body('answers')
     corectAnswersIds: Number[],
-    @Taon.Http.Param.Path('username')
+    @Path('username')
     username: string,
-    @Taon.Http.Param.Query('onlyTopicId')
+    @Query('onlyTopicId')
     onlyTopicId: Number,
   ): Taon.Response<User> {
     //#region @websqlFunc
@@ -115,9 +125,9 @@ export class UserController extends Taon.Base.CrudController<User> {
     //#endregion
   }
 
-  @Taon.Http.POST()
+  @POST()
   getByUsername(
-    @Taon.Http.Param.Query('username')
+    @Query('username')
     username: string,
   ): Taon.Response<User> {
     //#region @websqlFunc

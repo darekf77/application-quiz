@@ -1,24 +1,28 @@
 {
   "type": "isomorphic-lib",
-  "version": "v19",
+  "version": "v21",
   "dependenciesNamesForNpmLib": [],
   "appId": "com.domain.example.darekf77.application-quiz",
 
   "autoReleaseConfigAllowedItems": [
-    // {
-    //   "artifactName": "angular-node-app",
-    //   "envName": "demo",
-    //   "releaseType": "static-pages",
-    // },
+    {
+      "artifactName": "angular-node-app",
+      "envName": "demo",
+      "releaseType": "static-pages",
+      "taskName": "demo-static-pages-A",
+    },
     {
       "artifactName": "angular-node-app",
       "envName": "dev",
       "releaseType": "manual",
       "taonInstanceIp": "127.0.0.1",
-    }
+      "taskName": "localhost-manual-release",
+    },
   ],
 
+  "isomorphicDependenciesForNpmLib": [],
   "overrideNpmName": "@darekf77/application-quiz",
+  "peerDependenciesNamesForNpmLib": [],
   "resources": [],
 
   "packageJsonOverride": {

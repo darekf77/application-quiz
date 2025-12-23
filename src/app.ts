@@ -2,7 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { MatMenuTrigger } from '@angular/material/menu';
+import { MatMenuTrigger } from '@angular/material/menu'; // @browser
 import {
   PreloadAllModules,
   Router,

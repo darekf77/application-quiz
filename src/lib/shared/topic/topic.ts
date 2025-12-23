@@ -1,18 +1,26 @@
 //#region imports
-import { ClassHelpers, Taon } from 'taon/src';
+import { ClassHelpers, PrimaryGeneratedColumn, Taon } from 'taon/src';
+import {
+  TaonBaseEntity,
+  TaonEntity,
+  Generated,
+  Column,
+  SimpleJsonColumn,
+} from 'taon/src';
 import { _ } from 'tnp-core/src';
 
 import { RawQuestion, RawTopic } from '../../models';
 
 import type { TopicController } from './topic.controller';
 import { defaultModelValuesTopic as defaultModelValues } from './topic.models';
+
 //#endregion
 
-@Taon.Entity({
+@TaonEntity({
   className: 'Topic',
   defaultModelValues,
 })
-export class Topic extends Taon.Base.Entity<any> implements RawTopic {
+export class Topic extends TaonBaseEntity<any> implements RawTopic {
   //#region static
   static from(obj: Omit<Partial<Topic>, 'ctrl'>) {
     return _.merge(new Topic(), obj) as Topic;
@@ -27,7 +35,7 @@ export class Topic extends Taon.Base.Entity<any> implements RawTopic {
   //#region fields & getters
 
   //#region @websql
-  @Taon.Orm.Column.Custom({
+  @Column({
     type: 'varchar',
     length: 200,
     default: defaultModelValues.title,
@@ -37,7 +45,7 @@ export class Topic extends Taon.Base.Entity<any> implements RawTopic {
   declare title: string;
 
   //#region @websql
-  @Taon.Orm.Column.Custom({
+  @Column({
     type: 'varchar',
     length: 200,
     default: defaultModelValues.topicTitleKebabCase,
@@ -49,17 +57,17 @@ export class Topic extends Taon.Base.Entity<any> implements RawTopic {
   declare question: RawQuestion[];
 
   //#region @websql
-  @Taon.Orm.Column.Generated()
+  @PrimaryGeneratedColumn()
   //#endregion
   declare id: number;
 
   //#region @websql
-  @Taon.Orm.Column.SimpleJson()
+  @SimpleJsonColumn()
   //#endregion
   declare questionsOids: number[];
 
   //#region @websql
-  @Taon.Orm.Column.Custom({
+  @Column({
     type: 'varchar',
     length: 100,
     default: defaultModelValues.description,

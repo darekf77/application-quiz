@@ -7,8 +7,11 @@ import {
   type RawQuizApp,
 } from '@darekf77/application-quiz/src';
 import { Taon } from 'taon/src';
+import { TaonMigration } from 'taon/src';
+import { TaonBaseMigration } from 'taon/src';
 import { QueryRunner } from 'taon-typeorm/src';
 import { _ } from 'tnp-core/src';
+
 //#endregion
 
 export const backendQuizData: RawQuizApp = {
@@ -273,11 +276,10 @@ export const backendQuizData: RawQuizApp = {
   ],
 };
 
-@Taon.Migration({
+@TaonMigration({
   className: 'ApplicationQuizContext_1746214744218_dataLoad',
 })
-export class ApplicationQuizContext_1746214744218_dataLoad extends Taon.Base
-  .Migration {
+export class ApplicationQuizContext_1746214744218_dataLoad extends TaonBaseMigration {
   questionRepository = this.injectRepo(Question);
 
   topicRepository = this.injectRepo(Topic);
