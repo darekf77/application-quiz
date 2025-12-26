@@ -1,10 +1,14 @@
 //#region imports
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Question, Topic } from '@darekf77/application-quiz/src';
+import { Question, Topic, TopicModule } from '@darekf77/application-quiz/src';
+import { MtxAlertModule } from '@ng-matero/extensions/alert';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
+import { SweetAlert2Module,  } from '@sweetalert2/ngx-sweetalert2'; // TODO @LAST add provider when version 14
 import { Observable, firstValueFrom, map, of, takeUntil, tap } from 'rxjs';
+import { StaticColumnsModule } from 'static-columns/src';
+import { TaonFullMaterialModule } from 'taon-ui/src';
 import { _ } from 'tnp-core/src';
 
 import { AppService, appActions, appSelectors } from '../../app.store';
@@ -19,7 +23,13 @@ import { TopicInitialState } from './topic.models';
 
 @Component({
   selector: 'app-topic',
-  standalone: false,
+  standalone: true,
+  imports: [
+    TaonFullMaterialModule,
+    StaticColumnsModule,
+    TopicModule,
+    MtxAlertModule,
+  ],
   templateUrl: './topic.container.html',
   styleUrls: ['./topic.container.scss'],
 })

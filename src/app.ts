@@ -1,28 +1,58 @@
 //#region imports
 import { CommonModule } from '@angular/common';
-import { NgModule, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  APP_INITIALIZER,
+  ApplicationConfig,
+  NgModule,
+  ViewChild,
+  ViewEncapsulation,
+  isDevMode,
+  mergeApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+} from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu'; // @browser
+import {
+  provideClientHydration,
+  withEventReplay,
+} from '@angular/platform-browser';
 import {
   PreloadAllModules,
   Router,
   RouterModule,
   Routes,
+  provideRouter,
 } from '@angular/router';
+import { provideServiceWorker } from '@angular/service-worker';
+import {
+  RenderMode,
+  ServerRoute,
+  provideServerRendering,
+  withRoutes,
+} from '@angular/ssr';
 import { Topic, TopicController } from '@darekf77/application-quiz/src';
 import { LayoutSimpleSmallAppModule } from '@darekf77/application-quiz/src'; // @browser
-import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { Store, StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { MaterialCssVarsModule } from 'angular-material-css-vars';
+import { EffectsModule, provideEffects } from '@ngrx/effects';
+import {
+  provideRouterStore,
+  StoreRouterConnectingModule,
+} from '@ngrx/router-store';
+import { provideStore, Store, StoreModule } from '@ngrx/store';
+import {
+  provideStoreDevtools,
+  StoreDevtoolsModule,
+} from '@ngrx/store-devtools';
+import {
+  MaterialCssVarsModule,
+  provideMaterialCssVars,
+} from 'angular-material-css-vars';
 import { Observable } from 'rxjs';
 import { Taon, TAON_CONTEXT } from 'taon/src';
 import {
   TaonFullMaterialModule,
   TaonGithubForkMeCornerModule,
 } from 'taon-ui/src'; // @browser
-import { _ } from 'tnp-core/src';
+import { _, UtilsOs } from 'tnp-core/src';
 
 import { ApplicationQuizContext } from './app.context';
 import {
@@ -37,10 +67,9 @@ import {
 } from './app.store'; // @browser
 //#endregion
 
+//#region ApplicationQuizClientRoutes
 //#region @browser
-
-//#region routes
-const routes: Routes = [
+export const ApplicationQuizClientRoutes: Routes = [
   {
     path: '',
     redirectTo: 'quiz',
@@ -58,16 +87,24 @@ const routes: Routes = [
   },
 ];
 //#endregion
+//#endregion
 
 //#region main component
+//#region @browser
 @Component({
   selector: 'app-application-quiz',
-  standalone: false,
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./app.scss'],
   templateUrl: './app.html',
+  imports: [
+    CommonModule,
+    RouterModule,
+    LayoutSimpleSmallAppModule,
+    TaonFullMaterialModule,
+    TaonGithubForkMeCornerModule,
+  ],
 })
-export class ApplicationQuizComponent implements OnInit {
+export class ApplicationQuizApp implements OnInit {
   readonly topics$: Observable<Partial<Topic>[]>;
 
   readonly selected$: Observable<Partial<Topic>>;
@@ -99,54 +136,78 @@ export class ApplicationQuizComponent implements OnInit {
   }
 }
 //#endregion
+//#endregion
 
-//#region main module
-@NgModule({
+//#region ApplicationQuizAppConfig
+//#region @browser
+export const ApplicationQuizAppConfig: ApplicationConfig = {
   providers: [
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      useFactory: () => ApplicationQuizStartFunction,
+    },
     AppService,
     {
       provide: TAON_CONTEXT,
       useValue: ApplicationQuizContext,
     },
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(routes, {
-      useHash: true,
-      preloadingStrategy: PreloadAllModules,
-      enableTracing: false,
-      bindToComponentInputs: true,
-    }),
-    StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([AppEffects]),
-    StoreDevtoolsModule.instrument({
+    provideStore(reducers, { metaReducers }),
+
+    provideEffects(AppEffects),
+
+    provideStoreDevtools({
       maxAge: 25,
       // logOnly: environment.production,
     }),
-    StoreRouterConnectingModule.forRoot({
+
+    provideRouterStore({
       serializer: RouterSerializer,
     }),
-    LayoutSimpleSmallAppModule,
-    TaonFullMaterialModule,
-    MaterialCssVarsModule.forRoot({
-      // all optional
-      isAutoContrast: true,
-      primary: '#4758b8',
-      accent: '#fedfdd',
-      // ...
+
+    // provideMaterialCssVars({
+    //   isAutoContrast: true,
+    //   primary: '#4758b8',
+    //   accent: '#fedfdd',
+    // }),
+    provideBrowserGlobalErrorListeners(),
+    provideRouter(ApplicationQuizClientRoutes),
+    provideClientHydration(withEventReplay()),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
     }),
-    TaonGithubForkMeCornerModule,
   ],
-  exports: [ApplicationQuizComponent],
-  declarations: [ApplicationQuizComponent],
-})
-export class ApplicationQuizModule {}
+};
+//#endregion
 //#endregion
 
+//#region server routes
+//#region @browser
+export const ApplicationQuizServerRoutes: ServerRoute[] = [
+  {
+    path: '**',
+    renderMode: RenderMode.Prerender,
+  },
+];
+//#endregion
+//#endregion
+
+//#region server config
+//#region @browser
+export const ApplicationQuizServerConfig: ApplicationConfig = {
+  providers: [provideServerRendering(withRoutes(ApplicationQuizServerRoutes))],
+};
+
+export const ApplicationQuizConfig = mergeApplicationConfig(
+  ApplicationQuizAppConfig,
+  ApplicationQuizServerConfig,
+);
+//#endregion
 //#endregion
 
 //#region taon start function
-async function start() {
+async function ApplicationQuizStartFunction() {
   // Taon.enableProductionMode();
 
   //#region init context
@@ -173,4 +234,4 @@ async function start() {
 }
 //#endregion
 
-export default start;
+export default ApplicationQuizStartFunction;

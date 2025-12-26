@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TopicModule } from '@darekf77/application-quiz/src';
 import { MtxAlertModule } from '@ng-matero/extensions/alert';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
+import { EffectsModule, provideEffects } from '@ngrx/effects';
+import { provideState, StoreModule } from '@ngrx/store';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { StaticColumnsModule } from 'static-columns/src';
 import { TaonFullMaterialModule } from 'taon-ui/src';
@@ -22,6 +22,10 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: TopicContainer,
+    providers: [
+      provideState(topicFeatureKey, topicReducer),
+      provideEffects(TopicEffects),
+    ],
   },
   {
     path: 'topic/:topicTitleKebabCase',
@@ -37,19 +41,20 @@ const routes: Routes = [
     ],
   },
 ];
-@NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    StoreModule.forFeature(topicFeatureKey, topicReducer),
-    EffectsModule.forFeature([TopicEffects]),
-    TaonFullMaterialModule,
-    StaticColumnsModule,
-    TopicModule,
-    MtxAlertModule,
-    SweetAlert2Module.forRoot({}),
-  ],
-  declarations: [TopicContainer],
-  providers: [TopicService],
-})
-export class TopicContainerModule {}
+// TODO @LAST changing to standalone component
+// @NgModule({
+//   imports: [
+//     CommonModule,
+//     RouterModule.forChild(routes),
+//     StoreModule.forFeature(topicFeatureKey, topicReducer),
+//     EffectsModule.forFeature([TopicEffects]),
+//     TaonFullMaterialModule,
+//     StaticColumnsModule,
+//     TopicModule,
+//     MtxAlertModule,
+//     SweetAlert2Module.forRoot({}),
+//   ],
+//   declarations: [TopicContainer],
+//   providers: [TopicService],
+// })
+// export class TopicContainerModule {}
