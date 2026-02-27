@@ -1,5 +1,12 @@
 //#region imports
-import { Taon } from 'taon/src';
+import { Taon, TaonBaseAbstractEntity } from 'taon/src';
+import {
+  TaonBaseEntity,
+  TaonEntity,
+  Generated,
+  Column,
+  BooleanColumn,
+} from 'taon/src';
 import { _ } from 'tnp-core/src';
 
 import { RawAnswer } from '../../models';
@@ -7,29 +14,19 @@ import type { Topic } from '../topic';
 
 import type { AnswerController } from './answer.controller';
 import { defaultModelValuesAnswer as defaultModelValues } from './answer.models';
+
 //#endregion
 
-@Taon.Entity({
+@TaonEntity({
   className: 'Answer',
-  defaultModelValues,
+  defaultModelValues: () => ({ ...defaultModelValues }),
 })
-export class Answer extends Taon.Base.Entity<any> implements RawAnswer {
-  //#region static
-  static from(obj: Omit<Partial<Answer>, 'ctrl'>) {
-    return _.merge(new Answer(), obj) as Answer;
-  }
-
-  static empty() {
-    return Answer.from(defaultModelValues);
-  }
-
-  //#endregion
-
+export class Answer extends TaonBaseAbstractEntity<Answer> implements RawAnswer {
   //#region fields & getters
   declare topic: Topic;
 
   //#region @websql
-  @Taon.Orm.Column.Custom({
+  @Column({
     type: 'varchar',
     length: 200,
     default: defaultModelValues.title,
@@ -39,7 +36,7 @@ export class Answer extends Taon.Base.Entity<any> implements RawAnswer {
   declare title: string;
 
   //#region @websql
-  @Taon.Orm.Column.Boolean(false)
+  @BooleanColumn(false)
   //#endregion
   declare isCorrect?: boolean;
 
@@ -48,12 +45,7 @@ export class Answer extends Taon.Base.Entity<any> implements RawAnswer {
   declare answeredCorrectly?: boolean;
 
   //#region @websql
-  @Taon.Orm.Column.Generated()
-  //#endregion
-  declare id: number;
-
-  //#region @websql
-  @Taon.Orm.Column.Custom({
+  @Column({
     type: 'int',
   })
   //#endregion
@@ -62,7 +54,7 @@ export class Answer extends Taon.Base.Entity<any> implements RawAnswer {
   //#endregion
 
   //#region @websql
-  @Taon.Orm.Column.Custom({
+  @Column({
     type: 'int',
   })
   //#endregion
@@ -71,7 +63,7 @@ export class Answer extends Taon.Base.Entity<any> implements RawAnswer {
   //#endregion
 
   //#region @websql
-  @Taon.Orm.Column.Custom({
+  @Column({
     type: 'varchar',
     length: 100,
     default: defaultModelValues.description,

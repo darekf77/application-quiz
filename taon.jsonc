@@ -1,7 +1,16 @@
 {
   "type": "isomorphic-lib",
-  "version": "v19",
-  "dependenciesNamesForNpmLib": [],
+  "version": "v21",
+
+  "dependenciesNamesForNpmLib": [
+    "@angular/common",
+    "@angular/core",
+    "@angular/router",
+    "@ng-matero/extensions/grid",
+    "ngx-scrollbar",
+    "rxjs",
+  ],
+
   "appId": "com.domain.example.darekf77.application-quiz",
 
   "autoReleaseConfigAllowedItems": [
@@ -15,15 +24,26 @@
       "envName": "dev",
       "releaseType": "manual",
       "taonInstanceIp": "127.0.0.1",
-    }
+    },
+  ],
+
+  "isomorphicDependenciesForNpmLib": [
+    "static-columns",
+    "taon",
+    "taon-typeorm",
+    "taon-ui",
+    "tnp-core",
   ],
 
   "overrideNpmName": "@darekf77/application-quiz",
+  "peerDependenciesNamesForNpmLib": [],
   "resources": [],
+  "shouldGenerateAutogenAppRoutesFile": true,
+  "shouldGenerateAutogenIndexFile": true,
 
   "packageJsonOverride": {
     "author": "Dariusz Filipiak",
     "description": "Description for application-quiz. Hello world!",
     "scripts": {},
-  },
+  }
 }

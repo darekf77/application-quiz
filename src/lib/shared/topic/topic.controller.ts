@@ -1,29 +1,37 @@
 //#region imports
 import { ClassHelpers, Taon } from 'taon/src';
+import {
+  GET,
+  Query,
+  Path,
+  TaonBaseCrudController,
+  TaonController,
+} from 'taon/src';
 import { _ } from 'tnp-core/src';
 
 import { Answer } from '../answer';
 import { Question } from '../question';
 
 import { Topic } from './topic';
+
 //#endregion
 
-@Taon.Controller({
+@TaonController({
   className: 'TopicController',
 })
-export class TopicController extends Taon.Base.CrudController<any> {
+export class TopicController extends TaonBaseCrudController<any> {
   entityClassResolveFn = () => Topic;
 
-  @Taon.Http.GET()
+  @GET()
   hello(): Taon.Response<string> {
     return async () => {
       return 'Hello world';
     };
   }
 
-  @Taon.Http.GET()
+  @GET()
   getAll(
-    @Taon.Http.Param.Query('limit')
+    @Query('limit')
     limit = Infinity,
   ): Taon.Response<Topic[]> {
     //#region @websqlFunc
@@ -33,7 +41,7 @@ export class TopicController extends Taon.Base.CrudController<any> {
       let arr = (await Taon.getResponseValue(config, {
         req,
         res,
-      })) as Topic[];
+      } as any )) as Topic[];
       if (arr.length > limit) {
         arr = arr.slice(0, limit - 1);
       }
@@ -42,9 +50,9 @@ export class TopicController extends Taon.Base.CrudController<any> {
     //#endregion
   }
 
-  @Taon.Http.GET(`/by/title/:topicTitleKebabCase`)
+  @GET(`/by/title/:topicTitleKebabCase`)
   getByTitleKebabCase(
-    @Taon.Http.Param.Path('topicTitleKebabCase')
+    @Path('topicTitleKebabCase')
     topicTitleKebabCase: string,
   ): Taon.Response<Topic> {
     //#region @websqlFunc

@@ -42,7 +42,7 @@ export class QuestionContainer {
     if (_.isNumber(questionOid) && !_.isNaN(questionOid)) {
       this.question$ = this.store
         .select(questionSelectors.getCurrentQuestion)
-        .pipe(map(q => Question.from(q)));
+        .pipe(map(q => new Question().clone(q)));
       this.store.dispatch(questionAction.FETCH_QUESTION({ questionOid }));
     } else {
       this.question$ = of(void 0);

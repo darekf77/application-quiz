@@ -1,3 +1,2 @@
-export * from './layout-simple-small-app'; // @browser
-export * from './shared';
-export * from './models';
+export * from './index._auto-generated_';
+export * from './migrations';

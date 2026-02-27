@@ -1,3 +1,4 @@
+@if (itemsLoaded()) {
 <taon-github-fork-me-corner url="https://github.com/darekf77/application-quiz">
 </taon-github-fork-me-corner>
 <layout-simple-small-app>
@@ -19,7 +20,7 @@
     <div class="spacer"></div>
     <button
       mat-button
-      *ngIf="showQuizSelect$ | async"
+      *ngIf="showQuizSelect()"
       mat-raised-button
       color="accent"
       [matMenuTriggerFor]="menu">
@@ -39,3 +40,4 @@
     <router-outlet></router-outlet>
   </div>
 </layout-simple-small-app>
+}

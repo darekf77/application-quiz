@@ -4,13 +4,17 @@ import {
   Answer,
   Question,
   Topic,
+  User,
   type RawQuizApp,
 } from '@darekf77/application-quiz/src';
 import { Taon } from 'taon/src';
+import { TaonBaseMigration, TaonMigration } from 'taon/src';
 import { QueryRunner } from 'taon-typeorm/src';
 import { _ } from 'tnp-core/src';
+
 //#endregion
 
+//#region data
 export const backendQuizData: RawQuizApp = {
   title: 'Quiz Application UI',
   topics: [
@@ -272,31 +276,33 @@ export const backendQuizData: RawQuizApp = {
     },
   ],
 };
+//#endregion
 
-@Taon.Migration({
+@TaonMigration({
   className: 'ApplicationQuizContext_1746214744218_dataLoad',
 })
-export class ApplicationQuizContext_1746214744218_dataLoad extends Taon.Base
-  .Migration {
+export class ApplicationQuizContext_1746214744218_dataLoad extends TaonBaseMigration {
   questionRepository = this.injectRepo(Question);
 
   topicRepository = this.injectRepo(Topic);
 
   answerRepository = this.injectRepo(Answer);
 
+  userRepository = this.injectRepo(User);
+
   async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.startTransaction();
     try {
       const topics = [];
       for (let index = 0; index < backendQuizData.topics.length; index++) {
-        let topic = Topic.from(backendQuizData.topics[index]);
+        let topic = new Topic().clone(backendQuizData.topics[index]);
         topic.topicTitleKebabCase = _.kebabCase(topic.title);
         const questions = _.cloneDeep(topic.question);
         topic.questionsOids = _.times(questions.length, n => n + 1);
         topic = await this.topicRepository.save(topic);
         topics[index] = topic;
         for (let index2 = 0; index2 < questions.length; index2++) {
-          let question = Question.from(questions[index2]);
+          let question = new Question().clone(questions[index2]);
           question.topicId = topic.id;
           question.oid = index2 + 1;
           const anwsers = _.cloneDeep(question.answers);
@@ -314,7 +320,7 @@ export class ApplicationQuizContext_1746214744218_dataLoad extends Taon.Base
           topic.question = Array.isArray(topic.question) ? topic.question : [];
           topic.question[index2] = question;
           for (let index3 = 0; index3 < anwsers.length; index3++) {
-            let answer = Answer.from(anwsers[index3]);
+            let answer = new Answer().clone(anwsers[index3]);
             answer.questionId = question.id;
             answer.Oid = index3 + 1;
             answer = await this.answerRepository.save(answer);
@@ -325,8 +331,12 @@ export class ApplicationQuizContext_1746214744218_dataLoad extends Taon.Base
           }
         }
       }
+      console.log({ topics });
+
+      await this.userRepository.save(new User().clone({ username: 'Dariusz' }));
       await queryRunner.commitTransaction();
     } catch (error) {
+      console.log({ error });
       await queryRunner.rollbackTransaction();
     } finally {
       await queryRunner.release();

@@ -1,35 +1,27 @@
 //#region imports
-import { Taon } from 'taon/src';
+import { Taon, TaonBaseAbstractEntity } from 'taon/src';
+import { TaonBaseEntity, TaonEntity, Generated, Column } from 'taon/src';
 import { _ } from 'tnp-core/src';
 
 import { RawAnswer, RawQuestion } from '../../models';
 import { Answer } from '../answer';
 
 import { defaultModelValuesQuestion as defaultModelValues } from './question.models';
+
 //#endregion
 
-@Taon.Entity({
+@TaonEntity({
   className: 'Question',
-  defaultModelValues,
+  defaultModelValues: () => ({ ...defaultModelValues }),
 })
-export class Question extends Taon.Base.Entity<any> implements RawQuestion {
-  //#region static
-  static from(obj: Omit<Partial<Question>, 'ctrl'>) {
-    const res = _.merge(new Question(), obj) as Question;
-    res.answers = (res.answers || []).map(a => Answer.from(a));
-    return res;
-  }
-
-  static empty() {
-    return Question.from(defaultModelValues);
-  }
-
-  //#endregion
-
+export class Question
+  extends TaonBaseAbstractEntity<any>
+  implements RawQuestion
+{
   //#region fields & getters
 
   //#region @websql
-  @Taon.Orm.Column.Custom({
+  @Column({
     type: 'varchar',
     length: 100,
     default: defaultModelValues.title,
@@ -41,19 +33,14 @@ export class Question extends Taon.Base.Entity<any> implements RawQuestion {
   declare answers: RawAnswer[];
 
   //#region @websql
-  @Taon.Orm.Column.Generated()
-  //#endregion
-  declare id: number;
-
-  //#region @websql
-  @Taon.Orm.Column.Custom({
+  @Column({
     type: 'int',
   })
   //#endregion
   declare topicId?: number;
 
   //#region @websql
-  @Taon.Orm.Column.Custom({
+  @Column({
     type: 'int',
     nullable: true,
   })
@@ -61,7 +48,7 @@ export class Question extends Taon.Base.Entity<any> implements RawQuestion {
   declare nextOid?: number;
 
   //#region @websql
-  @Taon.Orm.Column.Custom({
+  @Column({
     type: 'int',
     nullable: true,
   })
@@ -69,14 +56,14 @@ export class Question extends Taon.Base.Entity<any> implements RawQuestion {
   declare prevOid?: number;
 
   //#region @websql
-  @Taon.Orm.Column.Custom({
+  @Column({
     type: 'int',
   })
   //#endregion
   declare oid?: number;
 
   //#region @websql
-  @Taon.Orm.Column.Custom({
+  @Column({
     type: 'varchar',
     length: 100,
     default: defaultModelValues.description,

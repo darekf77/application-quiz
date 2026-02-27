@@ -1,5 +1,14 @@
 //#region imports
 import { Taon } from 'taon/src';
+import {
+  POST,
+  Query,
+  Path,
+  Body,
+  TaonBaseCrudController,
+  TaonBaseRepository,
+  TaonController,
+} from 'taon/src';
 import { _ } from 'tnp-core/src';
 
 import { Answer } from '../answer/answer';
@@ -8,15 +17,16 @@ import { Topic } from '../topic';
 
 import { User } from './user';
 import { Stats } from './user.models';
+
 //#endregion
 
-@Taon.Controller({
+@TaonController({
   className: 'UserController',
 })
-export class UserController extends Taon.Base.CrudController<User> {
+export class UserController extends TaonBaseCrudController<User> {
   entityClassResolveFn = (): typeof User => User;
 
-  get userRepository(): Taon.Base.Repository<User> {
+  get userRepository(): TaonBaseRepository<User> {
     return this.db;
   }
 
@@ -32,13 +42,13 @@ export class UserController extends Taon.Base.CrudController<User> {
    * @param username should be encoded encodeURIComponent
    * @returns
    */
-  @Taon.Http.POST('/submit/user/:username') //
+  @POST('/submit/user/:username') //
   submit(
-    @Taon.Http.Param.Body('answers')
+    @Body('answers')
     corectAnswersIds: Number[],
-    @Taon.Http.Param.Path('username')
+    @Path('username')
     username: string,
-    @Taon.Http.Param.Query('onlyTopicId')
+    @Query('onlyTopicId')
     onlyTopicId: Number,
   ): Taon.Response<User> {
     //#region @websqlFunc
@@ -55,7 +65,7 @@ export class UserController extends Taon.Base.CrudController<User> {
         throw new Error(`Username exists or not correct`);
       }
       let user = await this.userRepository.save(
-        User.from({
+        new User().clone({
           username,
         }),
       );
@@ -65,21 +75,25 @@ export class UserController extends Taon.Base.CrudController<User> {
       for (let index = 0; index < allAnswers.length; index++) {
         const answer = allAnswers[index];
         answer.topic = allTopics.find(topic => {
-          const question = allQuestions.find(q => q.id === answer.questionId);
-          return topic.id === question.topicId;
+          const question = allQuestions.find(
+            q => Number(q.id) === Number(answer.questionId),
+          );
+          return Number(topic.id) === Number(question.topicId);
         });
       }
       let userAnswers = corectAnswersIds.map(id => {
-        const answerFromDB = allAnswers.find(a => a.id == id);
+        const answerFromDB = allAnswers.find(a => Number(a.id) == Number(id));
         const answer = answerFromDB.clone({});
         answer.userAnswer = true;
-        answer.topic = Topic.from(answer.topic);
+        answer.topic = new Topic().clone(answer.topic);
         return answer;
       });
       const updateOnlyForTopicId =
         _.isNumber(onlyTopicId) && !_.isNaN(onlyTopicId);
       if (updateOnlyForTopicId) {
-        userAnswers = userAnswers.filter(f => onlyTopicId === f.topic.id);
+        userAnswers = userAnswers.filter(
+          f => Number(onlyTopicId) === Number(f.topic.id),
+        );
       }
       for (let index = 0; index < userAnswers.length; index++) {
         const userAnswer = userAnswers[index];
@@ -115,9 +129,9 @@ export class UserController extends Taon.Base.CrudController<User> {
     //#endregion
   }
 
-  @Taon.Http.POST()
+  @POST()
   getByUsername(
-    @Taon.Http.Param.Query('username')
+    @Query('username')
     username: string,
   ): Taon.Response<User> {
     //#region @websqlFunc

@@ -1,53 +1,57 @@
 //#region imports
-import { Component, Input, OnInit } from '@angular/core';
-import { User } from '@darekf77/application-quiz/src';
+import { CommonModule } from '@angular/common';
+import { Component, inject, Input, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import {
+  User,
+  UserComponent,
+  UserService,
+} from '@darekf77/application-quiz/src';
 import { UserController } from '@darekf77/application-quiz/src';
 import { Observable, Subscription, map, of } from 'rxjs';
 import { Taon } from 'taon/src';
 
-import { ApplicationQuizContext } from '../../app.context';
 import { AppService } from '../../app.store';
 //#endregion
 
 @Component({
   selector: 'app-stats',
-  standalone: false,
   templateUrl: './stats.container.html',
   styleUrls: ['./stats.container.scss'],
+  imports: [CommonModule, UserComponent],
+  providers: [UserService],
 })
 export class StatsContainer implements OnInit {
-  context: typeof ApplicationQuizContext;
+  router = inject(Router);
+
+  activatedRoute = inject(ActivatedRoute);
 
   user$: Observable<User>;
 
-  userController = Taon.inject(() =>
-    ApplicationQuizContext.getClass(UserController),
-  );
+  userApiService = inject(UserService);
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('username')
   set id(username: string) {
     if (username) {
       username = decodeURIComponent(username);
-      this.user$ = this.userController
+      console.log('ASSIGNING ARRRA OBSERVABLE');
+      this.user$ = this.userApiService.entityCrudController
         .getByUsername(encodeURIComponent(username))
-        .received.observable.pipe(
+        .request()
+        .observable.pipe(
           map(data => {
             console.log('user data', data); // @LAST is ipc mode entity mapping does not work !
-            return User.from(data.body.json);
+            return new User().clone(data.body.json);
           }),
         );
-    } else {
-      this.user$ = of(void 0);
     }
   }
 
-  constructor(private appService: AppService) {
-    this.context = ApplicationQuizContext;
-  }
-
   onUserGoTo(username: string) {
-    this.appService.goToStats(username);
+    this.router.navigate([`../stats/${username}`], {
+      relativeTo: this.activatedRoute,
+    });
   }
 
   ngOnInit(): void {

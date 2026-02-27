@@ -1,5 +1,12 @@
 //#region imports
-import { Taon } from 'taon/src';
+import { Taon, TaonBaseAbstractEntity } from 'taon/src';
+import {
+  TaonBaseEntity,
+  TaonEntity,
+  Generated,
+  Column,
+  SimpleJsonColumn,
+} from 'taon/src';
 import { _ } from 'tnp-core/src';
 
 import type { UserController } from './user.controller';
@@ -9,34 +16,16 @@ import {
 } from './user.models';
 //#endregion
 
-@Taon.Entity({
+@TaonEntity<User>({
   className: 'User',
-  defaultModelValues,
-  defaultModelMapping: {
-    statistics: 'Stats',
-  },
+  defaultModelValues: () => ({ ...defaultModelValues }),
+  defaultModelMapping: () => ({
+    statistics: [Stats],
+  }),
 })
-export class User extends Taon.Base.Entity {
-  //#region static
-  static from(obj: Omit<Partial<User>, 'ctrl'>) {
-    return _.merge(new User(), obj) as User;
-  }
-
-  static empty() {
-    return User.from(defaultModelValues);
-  }
-
-  //#endregion
-
-  //#region fields & getters
-
+export class User extends TaonBaseAbstractEntity<User> {
   //#region @websql
-  @Taon.Orm.Column.Generated()
-  //#endregion
-  id: string;
-
-  //#region @websql
-  @Taon.Orm.Column.Custom({
+  @Column({
     type: 'varchar',
     length: '100',
     unique: true,
@@ -46,14 +35,14 @@ export class User extends Taon.Base.Entity {
   username: string;
 
   //#region @websql
-  @Taon.Orm.Column.SimpleJson()
+  @SimpleJsonColumn()
   //#endregion
   statistics?: Stats[];
 
   //#endregion
 
   //#region @websql
-  @Taon.Orm.Column.Custom({
+  @Column({
     type: 'varchar',
     length: 100,
     default: defaultModelValues.description,
@@ -62,9 +51,6 @@ export class User extends Taon.Base.Entity {
   //#endregion
   description?: string;
 
-  //#endregion
-
-  //#region methods
   getScored() {
     return (this.statistics || []).reduce((a, b) => {
       return a + b.scored;

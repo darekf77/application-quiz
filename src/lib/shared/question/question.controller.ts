@@ -1,16 +1,24 @@
 //#region imports
 import { Taon } from 'taon/src';
+import {
+  GET,
+  Query,
+  Path,
+  TaonBaseCrudController,
+  TaonController,
+} from 'taon/src';
 
 import { Answer } from '../answer';
 import { Topic } from '../topic';
 
 import { Question } from './question';
+
 //#endregion
 
-@Taon.Controller({
+@TaonController({
   className: 'QuestionController',
 })
-export class QuestionController extends Taon.Base.CrudController<any> {
+export class QuestionController extends TaonBaseCrudController<any> {
   entityClassResolveFn = () => Question;
 
   get questionRepository() {
@@ -21,16 +29,16 @@ export class QuestionController extends Taon.Base.CrudController<any> {
 
   anwserRepository = this.injectRepo(Answer);
 
-  @Taon.Http.GET()
+  @GET()
   hello(): Taon.Response<string> {
     return async () => {
       return 'Hello world';
     };
   }
 
-  @Taon.Http.GET()
+  @GET()
   getAll(
-    @Taon.Http.Param.Query('limit')
+    @Query('limit')
     limit = Infinity,
   ): Taon.Response<Question[]> {
     //#region @websqlFunc
@@ -40,7 +48,7 @@ export class QuestionController extends Taon.Base.CrudController<any> {
       let arr = (await Taon.getResponseValue(config, {
         req,
         res,
-      })) as Question[];
+      } as any)) as Question[];
       if (arr.length > limit) {
         arr = arr.slice(0, limit - 1);
       }
@@ -49,11 +57,11 @@ export class QuestionController extends Taon.Base.CrudController<any> {
     //#endregion
   }
 
-  @Taon.Http.GET(`/question/:questionOid/topic/:topicTitleKebabCase`) //
+  @GET(`/question/:questionOid/topic/:topicTitleKebabCase`) //
   getQuestionWithAswers(
-    @Taon.Http.Param.Path('questionOid')
+    @Path('questionOid')
     questionOid: number,
-    @Taon.Http.Param.Path('topicTitleKebabCase')
+    @Path('topicTitleKebabCase')
     topicTitleKebabCase: string,
   ): Taon.Response<Question> {
     //#region @websqlFunc

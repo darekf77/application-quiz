@@ -46,14 +46,14 @@ export class TopicContainer implements OnInit {
       });
     this.currentTopic$ = store.select(appSelectors.selectedTopic).pipe(
       map(t => {
-        return t && Topic.from(t);
+        return t && new Topic().clone(t);
       }),
     );
     this.currentQuestion$ = store
       .select(questionSelectors.getCurrentQuestion)
       .pipe(
         map(t => {
-          return t && Question.from(t);
+          return t && new Question().clone(t);
         }),
       );
     this.selectedQuestionOid$ = store.select(

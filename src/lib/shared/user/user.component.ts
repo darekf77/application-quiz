@@ -31,14 +31,9 @@ import { UserService } from './user.service';
     StaticColumnsModule,
     TaonTableModule,
   ],
-  standalone: true,
 })
 export class UserComponent {
   private userService = inject(UserService);
-
-  public entityCrudController: UserController;
-
-  @Input() context: typeof SharedContext;
 
   @Input() user: User;
 
@@ -91,7 +86,5 @@ export class UserComponent {
     },
   ];
 
-  constructor() {
-    this.entityCrudController = this.userService.entityCrudController;
-  }
+  constructor() {}
 }

@@ -11,10 +11,12 @@ export const defaultModelValuesUser: Omit<
 > = {
   description: '',
 };
-export interface Stats {
-  topicName: string;
-  scored: number;
-  total: number;
+export class Stats {
+  declare topicName: string;
+
+  declare scored: number;
+
+  declare total: number;
 }
 export class TransformField {
   id: string;
@@ -23,6 +25,8 @@ export type IUSER = {
   [prop in keyof Required<typeof defaultModelValuesUser>]: TransformField;
 };
 export class USER implements IUSER {
+  version: TransformField;
+
   id: TransformField;
 
   username: TransformField;

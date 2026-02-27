@@ -4,29 +4,73 @@
     ".sass-cache": true,
     ".sourcemaps": true,
     ".DS_Store": true,
+    "**/.DS_Store": true,
     "npm-debug.log": true,
     "yarn-error.log": true,
     "testem.log": true,
     "connect.lock": true,
     "node_modules": true,
+    "**/node_modules": true,
     "libpeerconnection.log": true,
     "dist": true,
     "coverage": true,
     "Thumbs.db": true,
     "browser": true,
+    "**/browser": true,
     "websql": true,
+    "**/websql": true,
+    "eslint-rules": true,
+    "dist-prod": true,
     "dist-nocutsrc": true,
+    "dist-nocutsrc-prod": true,
     "package-lock.json": true,
     "chrome-profiler-events*.json": true,
     "speed-measure-plugin*.json": true,
     "tmp*": true,
     "npm-debug.log*": true,
-    "*.filetemplate": true,
+    "tmp-*": true,
+    "**/tmp-*": true,
+    "dist*": true,
+    "**/dist*": true,
+    ".tnp": true,
+    "**/.tnp": true,
+    ".taon": true,
+    "**/.taon": true,
+    "tsconfig*": true,
+    "**/tsconfig*": true,
+    "*.schema.json": true,
+    "**/*.schema.json": true,
+    "eslint*": true,
+    "**/eslint*": true,
+    "run.js": true,
+    "**/run.js": true,
+    "webpack*": true,
+    "**/webpack*": true,
+    "index.js": true,
+    "**/index.js": true,
+    "index.js.map": true,
+    "**/index.js.map": true,
+    "index.d.ts": true,
+    "**/index.d.ts": true,
     ".gitignore": true,
-    "package.json": true,
+    "**/.gitignore": true,
     ".npmignore": true,
-    ".babelrc": true,
+    "**/.npmignore": true,
+    ".npmrc": true,
+    "**/.npmrc": true,
+    ".prettierrc": true,
+    "**/.prettierrc": true,
+    ".prettierignore": true,
+    "**/.prettierignore": true,
+    "update-vscode-package-json.js": true,
+    "**/update-vscode-package-json.js": true,
     ".editorconfig": true,
+    "**/.editorconfig": true,
+    "package.json": true,
+    "**/package.json": true,
+    "*.filetemplate": true,
+    "**/*.filetemplate": true,
+    ".babelrc": true,
     "eslint.config.js": true,
     "protractor.conf.js": true,
     "karma.conf.js": true,
@@ -35,28 +79,20 @@
     ".prettierrc.json": true,
     ".eslintrc.js": true,
     ".eslintrc.json": true,
-    ".npmrc": true,
     ".yarnrc": true,
     ".idea": true,
-    ".prettierignore": true,
-    ".prettierrc": true,
-    "run.js": true,
-    "index.d.ts": true,
-    "index.js": true,
-    "index.js.map": true,
-    "update-vscode-package-json.js": true,
-    "tsconfig*": true,
     "webpack.*": true,
     ".eslintrc*": true,
-    "tslint.*": true,
-    "*.schema.json": true
+    "tslint.*": true
   },
+
   "workbench.colorCustomizations": {
     "activityBar.background": "#0084ff",
     "activityBar.foreground": "#000000",
     "statusBar.background": "#4e53c1",
     "statusBar.debuggingBackground": "#15d8ff"
   },
+
   "editor.rulers": [80, 120],
   "html.format.wrapAttributes": "force-aligned",
   "workbench.colorTheme": "Default Light+",
@@ -64,6 +100,7 @@
   "eslint.enable": true,
   "tslint.enable": false,
   "typescript.tsdk": "node_modules/typescript/lib",
+
   "search.exclude": {
     "bin": true,
     "local_release": true,
@@ -97,38 +134,47 @@
     "*.rest": true,
     "**/*.rest": true
   },
+
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "[json5]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "[scss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "eslint.migration.2_x": "off",
   "prettier.enable": true,
   "editor.suggest.snippetsPreventQuickSuggestions": false,
@@ -139,21 +185,34 @@
   "window.title": "npm/taon-projects/application-quiz  [ ${activeEditorShort} ]",
   "search.useIgnoreFiles": false,
   "search.include": ["**/src/**"],
+
   "json.schemas": [
     {
       "fileMatch": ["/taon.jsonc"],
       "url": "./taon-config-standalone.schema.json"
     }
   ],
+
   "files.watcherExclude": {
     "local_release/**": true
   },
+
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "[dockercompose]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
-  }
+  },
+
+  "typescript.suggest.autoImports": false,
+  "javascript.suggest.autoImports": false,
+
+  "files.associations": {
+    "tsconfig.json": "json"
+  },
+
+  "search.followSymlinks": false
 }
