@@ -41,7 +41,7 @@ export class TopicController extends TaonBaseCrudController<any> {
       let arr = (await Taon.getResponseValue(config, {
         req,
         res,
-      } as any )) as Topic[];
+      } as any)) as Topic[];
       if (arr.length > limit) {
         arr = arr.slice(0, limit - 1);
       }
