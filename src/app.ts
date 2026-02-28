@@ -143,10 +143,12 @@ export class ApplicationQuizApp implements OnInit {
   readonly topics$: Observable<Topic[]> = this.topicService.topicController
     .getAll()
     .request()
-    .observable.pipe(map(d => {
-      console.log(d.body.json);
-      return d.body.json;
-    }));
+    .observable.pipe(
+      map(d => {
+        console.log(d.body.json);
+        return d.body.json;
+      }),
+    );
 
   navItems =
     ApplicationQuizClientRoutes.length <= 1
@@ -217,15 +219,17 @@ export const ApplicationQuizClientRoutes: Routes = [
   // @placeholder-for-routes
   // @app-ts-generated
   {
-    path: 'stats',
+    path: 'quiz',
+
     loadChildren: () =>
-      import('./app/stats/stats.routes').then(m => m.StatsRoutes),
+      import('./app/quiz/quiz.routes').then(m => m.QuizRoutes),
   },
   // @app-ts-generated
   {
-    path: 'quiz',
+    path: 'stats',
+
     loadChildren: () =>
-      import('./app/quiz/quiz.routes').then(m => m.QuizRoutes),
+      import('./app/stats/stats.routes').then(m => m.StatsRoutes),
   },
 ];
 //#endregion
