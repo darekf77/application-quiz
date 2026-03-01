@@ -19,9 +19,6 @@ import {
 @TaonEntity<User>({
   className: 'User',
   defaultModelValues: () => ({ ...defaultModelValues }),
-  defaultModelMapping: () => ({
-    statistics: [Stats],
-  }),
 })
 export class User extends TaonBaseAbstractEntity<User> {
   //#region @websql
