@@ -132,7 +132,9 @@
     "dist-*": true,
     "**/dist-*": true,
     "*.rest": true,
-    "**/*.rest": true
+    "**/*.rest": true,
+    "src/app.auto-gen-docs.md": true,
+    "src/app.auto-gen-ver.js": true
   },
 
   "[typescriptreact]": {
@@ -182,7 +184,7 @@
   "tslint.alwaysShowRuleFailuresAsWarnings": false,
   "prettier.prettierPath": "./node_modules/prettier",
   "prettier.endOfLine": "auto",
-  "window.title": "npm/taon-projects/application-quiz  [ ${activeEditorShort} ]",
+  "window.title": "taon-projects/application-quiz () [ ${activeEditorShort}]",
   "search.useIgnoreFiles": false,
   "search.include": ["**/src/**"],
 
@@ -194,7 +196,11 @@
   ],
 
   "files.watcherExclude": {
-    "local_release/**": true
+    "local_release/**": true,
+    "tmp-*/**": true,
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/dist-nocutsrc/**": true
   },
 
   "[markdown]": {

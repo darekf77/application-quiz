@@ -1,16 +1,11 @@
 @use './vars.scss' as vars;
-@use 'bootstrap/scss/bootstrap' as *;
+// @use 'bootstrap/scss/bootstrap' as *; Conflict with primeflex
 @use '@angular/material' as mat;
-@use 'angular-material-css-vars' as mat-css-vars;
 
 @import 'primeflex/primeflex.css';
 @import 'primeflex/themes/primeone-light.css';
 @import 'primeicons/primeicons.css';
 @import 'animate.css/animate.min.css';
-
-@include mat-css-vars.init-material-css-vars();
-
-@import '@ng-matero/extensions/prebuilt-themes/indigo-pink.css';
 
 @include mat.core();
 
@@ -35,14 +30,14 @@ $dark-theme: mat.define-theme(
 );
 
 // Apply scoped themes
-.light-theme {
+.light-taon-theme {
   // color-scheme: light;
   @include mat.all-component-themes($light-theme);
   --main-bg-color: rgb(255, 255, 255);
   --font-color: rgb(14, 15, 26);
 }
 
-.dark-theme {
+.dark-taon-theme {
   // color-scheme: dark;
   @include mat.all-component-themes($dark-theme);
   --main-bg-color: rgb(42, 56, 71);
@@ -79,25 +74,15 @@ $dark-theme: mat.define-theme(
   display: block !important;
 }
 
-.spacer {
-  flex: 1 1 auto;
-}
-
-.wrapper-content {
-  display: block;
-  padding: 10px;
-}
-
-.active-link {
-  text-decoration: underline;
-}
-
 body,
 html {
-  // background: var(--main-bg-color);
-
-  background-color: rgb(236, 236, 236) !important;
-  // overflow: auto !important;?
+  font-family: 'Roboto', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+  font-variation-settings: 'wdth' 100;
+  color: var(--font-color);
+  background: var(--main-bg-color);
 
   transition:
     background 200ms ease,
