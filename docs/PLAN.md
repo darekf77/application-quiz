@@ -6,3 +6,6 @@
  + Normal (with simple http request)
  + NgRX (standard store ngrx action, selector etc.)
  + Singlar Store
+
+# db schema
+<img src="./PLAN-db-models.drawio.svg"  height="200px">

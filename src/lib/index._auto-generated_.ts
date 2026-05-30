@@ -4,4 +4,3 @@
 // set property "shouldGenerateAutogenIndexFile: false" 
 // in taon.jsonc of your project. 
 export * from './build-info._auto-generated_'; 
-export * from './models'; 
