@@ -147,6 +147,7 @@
     "@tailwindcss/postcss": "~4.3.0",
     "@taon-dev/api-workers": "~21.0.0",
     "@taon-dev/cloud": "~21.0.0",
+    "@taon-dev/i18n": "~21.0.0",
     "@taon-dev/session": "~21.0.0",
     "@testdeck/jest": "~0.3.3",
     "@testdeck/mocha": "~0.3.3",
@@ -457,5 +458,9 @@
     "@parcel/watcher-linux-x64-glibc": "2.5.1",
     "@parcel/watcher-win32-x64-msvc": "2.5.1"
   },
-  "bin": {}
+  "bin": {
+    "application-quiz": "bin/application-quiz",
+    "application-quiz-debug": "bin/application-quiz-debug",
+    "application-quiz-debug-brk": "bin/application-quiz-debug-brk"
+  }
 }
