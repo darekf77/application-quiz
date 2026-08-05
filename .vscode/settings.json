@@ -1,69 +1,110 @@
 {
   "files.exclude": {
-    "_changelog": true,
-    ".sass-cache": true,
-    ".sourcemaps": true,
-    ".DS_Store": true,
-    "npm-debug.log": true,
-    "yarn-error.log": true,
-    "testem.log": true,
-    "connect.lock": true,
-    "node_modules": true,
-    "libpeerconnection.log": true,
-    "dist": true,
-    "coverage": true,
-    "Thumbs.db": true,
-    "browser": true,
-    "websql": true,
-    "dist-nocutsrc": true,
-    "package-lock.json": true,
-    "chrome-profiler-events*.json": true,
-    "speed-measure-plugin*.json": true,
-    "tmp*": true,
-    "npm-debug.log*": true,
-    "*.filetemplate": true,
-    ".gitignore": true,
-    "package.json": true,
-    ".npmignore": true,
-    ".babelrc": true,
-    ".editorconfig": true,
-    "eslint.config.js": true,
-    "protractor.conf.js": true,
-    "karma.conf.js": true,
-    ".prettierc": true,
-    "angular.json": true,
-    ".prettierrc.json": true,
-    ".eslintrc.js": true,
-    ".eslintrc.json": true,
-    ".npmrc": true,
-    ".yarnrc": true,
-    ".idea": true,
-    ".prettierignore": true,
-    ".prettierrc": true,
-    "run.js": true,
-    "index.d.ts": true,
-    "index.js": true,
-    "index.js.map": true,
-    "update-vscode-package-json.js": true,
-    "tsconfig*": true,
-    "webpack.*": true,
-    ".eslintrc*": true,
-    "tslint.*": true,
-    "*.schema.json": true
+    "_changelog": false,
+    ".sass-cache": false,
+    ".sourcemaps": false,
+    ".DS_Store": false,
+    "**/.DS_Store": false,
+    "npm-debug.log": false,
+    "yarn-error.log": false,
+    "testem.log": false,
+    "connect.lock": false,
+    "node_modules": false,
+    "**/node_modules": false,
+    "libpeerconnection.log": false,
+    "dist": false,
+    "coverage": false,
+    "Thumbs.db": false,
+    "browser": false,
+    "**/browser": false,
+    "websql": false,
+    "**/websql": false,
+    "eslint-rules": false,
+    "dist-prod": false,
+    "dist-nocutsrc": false,
+    "dist-nocutsrc-prod": false,
+    "package-lock.json": false,
+    "*.i18n.data.ts": false,
+    "**/*.i18n.data.ts": false,
+    "chrome-profiler-events*.json": false,
+    "speed-measure-plugin*.json": false,
+    "tmp*": false,
+    "npm-debug.log*": false,
+    "tmp-*": false,
+    "**/tmp-*": false,
+    "dist*": false,
+    "**/dist*": false,
+    ".tnp": false,
+    "**/.tnp": false,
+    ".taon": false,
+    "**/.taon": false,
+    "tsconfig*": false,
+    "**/tsconfig*": false,
+    "*.schema.json": false,
+    "**/*.schema.json": false,
+    "eslint*": false,
+    "**/eslint*": false,
+    "run.js": false,
+    "**/run.js": false,
+    "webpack*": false,
+    "**/webpack*": false,
+    "index.js": false,
+    "**/index.js": false,
+    "index.js.map": false,
+    "**/index.js.map": false,
+    "index.d.ts": false,
+    "**/index.d.ts": false,
+    "vitest.config.ts": false,
+    "**/vitest.config.ts": false,
+    ".gitignore": false,
+    "**/.gitignore": false,
+    ".npmignore": false,
+    "**/.npmignore": false,
+    ".npmrc": false,
+    "**/.npmrc": false,
+    ".prettierrc": false,
+    "**/.prettierrc": false,
+    ".prettierignore": false,
+    "**/.prettierignore": false,
+    "update-vscode-package-json.js": false,
+    "**/update-vscode-package-json.js": false,
+    ".editorconfig": false,
+    "**/.editorconfig": false,
+    "package.json": false,
+    "**/package.json": false,
+    "*.filetemplate": false,
+    "**/*.filetemplate": false,
+    ".babelrc": false,
+    "eslint.config.js": false,
+    "protractor.conf.js": false,
+    "karma.conf.js": false,
+    ".prettierc": false,
+    "angular.json": false,
+    ".prettierrc.json": false,
+    ".eslintrc.js": false,
+    ".eslintrc.json": false,
+    ".yarnrc": false,
+    ".idea": false,
+    "webpack.*": false,
+    ".eslintrc*": false,
+    "tslint.*": false,
+    "!templates-subprojects/**/package.json": false
   },
+
   "workbench.colorCustomizations": {
     "activityBar.background": "#0084ff",
     "activityBar.foreground": "#000000",
     "statusBar.background": "#4e53c1",
     "statusBar.debuggingBackground": "#15d8ff"
   },
+
   "editor.rulers": [80, 120],
   "html.format.wrapAttributes": "force-aligned",
-  "workbench.colorTheme": "Default Light+",
   "tslint.autoFixOnSave": false,
   "eslint.enable": true,
   "tslint.enable": false,
   "typescript.tsdk": "node_modules/typescript/lib",
+
   "search.exclude": {
     "bin": true,
     "local_release": true,
@@ -95,40 +136,51 @@
     "dist-*": true,
     "**/dist-*": true,
     "*.rest": true,
-    "**/*.rest": true
+    "**/*.rest": true,
+    "src/app.auto-gen-docs.md": true,
+    "src/app.auto-gen-ver.js": true
   },
+
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "[json5]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "[scss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "eslint.migration.2_x": "off",
   "prettier.enable": true,
   "editor.suggest.snippetsPreventQuickSuggestions": false,
@@ -136,24 +188,43 @@
   "tslint.alwaysShowRuleFailuresAsWarnings": false,
   "prettier.prettierPath": "./node_modules/prettier",
   "prettier.endOfLine": "auto",
-  "window.title": "npm/taon-projects/application-quiz  [ ${activeEditorShort} ]",
+  "window.title": "taon-projects/application-quiz () [ ${activeEditorShort}]",
   "search.useIgnoreFiles": false,
   "search.include": ["**/src/**"],
+
   "json.schemas": [
     {
       "fileMatch": ["/taon.jsonc"],
       "url": "./taon-config-standalone.schema.json"
     }
   ],
+
   "files.watcherExclude": {
-    "local_release/**": true
+    "local_release/**": true,
+    "tmp-*/**": true,
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/dist-nocutsrc/**": true
   },
+
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+
   "[dockercompose]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
-  }
+  },
+
+  "typescript.suggest.autoImports": false,
+  "javascript.suggest.autoImports": false,
+
+  "files.associations": {
+    "tsconfig.json": "plaintext",
+    "**/tsconfig.json": "plaintext",
+    "**/tsconfig.*.json": "plaintext"
+  },
+
+  "search.followSymlinks": false
 }

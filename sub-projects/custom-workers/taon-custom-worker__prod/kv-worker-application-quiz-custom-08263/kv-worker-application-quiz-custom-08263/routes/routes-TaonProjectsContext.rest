@@ -1,0 +1,23 @@
+
+#  ROUTES FOR HOST http://localhost:3606 
+
+### Upload Form Data To Server
+POST      http://localhost:3606/api/TaonProjectsContext/tcp/TaonBaseController/TaonBaseCliWorkerController/TaonProjectsController/uploadFormDataToServer
+
+### Base C Li Worker Command Initialize Metadata
+PUT       http://localhost:3606/api/TaonProjectsContext/tcp/TaonBaseController/TaonBaseCliWorkerController/TaonProjectsController/baseCLiWorkerCommand_initializeMetadata
+
+### Base C Li Worker Command Kill
+GET       http://localhost:3606/api/TaonProjectsContext/tcp/TaonBaseController/TaonBaseCliWorkerController/TaonProjectsController/baseCLiWorkerCommand_kill
+
+### Info
+GET       http://localhost:3606/api/TaonProjectsContext/info
+
+### Base C Li Worker Command Is Healthy
+POST      http://localhost:3606/api/TaonProjectsContext/tcp/TaonBaseController/TaonBaseCliWorkerController/TaonProjectsController/baseCLiWorkerCommand_isHealthy
+
+### Base C Li Worker Command Has Up To Date Version
+POST      http://localhost:3606/api/TaonProjectsContext/tcp/TaonBaseController/TaonBaseCliWorkerController/TaonProjectsController/baseCLiWorkerCommand_hasUpToDateVersion
+
+### Get Environments
+GET       http://localhost:3606/api/TaonProjectsContext/tcp/TaonBaseController/TaonBaseCliWorkerController/TaonProjectsController/getEnvironments

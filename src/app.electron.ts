@@ -1,17 +1,10 @@
 //#region @notForNpm
-
-//#region imports
-
-//#region imports
 import { app, BrowserWindow, screen } from 'electron';
 import { path, fse } from 'tnp-core/src';
 
 import start from './app';
 import { FRONTEND_HOST_URL_ELECTRON } from './app.hosts';
-import { ENV_ELECTRON_APP_BUILD_ANGULAR_PROD } from './lib/env';
-//#endregion
-
-//#endregion
+import { ENV_ELECTRON_APP_BUILD_ELECTRON_SHOW_DEV_TOOLS } from './lib/env';
 
 let win: BrowserWindow | null = null;
 const args = process.argv.slice(1);
@@ -31,6 +24,7 @@ function createWindow(): BrowserWindow {
       nodeIntegration: true,
       allowRunningInsecureContent: serve,
       contextIsolation: false,
+      webSecurity: !serve,
     },
   });
 
@@ -39,7 +33,12 @@ function createWindow(): BrowserWindow {
     debug();
     win.webContents.openDevTools();
 
-    // require('electron-reloader')(module); // this hangs frontend randomly
+    // TODO electron-reloader causes memory leaks and high CPU usage
+    // doNOTrequire('electron-reloader')(module); // this hangs frontend randomly
+    // import('electron-reloader').then(reloader => {
+    //   const reloaderFn = (reloader as any).default || reloader;
+    //   reloaderFn(module);
+    // });
     win.loadURL(FRONTEND_HOST_URL_ELECTRON);
   } else {
     // Path when running electron executable
@@ -53,7 +52,7 @@ function createWindow(): BrowserWindow {
     const url = new URL(path.join('file:', __dirname, pathIndex));
     win.loadURL(url.href);
 
-    if (!ENV_ELECTRON_APP_BUILD_ANGULAR_PROD) {
+    if (!ENV_ELECTRON_APP_BUILD_ELECTRON_SHOW_DEV_TOOLS) {
       // Open the DevTools.
       win.webContents.openDevTools();
     }
@@ -71,19 +70,20 @@ function createWindow(): BrowserWindow {
 }
 
 async function startElectron() {
-  await start();
   try {
+    await app.whenReady();
+
+    await start();
+
     // This method will be called when Electron has finished
     // initialization and is ready to create browser windows.
     // Some APIs can only be used after this event occurs.
     // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
-    // app.on('ready', () => setTimeout(createWindow, 400));
-    setTimeout(createWindow, 400);
+    setTimeout(() => {
+      createWindow();
+    }, 400);
 
-    // Quit when all windows are closed.
     app.on('window-all-closed', () => {
-      // On OS X it is common for applications and their menu bar
-      // to stay active until the user quits explicitly with Cmd + Q
       if (process.platform !== 'darwin') {
         app.quit();
       }
@@ -96,9 +96,9 @@ async function startElectron() {
         createWindow();
       }
     });
-  } catch (e) {
-    // Catch Error
-    throw e;
+  } catch (err) {
+    console.error('startElectron error:', err);
+    throw err;
   }
 }
 
