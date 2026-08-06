@@ -18,6 +18,13 @@ app.get('/hello', async (req, res) => {
   });
 });
 
+app.get('/hello/deep', async (req, res) => {
+  res.json({
+    message: 'Hello deep from Worker!',
+    query: req.query,
+  });
+});
+
 app.get('/users/:id', async (req, res) => {
   res.json({
     userId: req.params.id,
@@ -45,6 +52,13 @@ app.get('/me', async (req, res) => {
   res.json({ user: 'demo-user' });
 });
 
+app.get(
+  '/api/app-context/tcp/TaonBaseController/ApiController/niggggaa',
+  async (req, res) => {
+    res.json({ user: 'super nigar' });
+  },
+);
+
 // redirect
 app.get('/go', async (req, res) => {
   res.redirect('/hello');
@@ -56,15 +70,15 @@ app.get('/logout', async (req, res) => {
   res.json({ ok: true });
 });
 
-await AppContext.initialize()
-// AppContext.initialize().then(intiedApp => {
-//   // intiedApp.serverTcpUdp
-//   console.log('NIGGER');
-//   console.log({ intiedApp });
-//   app.get('/inited', async (req, res) => {
-//     res.json({ user: 'app inited' });
-//   });
-// });
+// await AppContext.initialize()
+AppContext.initialize({
+  overrideExpressApp: app,
+}).then(intiedApp => {
+  // console.log(intiedApp.expressApp);
+  app.get('/inited', async (req, res) => {
+    res.send('send done!');
+  });
+});
 
 export { app };
 //#endregion

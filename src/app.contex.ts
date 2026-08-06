@@ -18,6 +18,19 @@ class ApiController extends TaonBaseController {
 }
 //#endregion
 
+
+//#region  application-quiz controller
+@TaonController({ className: 'TestController' })
+class TestController extends TaonBaseController {
+  @GET()
+  tryIt(): Taon.Response<string> {
+    //#region @websqlFunc
+    return async (req, res) => 'try it from controller';
+    //#endregion
+  }
+}
+//#endregion
+
 //#region  application-quiz context
 export const AppContext = Taon.createContext(() => ({
   contextName: 'app-context',
@@ -25,6 +38,7 @@ export const AppContext = Taon.createContext(() => ({
   host: 'http://localhost:8788',
   controllers: {
     ApiController,
+    TestController,
   },
   database: false,
   disabledRealtime: true,
