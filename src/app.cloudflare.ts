@@ -1,4 +1,6 @@
+//#region cjsRemove
 import { createFakeExpressApp } from 'taon/src';
+import { AppContext } from './app.contex';
 
 const app = createFakeExpressApp();
 
@@ -54,4 +56,15 @@ app.get('/logout', async (req, res) => {
   res.json({ ok: true });
 });
 
+await AppContext.initialize()
+// AppContext.initialize().then(intiedApp => {
+//   // intiedApp.serverTcpUdp
+//   console.log('NIGGER');
+//   console.log({ intiedApp });
+//   app.get('/inited', async (req, res) => {
+//     res.json({ user: 'app inited' });
+//   });
+// });
+
 export { app };
+//#endregion
