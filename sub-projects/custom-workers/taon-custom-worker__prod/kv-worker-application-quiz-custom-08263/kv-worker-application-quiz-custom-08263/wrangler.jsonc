@@ -16,6 +16,15 @@
   //   "command": "npm-run bun run build.prod.js",
   // },
 
+  "assets": {
+    "directory": "./browser",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": [
+      "/api/*"
+    ]
+  },
+
   "kv_namespaces": [{ "binding": "TAON_KV" }],
 
   "d1_databases": [{ "binding": "TAON_D1" }],
