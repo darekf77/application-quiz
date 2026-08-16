@@ -36,7 +36,7 @@
     {
       "artifactName": "angular-node-app",
       "askUserBeforeFinalAction": true,
-      "releaseType": "manual",
+      "releaseType": "manual-cloudflare",
       "workerName": "kv-worker-application-quiz-custom-08263",
       "taskName": "cloudflare",
     },
