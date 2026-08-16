@@ -1,6 +1,6 @@
 {
   "name": "@darekf77/application-quiz",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "scripts": {
     "taon init": "taon init",
     "taon start": "taon start",
