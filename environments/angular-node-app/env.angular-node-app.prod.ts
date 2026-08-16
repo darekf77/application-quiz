@@ -11,5 +11,8 @@ const env: Partial<EnvOptions> = {
     ...baseEnv.website,
     useDomain: false,
   },
+  config: {
+    heello: 'world from prod',
+  },
 };
 export default env;
