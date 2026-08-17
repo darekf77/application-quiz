@@ -1,0 +1,24 @@
+@if (user) {
+  <div>
+    Category score for user: <strong>{{ user.username }}</strong>
+  </div>
+  <h3>
+    Results: {{ user.getScored() }} / {{ user.getTotal() }}
+    questions answered correctly
+  </h3>
+
+  <taon-table
+    [hideSearch]="true"
+    [columns]="statsColumns"
+    [rows]="user.statistics"
+    [allowedColumns]="['topicName', 'scored', 'total']">
+  </taon-table>
+} @else {
+  <taon-table
+    *ngIf="userService.entityCrudController"
+    [columns]="usersColumns"
+    [hideSearch]="true"
+    [entityCrudController]="userService.entityCrudController"
+    [allowedColumns]="['id', 'username']">
+  </taon-table>
+}

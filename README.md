@@ -4,9 +4,9 @@
 <p style="text-align: center;"><img src="./__images/app.png" ></p>
 
 # Technolgies
-- Taon v19 (taon.dev)
-- Angular v19
-- NgRx v19
+- Taon v21 (taon.dev)
+- Angular v21
+- NgRx v21
 - TypeORM (SQL.js in browser/ SQLite in Nodejs server)
 
 
