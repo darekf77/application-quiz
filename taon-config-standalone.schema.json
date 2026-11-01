@@ -5398,6 +5398,16 @@
           "type": "string",
           "description": "(STANDALONE) Base url for content (docs, md files etc.) Required if README.md has relative pathes to images"
         },
+        "genTsDocsInclude": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "what projects should be included for genrated docs"
+        },
+        "gitignoreGenDocsFiles": {
+          "type": "boolean"
+        },
         "storeGeneratedAssetsInRepository": {
           "type": "boolean",
           "description": "(STANDALONE) By default generated assets from logo.png are not stored in repository",
@@ -5422,12 +5432,12 @@
           },
           "description": "(STANDALONE) Same as dependenciesNamesForNpmLib but these dependencies are isomorphic (can be used in browser and node)"
         },
-        "devModeDependenciesForNpmLib": {
+        "watchBuildDependencies": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "description": "(STANDALONE) If not defined: devModeDependenciesForNpmLib === isomorphicDependenciesForNpmLib if defined -> this array is begin used for dev mode isomorphic dependencies when building locally projects in watch mode `taon build:lib:watch` or normal mode `taon build:lib`"
+          "description": "(STANDALONE) If not defined: watchBuildDependencies === isomorphicDependenciesForNpmLib if defined -> this array is begin used for dev mode isomorphic dependencies when building locally projects in watch mode `taon build:lib:watch` or normal mode `taon build:lib`"
         },
         "peerDependenciesNamesForNpmLib": {
           "type": "array",
@@ -5502,6 +5512,10 @@
         "isUsingOwnNodeModulesInsteadCoreContainer": {
           "type": "boolean",
           "description": "(STANDALONE)  Project is using own node_modules instead of core container"
+        },
+        "shouldGenerateDocsComponents": {
+          "type": "boolean",
+          "description": "(STANDALONE) generate src/lib/generated-docs for all .md fiels"
         },
         "shouldGenerateAutogenIndexFile": {
           "type": "boolean",
@@ -6461,7 +6475,7 @@
           "$ref": "#/definitions/ReleaseArtifactTaon"
         },
         "envName": {
-          "$ref": "#/definitions/CoreModels.EnvironmentName",
+          "$ref": "#/definitions/UtilsEnv.EnvironmentName",
           "description": "if not proviede default  env.<artifact-name>.__.ts will be in use"
         },
         "envNumber": {
@@ -6503,7 +6517,7 @@
       ],
       "additionalProperties": false
     },
-    "CoreModels.EnvironmentName": {
+    "UtilsEnv.EnvironmentName": {
       "type": "string",
       "enum": [
         "__",
