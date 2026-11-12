@@ -13,5 +13,5 @@ import { UserController } from './user.controller';
   providedIn: 'root',
 })
 export class UserService extends TaonBaseAngularService {
-  entityCrudController = this.injectController(UserController);
+  entityCrudController = this.inject(UserController);
 }

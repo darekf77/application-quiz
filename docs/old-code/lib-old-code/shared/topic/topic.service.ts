@@ -7,5 +7,5 @@ import { TopicController } from './topic.controller';
 
 @Injectable()
 export class TopicService extends TaonBaseAngularService {
-  topicController = this.injectController(TopicController);
+  topicController = this.inject(TopicController);
 }
